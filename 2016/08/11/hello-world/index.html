@@ -90,10 +90,19 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/11/hello-world/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
-<meta property="og:updated_time" content="2017-06-09T11:21:56.090Z">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_2.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_3.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_4.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_5.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_6.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_7.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_8.JPG">
+<meta property="og:updated_time" content="2017-06-12T02:23:25.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Visual Studio写一个生成dll与exe的解决方案">
 <meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta name="twitter:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
 
 
 
@@ -349,15 +358,23 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> <span class="number">_</span>tmain(<span class="keyword">int</span> argc, <span class="number">_</span>TCHAR* argv[])</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> a, b = <span class="number">2</span>, c = <span class="number">3</span>;</div><div class="line">	a = add(b, c);</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Result is "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>4、设置属性。</p>
 <ul>
-<li><p>设置AddFunction</p>
-</li>
-<li><p>编译成功后，将<code>AddFunction.h</code>文件拷贝到D:\AddSolution\TestAdd\TestAdd\include</p>
-</li>
-<li><p>设置TestAdd</p>
-</li>
-<li><p>编译成功，运行，显示结果。</p>
-</li>
+<li>设置AddFunction</li>
 </ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG" alt="AddFunction-1"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_2.JPG" alt="AddFunction-2"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_3.JPG" alt="AddFunction-3"></p>
+<ul>
+<li>编译成功后，将<code>AddFunction.h</code>文件拷贝到D:\AddSolution\TestAdd\TestAdd\include</li>
+<li>设置TestAdd</li>
+</ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_4.JPG" alt="TestAdd-1"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_5.JPG" alt="TestAdd-2"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_6.JPG" alt="TestAdd-3"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_7.JPG" alt="TestAdd-4"></p>
+<ul>
+<li>编译成功，运行，显示结果。</li>
+</ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_8.JPG" alt="Result"></p>
 
       
     </div>
