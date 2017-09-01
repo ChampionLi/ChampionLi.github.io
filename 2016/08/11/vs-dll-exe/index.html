@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Blog,Introduction," />
+  <meta name="keywords" content="VS," />
 
 
 
@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="Test">
+<meta name="description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="About My Blog">
-<meta property="og:url" content="http://yoursite.com/2016/08/11/about-my-blog/index.html">
+<meta property="og:title" content="Write a Solution involving dll&exe with Visual Studio">
+<meta property="og:url" content="http://yoursite.com/2016/08/11/vs-dll-exe/index.html">
 <meta property="og:site_name" content="CVision">
-<meta property="og:description" content="Test">
-<meta property="og:updated_time" content="2016-08-11T09:11:44.207Z">
+<meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_2.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_3.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_4.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_5.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_6.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_7.JPG">
+<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_8.JPG">
+<meta property="og:updated_time" content="2017-09-01T05:58:06.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About My Blog">
-<meta name="twitter:description" content="Test">
+<meta name="twitter:title" content="Write a Solution involving dll&exe with Visual Studio">
+<meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta name="twitter:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
 
 
 
@@ -114,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/11/about-my-blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/11/vs-dll-exe/"/>
 
-  <title> About My Blog | CVision </title>
+  <title> Write a Solution involving dll&exe with Visual Studio | CVision </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -256,7 +265,7 @@
             
             
               
-                About My Blog
+                Write a Solution involving dll&exe with Visual Studio
               
             
           </h1>
@@ -268,7 +277,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T09:41:35+08:00" content="2016-08-11">
+            <time itemprop="dateCreated" datetime="2016-08-11T09:14:44+08:00" content="2016-08-11">
               2016-08-11
             </time>
           </span>
@@ -282,8 +291,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/blog/" itemprop="url" rel="index">
-                    <span itemprop="name">blog</span>
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">tech</span>
                   </a>
                 </span>
 
@@ -315,9 +324,57 @@
       
 
       
-        <p>Test</p>
+        <blockquote>
+<p>Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call the functions in the .dll.</p>
+</blockquote>
 <a id="more"></a>
-<p>Test</p>
+<p>我们在这里建立一个实现加法的函数dll，然后再用一个exe调用这个dll函数中的加法函数为例，说明如何使用Visual Studio写一个生成dll与exe的解决方案。以D盘为例，首先建立一个文件夹AddSolution。</p>
+<p>1、建立项目AddFunction</p>
+<ul>
+<li><p>然后打开Visual Studio，文件-新建-项目-Win32控制台应用程序-名称：AddFunction 位置：D:\AddSolution-应用程序类型：DLL 勾选预编译头-完成。</p>
+</li>
+<li><p>（可选）配置Debug，改平台为x64，配置为Release，改平台为x64。</p>
+</li>
+<li><p>添加头文件AddFunction.h</p>
+</li>
+</ul>
+<p>2、建立项目TestAdd</p>
+<ul>
+<li><p>同理，打开Visual Studio，文件-新建-项目-Win32控制台应用程序-名称：TestAdd 位置：D:\AddSolution-应用程序类型：控制台应用程序 勾选预编译头-完成。</p>
+</li>
+<li><p>（可选）配置Debug，改平台为x64，配置为Release，改平台为x64。</p>
+</li>
+<li><p>在D:\AddSolution\TestAdd\TestAdd添加3个文件夹，bin、include、lib。</p>
+</li>
+<li><p>在”解决方案’TestAdd’”右键-添加-现有项目-D:\AddSolution\AddFunction\AddFunction\AddFunction.vcxproj，此时两个项目处于一个解决方案中，此时的<code>$(SolutionDir)</code>为TestAdd解决方案所在文件夹。</p>
+</li>
+</ul>
+<p>3、写程序。</p>
+<p><code>AddFunction.h</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_CDECL __cdecl</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_STDCALL __stdcall</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MYAPI_EXPORTS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllexport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span> </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllimport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span></div><div class="line">&#123;</div><div class="line">	<span class="function">MY_EXPORTS <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>AddFunction.cpp</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (add1 + add2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>TestAdd.cpp</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> <span class="number">_</span>tmain(<span class="keyword">int</span> argc, <span class="number">_</span>TCHAR* argv[])</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> a, b = <span class="number">2</span>, c = <span class="number">3</span>;</div><div class="line">	a = add(b, c);</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Result is "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4、设置属性。</p>
+<ul>
+<li>设置AddFunction</li>
+</ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG" alt="AddFunction-1"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_2.JPG" alt="AddFunction-2"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_3.JPG" alt="AddFunction-3"></p>
+<ul>
+<li>编译成功后，将<code>AddFunction.h</code>文件拷贝到D:\AddSolution\TestAdd\TestAdd\include</li>
+<li>设置TestAdd</li>
+</ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_4.JPG" alt="TestAdd-1"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_5.JPG" alt="TestAdd-2"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_6.JPG" alt="TestAdd-3"></p>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_7.JPG" alt="TestAdd-4"></p>
+<ul>
+<li>编译成功，运行，显示结果。</li>
+</ul>
+<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_8.JPG" alt="Result"></p>
 
       
     </div>
@@ -340,9 +397,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag">#Blog</a>
-          
-            <a href="/tags/Introduction/" rel="tag">#Introduction</a>
+            <a href="/tags/VS/" rel="tag">#VS</a>
           
         </div>
       
@@ -351,16 +406,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/11/vs-dll-exe/" rel="next" title="Write a Solution involving dll&exe with Visual Studio">
-                <i class="fa fa-chevron-left"></i> Write a Solution involving dll&exe with Visual Studio
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/01/use-activemq/" rel="prev" title="Establish ActiveMQ and Write a HelloWorld">
-                Establish ActiveMQ and Write a HelloWorld <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/11/about-my-blog/" rel="prev" title="About My Blog">
+                About My Blog <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
