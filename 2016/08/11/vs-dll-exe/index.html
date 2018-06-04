@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta name="keywords" content="VS,dll">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Write a Solution involving dll&exe with Visual Studio">
+<meta property="og:title" content="Write a Solution involving dll&amp;exe with Visual Studio">
 <meta property="og:url" content="http://yoursite.com/2016/08/11/vs-dll-exe/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_2.JPG">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_3.JPG">
@@ -98,9 +100,9 @@
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_6.JPG">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_7.JPG">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_8.JPG">
-<meta property="og:updated_time" content="2017-09-01T07:03:32.272Z">
+<meta property="og:updated_time" content="2018-06-04T13:57:54.261Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Write a Solution involving dll&exe with Visual Studio">
+<meta name="twitter:title" content="Write a Solution involving dll&amp;exe with Visual Studio">
 <meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
 <meta name="twitter:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/1/1_1.JPG">
 
@@ -277,7 +279,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T09:14:44+08:00" content="2016-08-11">
+            <time itemprop="dateCreated" datetime="2016-08-11T00:00:00+08:00" content="2016-08-11">
               2016-08-11
             </time>
           </span>
@@ -351,11 +353,11 @@
 </ul>
 <p>3、写程序。</p>
 <p><code>AddFunction.h</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_CDECL __cdecl</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_STDCALL __stdcall</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MYAPI_EXPORTS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllexport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span> </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllimport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span></div><div class="line">&#123;</div><div class="line">	<span class="function">MY_EXPORTS <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_CDECL __cdecl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_STDCALL __stdcall</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MYAPI_EXPORTS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllimport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">MY_EXPORTS <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><code>AddFunction.cpp</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (add1 + add2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (add1 + add2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>TestAdd.cpp</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> <span class="number">_</span>tmain(<span class="keyword">int</span> argc, <span class="number">_</span>TCHAR* argv[])</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> a, b = <span class="number">2</span>, c = <span class="number">3</span>;</div><div class="line">	a = add(b, c);</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Result is "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> a, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line">	a = add(b, c);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Result is "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>4、设置属性。</p>
 <ul>
 <li>设置AddFunction</li>
@@ -412,8 +414,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/01/use-activemq/" rel="prev" title="Establish Apache ActiveMQ and Write a HelloWorld">
-                Establish Apache ActiveMQ and Write a HelloWorld <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/01/use-activemq/" rel="prev" title="Establish Apache ActiveMQ from Scratch">
+                Establish Apache ActiveMQ from Scratch <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -547,7 +549,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
