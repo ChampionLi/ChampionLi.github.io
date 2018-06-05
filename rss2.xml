@@ -8,8 +8,26 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Dreams don&#39;t work unless you DO</description>
-    <pubDate>Tue, 05 Jun 2018 16:03:24 GMT</pubDate>
+    <pubDate>Tue, 05 Jun 2018 16:22:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Note for Dark Time</title>
+      <link>http://yoursite.com/2018/06/05/note-dark-time/</link>
+      <guid>http://yoursite.com/2018/06/05/note-dark-time/</guid>
+      <pubDate>Mon, 04 Jun 2018 16:00:00 GMT</pubDate>
+      <description>
+      
+        &lt;blockquote&gt;
+&lt;p&gt;Abstract: TO DO&lt;/p&gt;
+&lt;/blockquote&gt;
+      
+      </description>
+      
+      <content:encoded><![CDATA[<blockquote><p>Abstract: TO DO</p></blockquote><a id="more"></a><p>TO DO</p>]]></content:encoded>
+      
+      <comments>http://yoursite.com/2018/06/05/note-dark-time/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Note for Deep Learning</title>
@@ -19,12 +37,12 @@
       <description>
       
         &lt;blockquote&gt;
-&lt;p&gt;Abstract: The book Deep Learning(by Goodfellow, Bengio &amp;amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.&lt;/p&gt;
+&lt;p&gt;Abstract: The book &lt;strong&gt;Deep Learning&lt;/strong&gt;(by Goodfellow, Bengio &amp;amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.&lt;/p&gt;
 &lt;/blockquote&gt;
       
       </description>
       
-      <content:encoded><![CDATA[<blockquote><p>Abstract: The book Deep Learning(by Goodfellow, Bengio &amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.</p></blockquote><a id="more"></a><h1 id="第一部分-应用数学与机器学习基础"><a href="#第一部分-应用数学与机器学习基础" class="headerlink" title="第一部分 应用数学与机器学习基础"></a>第一部分 应用数学与机器学习基础</h1><h2 id="第二章-线性代数"><a href="#第二章-线性代数" class="headerlink" title="第二章 线性代数"></a>第二章 线性代数</h2><p>无</p><h2 id="第三章-概率与信息论"><a href="#第三章-概率与信息论" class="headerlink" title="第三章 概率与信息论"></a>第三章 概率与信息论</h2><h3 id="3-9-常用概率分布"><a href="#3-9-常用概率分布" class="headerlink" title="3.9 常用概率分布"></a>3.9 常用概率分布</h3><p>高斯混合模型事概率密度的<strong>万能近似器</strong>，在这种意义下，任何平滑的概率密度都可以用具有足够多组件的高斯混合模型以任意精度逼近。</p><h3 id="3-13信息论"><a href="#3-13信息论" class="headerlink" title="3.13信息论"></a>3.13信息论</h3><p>1.可以用KL散度来衡量两个分布的差异：<br>$$<br>D<em>{KL}(P||Q) = E</em>{x\sim P}\Big[log \frac{P(x)}{Q(x)}\Big] = E<em>{x\sim P}\Big[log P(x)-logQ(x)\Big]<br>$$<br>2.因为KL散度是非负的并且衡量的事两个分布之间的差异，他经常被用作分布之间的某种距离。<br>一个和KL散度密切联系的量事<strong>交叉熵</strong>，即 $H(P,Q) = H(P) + D</em>{KL}(P||Q)$，它和KL散度很像，但是缺少左边一项：<br>$$H(P,Q) = -E_{x\sim P}logQ(x)$$<br>针对Q最小化交叉熵等价于最小化KL散度。</p>]]></content:encoded>
+      <content:encoded><![CDATA[<blockquote><p>Abstract: The book <strong>Deep Learning</strong>(by Goodfellow, Bengio &amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.</p></blockquote><a id="more"></a><h1 id="第一部分-应用数学与机器学习基础"><a href="#第一部分-应用数学与机器学习基础" class="headerlink" title="第一部分 应用数学与机器学习基础"></a>第一部分 应用数学与机器学习基础</h1><h2 id="第二章-线性代数"><a href="#第二章-线性代数" class="headerlink" title="第二章 线性代数"></a>第二章 线性代数</h2><p>无</p><h2 id="第三章-概率与信息论"><a href="#第三章-概率与信息论" class="headerlink" title="第三章 概率与信息论"></a>第三章 概率与信息论</h2><h3 id="3-9-常用概率分布"><a href="#3-9-常用概率分布" class="headerlink" title="3.9 常用概率分布"></a>3.9 常用概率分布</h3><p>高斯混合模型事概率密度的<strong>万能近似器</strong>，在这种意义下，任何平滑的概率密度都可以用具有足够多组件的高斯混合模型以任意精度逼近。</p><h3 id="3-13信息论"><a href="#3-13信息论" class="headerlink" title="3.13信息论"></a>3.13信息论</h3><p>1.可以用KL散度来衡量两个分布的差异：</p><script type="math/tex; mode=display">D_{KL}(P||Q) = E_{x\sim P}\Big[log \frac{P(x)}{Q(x)}\Big] = E_{x\sim P}\Big[log P(x)-logQ(x)\Big]</script><p>2.因为KL散度是非负的并且衡量的事两个分布之间的差异，他经常被用作分布之间的某种距离。<br>一个和KL散度密切联系的量事<strong>交叉熵</strong>，即</p><script type="math/tex; mode=display">H(P,Q) = H(P) + D_{KL}(P||Q)</script><p>它和KL散度很像，但是缺少左边一项：</p><script type="math/tex; mode=display">H(P,Q) = -E_{x\sim P}logQ(x)</script><p>针对Q最小化交叉熵等价于最小化KL散度。</p>]]></content:encoded>
       
       <comments>http://yoursite.com/2018/06/01/note-deep-learning/#disqus_thread</comments>
     </item>
