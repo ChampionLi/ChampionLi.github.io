@@ -104,18 +104,18 @@
 
 
 
-<meta name="description" content="Abstract:">
+<meta name="description" content="Abstract: The book Deep Learning(by Goodfellow, Bengio &amp;amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.">
 <meta name="keywords" content="note,deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note for Deep Learning">
 <meta property="og:url" content="http://yoursite.com/2018/06/01/note-deep-learning/index.html">
 <meta property="og:site_name" content="CVision">
-<meta property="og:description" content="Abstract:">
+<meta property="og:description" content="Abstract: The book Deep Learning(by Goodfellow, Bengio &amp;amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-04T16:45:45.717Z">
+<meta property="og:updated_time" content="2018-06-05T16:03:24.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Note for Deep Learning">
-<meta name="twitter:description" content="Abstract:">
+<meta name="twitter:description" content="Abstract: The book Deep Learning(by Goodfellow, Bengio &amp;amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.">
 
 
 
@@ -314,8 +314,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">tech</span>
                   </a>
                 </span>
 
@@ -326,7 +326,7 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/Deep-Learning/" itemprop="url" rel="index">
+                  <a href="/categories/tech/Deep-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Deep Learning</span>
                   </a>
                 </span>
@@ -360,10 +360,12 @@
 
       
         <blockquote>
-<p>Abstract: </p>
+<p>Abstract: The book Deep Learning(by Goodfellow, Bengio &amp; Courville) has been read through. This blog is a reading note which record some key knowledge and points for memos.</p>
 </blockquote>
 <a id="more"></a>
-<p>Test</p>
+<h1 id="第一部分-应用数学与机器学习基础"><a href="#第一部分-应用数学与机器学习基础" class="headerlink" title="第一部分 应用数学与机器学习基础"></a>第一部分 应用数学与机器学习基础</h1><h2 id="第二章-线性代数"><a href="#第二章-线性代数" class="headerlink" title="第二章 线性代数"></a>第二章 线性代数</h2><p>无</p>
+<h2 id="第三章-概率与信息论"><a href="#第三章-概率与信息论" class="headerlink" title="第三章 概率与信息论"></a>第三章 概率与信息论</h2><h3 id="3-9-常用概率分布"><a href="#3-9-常用概率分布" class="headerlink" title="3.9 常用概率分布"></a>3.9 常用概率分布</h3><p>高斯混合模型事概率密度的<strong>万能近似器</strong>，在这种意义下，任何平滑的概率密度都可以用具有足够多组件的高斯混合模型以任意精度逼近。</p>
+<h3 id="3-13信息论"><a href="#3-13信息论" class="headerlink" title="3.13信息论"></a>3.13信息论</h3><p>1.可以用KL散度来衡量两个分布的差异：<br>$$<br>D<em>{KL}(P||Q) = E</em>{x\sim P}\Big[log \frac{P(x)}{Q(x)}\Big] = E<em>{x\sim P}\Big[log P(x)-logQ(x)\Big]<br>$$<br>2.因为KL散度是非负的并且衡量的事两个分布之间的差异，他经常被用作分布之间的某种距离。<br>一个和KL散度密切联系的量事<strong>交叉熵</strong>，即 $H(P,Q) = H(P) + D</em>{KL}(P||Q)$，它和KL散度很像，但是缺少左边一项：<br>$$H(P,Q) = -E_{x\sim P}logQ(x)$$<br>针对Q最小化交叉熵等价于最小化KL散度。</p>
 
       
     </div>
@@ -404,6 +406,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/05/note-dark-time/" rel="prev" title="【读书笔记】暗时间">
+                【读书笔记】暗时间 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +477,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -479,7 +485,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -488,7 +494,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -553,7 +559,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一部分-应用数学与机器学习基础"><span class="nav-number">1.</span> <span class="nav-text">第一部分 应用数学与机器学习基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-线性代数"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 线性代数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-概率与信息论"><span class="nav-number">1.2.</span> <span class="nav-text">第三章 概率与信息论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9-常用概率分布"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.9 常用概率分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-13信息论"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.13信息论</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
