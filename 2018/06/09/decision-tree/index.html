@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_2.jpg?imageMogr2/thumbnail/!120p">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_3.jpg">
 <meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_4.JPG">
-<meta property="og:updated_time" content="2018-06-09T15:08:12.126Z">
+<meta property="og:updated_time" content="2018-06-09T15:28:32.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to Decision Tree Algorithm">
 <meta name="twitter:description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
@@ -545,7 +545,63 @@ H(way|mood)=\frac{2}{3}(-\frac{1}{2}\log_2 \frac{1}{2}- \frac{1}{2}\log_2 \frac{
 <script type="math/tex; mode=display">C_{\alpha}(T_B) \leq  C_{\alpha}(T_A)</script><p>则进行剪枝，即将父结点变为新的叶结点。</p>
 <p>因为决策树的生成在开源库 OpenCV 已经有实现，最后我再附上一段利用 OpenCV 来训练我上面例子的代码，目的也是让大家自己实现一个类似 Hello World 的程序。OpenCV 的配置方法在这里不再赘述，大家可以利用下面的代码自己作为练习。OpenCV 的内部实现过程感兴趣的同学也可以对源码进行学习，源码也可以在 OpenCV 的官网上下载到。 </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"opencv2/core/core_c.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"opencv2/ml/ml.hpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//init data</span></span><br><span class="line">	<span class="keyword">float</span> fdata[<span class="number">7</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">	<span class="function">Mat <span class="title">data</span><span class="params">(<span class="number">7</span>,<span class="number">3</span>,CV_32F,fdata)</span></span>;</span><br><span class="line">	<span class="keyword">float</span> fresponses[<span class="number">7</span>] =&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="function">Mat <span class="title">responses</span><span class="params">(<span class="number">7</span>,<span class="number">1</span>,CV_32F,fresponses)</span></span>;</span><br><span class="line">	<span class="keyword">float</span> priors[]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	CvDTree *tree;</span><br><span class="line">	<span class="function">CvDTreeParams <span class="title">params</span><span class="params">( <span class="number">8</span>, <span class="comment">// max depth</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">1</span>, <span class="comment">// min sample count</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">0</span>, <span class="comment">// regression accuracy: N/A here</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// compute surrogate split, as we have missing data</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">15</span>, <span class="comment">// max number of categories (use sub-optimal algorithm for larger numbers)</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">0</span>, <span class="comment">// the number of cross-validation folds</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// use 1SE rule =&gt; smaller tree</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// throw away the pruned tree branches</span></span></span></span><br><span class="line"><span class="function"><span class="params">		priors <span class="comment">// the array of priors, the bigger p_weight, the more attention</span></span></span></span><br><span class="line"><span class="function"><span class="params">		)</span></span>;</span><br><span class="line">	tree = <span class="keyword">new</span> CvDTree;</span><br><span class="line">	tree-&gt;train (data,CV_ROW_SAMPLE,responses,Mat(),</span><br><span class="line">		Mat(),Mat(),Mat(),</span><br><span class="line">		params);</span><br><span class="line">	<span class="comment">//try predict</span></span><br><span class="line">	<span class="keyword">float</span> sample[<span class="number">1</span>][<span class="number">3</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	Mat pred_sample = Mat(<span class="number">1</span>,<span class="number">3</span>,CV_32F,sample);</span><br><span class="line">	<span class="keyword">double</span> prediction = tree-&gt;predict (pred_sample,Mat())-&gt;value;</span><br><span class="line">	<span class="keyword">if</span>(prediction == <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Ming will go to work by bike!\n"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Ming will go to work by taxi!\n"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	tree-&gt;save (<span class="string">"tree.xml"</span>,<span class="string">"test_tree"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要进行解释的一点就是，我们需要将上面的情景进行了数据化，我们将上面的情况都作为0和1来代表进行决策树的构建。所以新的表格如下所示： 机器学习中决策树的原理与算法 | 科普</p>
+<p>需要进行解释的一点就是，我们需要将上面的情景进行了数据化，我们将上面的情况都作为0和1来代表进行决策树的构建。所以新的表格如下所示： </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">天气</th>
+<th style="text-align:center">心情</th>
+<th style="text-align:center">是否快要迟到</th>
+<th style="text-align:center">上班方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>利用这段程序大家可以看一下这颗决策树对天气恶劣，心情不好，但是时间还充足的情况下小明会选择哪种交通工具进行出行进行的预测。算法给出的答案如下图</p>
 <p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_4.JPG" alt="decision-tree-result"></p>
 <p>这和我们推导的结果一样。</p>
