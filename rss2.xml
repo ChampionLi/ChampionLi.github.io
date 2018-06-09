@@ -8,7 +8,7 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Dreams don&#39;t work unless you DO</description>
-    <pubDate>Sat, 09 Jun 2018 07:55:52 GMT</pubDate>
+    <pubDate>Sat, 09 Jun 2018 08:23:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -84,7 +84,7 @@
     </item>
     
     <item>
-      <title>Write a Solution involving dll&amp;exe with Visual Studio</title>
+      <title>Write a Dynamic Link Library with Visual Studio from Scratch</title>
       <link>http://yoursite.com/2016/08/11/vs-dll-exe/</link>
       <guid>http://yoursite.com/2016/08/11/vs-dll-exe/</guid>
       <pubDate>Wed, 10 Aug 2016 16:00:00 GMT</pubDate>
