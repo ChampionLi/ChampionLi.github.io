@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells how to establish a  personal blog based on github.io static pages with Hexo. The article also involves some setting details which can make your websi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-07T15:23:43.891Z">
+<meta property="og:updated_time" content="2018-06-09T07:55:52.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Establish a Personal Blog with Hexo from Scratch">
 <meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells how to establish a  personal blog based on github.io static pages with Hexo. The article also involves some setting details which can make your websi">
@@ -368,7 +368,7 @@
 <p>然后点击<code>Create repository</code>即可。</p>
 <h2 id="2-生成添加秘钥"><a href="#2-生成添加秘钥" class="headerlink" title="2 生成添加秘钥"></a>2 生成添加秘钥</h2><p>在终端(Terminal)输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure></p>
 <p>注：your_email@youremail.com是你的Github注册邮箱。</p>
-<p>直接点回车，说明会在默认文件id_rsa上生成ssh key。 </p>
+<p>直接点回车，系统会在默认文件id_rsa上生成ssh key。 </p>
 <p>然后系统要求输入密码，直接按回车表示不设密码。重复密码时也是直接回车，之后提示你ssh key已经生成成功。</p>
 <p>然后我们进入提示的地址下查看ssh key文件。 我的电脑的地址是<code>C:\Users\Champion\.ssh</code> ，其中Champion是我的电脑的名称。</p>
 <p>打开<code>id_rsa.pub</code>，复制里面的key。里面的key是一对看不懂的字符数字组合，不用管它，直接复制。</p>
@@ -380,13 +380,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your name&quot;</span><br><span class="line">$ git config --global user.email &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure>
 <h2 id="3-安装node-js"><a href="#3-安装node-js" class="headerlink" title="3 安装node.js"></a>3 安装node.js</h2><p>点击进入node.js官网: <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
 <p>目前node.js有两个推荐版本，分为通用版和最新版，点击可直接进行下载。下载好后，按照既定的套路安装即可。</p>
-<h2 id="4-安装git"><a href="#4-安装git" class="headerlink" title="4 安装git"></a>4 安装git</h2><p>点击进入node.js官网: <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+<h2 id="4-安装git"><a href="#4-安装git" class="headerlink" title="4 安装git"></a>4 安装git</h2><p>点击进入git官网: <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
 <p>点击对应的操作系统对应版本可直接进行下载。下载好后，按照既定的套路安装即可。</p>
 <h2 id="5-安装配置hexo"><a href="#5-安装配置hexo" class="headerlink" title="5 安装配置hexo"></a>5 安装配置hexo</h2><p>为你的博客新建一个本地文件夹，打开在终端(Terminal)，并定位到此文件夹下。</p>
 <h3 id="5-1-下载安装hexo："><a href="#5-1-下载安装hexo：" class="headerlink" title="5.1 下载安装hexo："></a>5.1 下载安装hexo：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <p>安装好hexo以后，在终端输入hexo命令，如果找到了此指令说明安装成功。</p>
 <h3 id="5-2-初始化博客"><a href="#5-2-初始化博客" class="headerlink" title="5.2 初始化博客"></a>5.2 初始化博客</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-<p>注：<folder>是放置博客真正的地方，名字自己定。<code>npm install</code>是node.js的命令，安装需要的依赖包。</folder></p>
+<p>注：<code>&lt;folder&gt;</code>是放置博客真正的地方，名字自己定。<code>npm install</code>是node.js的命令，安装需要的依赖包。</p>
 <p>初始化博客以后，我们可以看到博客文件夹里的文件是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
 <h3 id="5-3-config-yml"><a href="#5-3-config-yml" class="headerlink" title="5.3 _config.yml"></a>5.3 _config.yml</h3><p>基于上一步，我们对博客修改相应的配置，即对以<code>_config.yml</code>命名的文件（下称<strong>站点配置文件</strong>）进行设置，文末将贴出本网站的配置信息。</p>
@@ -413,7 +413,7 @@
 <p>首先先把NexT的主题源文件下载到本地，使用Git克隆指令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <p>然后把下载下来的目录改名为next，然后放到<code>Hexo博客根目录/themes/</code>文件夹下，然后配置<strong>站点配置文件</strong>中的theme属性，将其由landscape改为next。然后就可以编译部署了。</p>
-<h2 id="8-对主题进行完善"><a href="#8-对主题进行完善" class="headerlink" title="8 对主题进行完善"></a>8 对主题进行完善</h2><p>通过以上操作，博客的基本雏形已经全部搭建完毕，以下就是图和让自己的博客功能更加丰富了。</p>
+<h2 id="8-对主题进行完善"><a href="#8-对主题进行完善" class="headerlink" title="8 对主题进行完善"></a>8 对主题进行完善</h2><p>通过以上操作，博客的基本雏形已经全部搭建完毕，以下就是如何让自己的博客功能更加丰富了。</p>
 <h3 id="8-1-设置预览摘要"><a href="#8-1-设置预览摘要" class="headerlink" title="8.1 设置预览摘要"></a>8.1 设置预览摘要</h3><p>设置摘要有两种方法，一种是在next文件夹下的<code>_config.yml</code>文件（下文称<strong>主题配置文件</strong>）中找到<code>auto_excerpt</code>属性，将enable设置为true ，将length设置为想要预览到的字数。<br>一种是在文章中插入<code>&lt;!-- more --&gt;</code>即可，下面的文字将在主页被自动隐藏。</p>
 <h3 id="8-2-设置侧边栏显示效果"><a href="#8-2-设置侧边栏显示效果" class="headerlink" title="8.2 设置侧边栏显示效果"></a>8.2 设置侧边栏显示效果</h3><p>在主题配置文件中，找到sidebar的display属性，display属性有四种显示模式，分别为：post(只在看文章的时候自动显示)，always(一直显示)，hide(平时隐藏，点击才显示)，remove(彻底移除)，根据个人喜好设置即可。</p>
 <h3 id="8-3-添加菜单选项"><a href="#8-3-添加菜单选项" class="headerlink" title="8.3 添加菜单选项"></a>8.3 添加菜单选项</h3><p>默认情况下，菜单导航栏有<strong>首页</strong>、<strong>归档</strong>等选项，除此之外笔者还添加了<strong>分类</strong>、<strong>标签</strong>、<strong>关于</strong>以及分类下的两个细分类<strong>Tech</strong>和<strong>Life</strong>。在主题配置文件中，找到<code>menu</code>属性，并去掉categories、 tags、about的的注释，然后用添加页面指令：</p>
@@ -462,7 +462,7 @@
 <p>别着急，这样还不够，还需要在文章的<code>Front-matter</code>里打开mathjax开关，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2016-12-28 21:01:30</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure>
 <p>不要嫌麻烦，之所以要在文章头里设置开关，是因为考虑只有在用到公式的页面才加载 Mathjax，这样不需要渲染数学公式的页面的访问速度就不会受到影响了。</p>
-<h2 id="9-在多设备间同步"><a href="#9-在多设备间同步" class="headerlink" title="9 在多设备间同步"></a>9 在多设备间同步</h2><p>因为Hexo的设置，实际上海藻油生成的网页文件夹<code>.deploy_git</code>被传到了Github上，二十几的源文件，即除去<code>.deploy_git</code>以外的其他文件并不会传上去，所以实际上整个hexo是无法通过Github进行同步的。</p>
+<h2 id="9-在多设备间同步"><a href="#9-在多设备间同步" class="headerlink" title="9 在多设备间同步"></a>9 在多设备间同步</h2><p>因为Hexo的设置，实际上只有Hexo生成的网页文件夹<code>.deploy_git</code>被传到了Github上，而实际的源文件，即除去<code>.deploy_git</code>以外的其他文件并不会传上去，所以实际上整个hexo是无法通过Github进行同步的。</p>
 <p>两种办法：</p>
 <ul>
 <li>一种是将Github上的博客项目建立一个分支，然后把站点文件夹下的.gitignore文件进行修改，然后把所有文件传到Github上，然后在多设备间同步。</li>
