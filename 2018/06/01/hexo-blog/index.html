@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="blog,Github,tutorial," />
+  <meta name="keywords" content="tutorial,blog,Github," />
 
 
 
@@ -105,14 +105,14 @@
 
 
 <meta name="description" content="Abstract: This is a tutorial. This tutorial tells how to establish a  personal blog based on github.io static pages with Hexo. The article also involves some setting details which can make your websi">
-<meta name="keywords" content="blog,Github,tutorial">
+<meta name="keywords" content="tutorial,blog,Github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Establish a Personal Blog with Hexo from Scratch">
 <meta property="og:url" content="http://yoursite.com/2018/06/01/hexo-blog/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells how to establish a  personal blog based on github.io static pages with Hexo. The article also involves some setting details which can make your websi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-09T08:26:46.347Z">
+<meta property="og:updated_time" content="2018-06-09T15:23:02.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Establish a Personal Blog with Hexo from Scratch">
 <meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells how to establish a  personal blog based on github.io static pages with Hexo. The article also involves some setting details which can make your websi">
@@ -462,6 +462,11 @@
 <p>别着急，这样还不够，还需要在文章的<code>Front-matter</code>里打开mathjax开关，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2016-12-28 21:01:30</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure>
 <p>不要嫌麻烦，之所以要在文章头里设置开关，是因为考虑只有在用到公式的页面才加载 Mathjax，这样不需要渲染数学公式的页面的访问速度就不会受到影响了。</p>
+<h3 id="8-8-设置插入图片居中与放缩"><a href="#8-8-设置插入图片居中与放缩" class="headerlink" title="8.8 设置插入图片居中与放缩"></a>8.8 设置插入图片居中与放缩</h3><p>8.8.1 设置图片居中</p>
+<p>Mist默认图片是不居中的。要居中修改<code>themes/next//source/css/_schemes/Mist/_posts-expanded.styl</code>30行为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.post-body img &#123;margin: 0 auto;&#125;</span><br></pre></td></tr></table></figure>
+<p>8.8.2 设置图片大小</p>
+<p>因为图片采用七牛云存储，所以可以直接运用七牛云的放缩命令，在图片链接后面加<code>?imageMogr2/thumbnail/!75p</code>，即为对图片放缩到0.75倍，取值范围1-999。更多操作参见<a href="https://developer.qiniu.com/dora/manual/1270/the-advanced-treatment-of-images-imagemogr2" target="_blank" rel="noopener">链接</a>。</p>
 <h2 id="9-在多设备间同步"><a href="#9-在多设备间同步" class="headerlink" title="9 在多设备间同步"></a>9 在多设备间同步</h2><p>因为Hexo的设置，实际上只有Hexo生成的网页文件夹<code>.deploy_git</code>被传到了Github上，而实际的源文件，即除去<code>.deploy_git</code>以外的其他文件并不会传上去，所以实际上整个hexo是无法通过Github进行同步的。</p>
 <p>两种办法：</p>
 <ul>
@@ -496,11 +501,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/tutorial/" rel="tag">#tutorial</a>
+          
             <a href="/tags/blog/" rel="tag">#blog</a>
           
             <a href="/tags/Github/" rel="tag">#Github</a>
-          
-            <a href="/tags/tutorial/" rel="tag">#tutorial</a>
           
         </div>
       
@@ -587,7 +592,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -595,7 +600,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -604,7 +609,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -669,7 +674,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建Github仓库"><span class="nav-number">1.</span> <span class="nav-text">1 创建Github仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生成添加秘钥"><span class="nav-number">2.</span> <span class="nav-text">2 生成添加秘钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装node-js"><span class="nav-number">3.</span> <span class="nav-text">3 安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装git"><span class="nav-number">4.</span> <span class="nav-text">4 安装git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装配置hexo"><span class="nav-number">5.</span> <span class="nav-text">5 安装配置hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-下载安装hexo："><span class="nav-number">5.1.</span> <span class="nav-text">5.1 下载安装hexo：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-初始化博客"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 初始化博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-config-yml"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-source"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-themes"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 themes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-发表一篇文章"><span class="nav-number">6.</span> <span class="nav-text">6 发表一篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-更换主题"><span class="nav-number">7.</span> <span class="nav-text">7 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-对主题进行完善"><span class="nav-number">8.</span> <span class="nav-text">8 对主题进行完善</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-设置预览摘要"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 设置预览摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-设置侧边栏显示效果"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 设置侧边栏显示效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-添加菜单选项"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 添加菜单选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-添加RSS"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 添加RSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-添加社交链接"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 添加社交链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-8-设置网站的图标和侧边栏头像"><span class="nav-number">8.6.</span> <span class="nav-text">8.8 设置网站的图标和侧边栏头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-在Hexo中渲染MathJax数学公式"><span class="nav-number">8.7.</span> <span class="nav-text">8.7 在Hexo中渲染MathJax数学公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-在多设备间同步"><span class="nav-number">9.</span> <span class="nav-text">9 在多设备间同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-我的配置文件"><span class="nav-number">10.</span> <span class="nav-text">10 我的配置文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建Github仓库"><span class="nav-number">1.</span> <span class="nav-text">1 创建Github仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生成添加秘钥"><span class="nav-number">2.</span> <span class="nav-text">2 生成添加秘钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装node-js"><span class="nav-number">3.</span> <span class="nav-text">3 安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装git"><span class="nav-number">4.</span> <span class="nav-text">4 安装git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装配置hexo"><span class="nav-number">5.</span> <span class="nav-text">5 安装配置hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-下载安装hexo："><span class="nav-number">5.1.</span> <span class="nav-text">5.1 下载安装hexo：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-初始化博客"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 初始化博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-config-yml"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-source"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-themes"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 themes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-发表一篇文章"><span class="nav-number">6.</span> <span class="nav-text">6 发表一篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-更换主题"><span class="nav-number">7.</span> <span class="nav-text">7 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-对主题进行完善"><span class="nav-number">8.</span> <span class="nav-text">8 对主题进行完善</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-设置预览摘要"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 设置预览摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-设置侧边栏显示效果"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 设置侧边栏显示效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-添加菜单选项"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 添加菜单选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-添加RSS"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 添加RSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-添加社交链接"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 添加社交链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-8-设置网站的图标和侧边栏头像"><span class="nav-number">8.6.</span> <span class="nav-text">8.8 设置网站的图标和侧边栏头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-在Hexo中渲染MathJax数学公式"><span class="nav-number">8.7.</span> <span class="nav-text">8.7 在Hexo中渲染MathJax数学公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-8-设置插入图片居中与放缩"><span class="nav-number">8.8.</span> <span class="nav-text">8.8 设置插入图片居中与放缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-在多设备间同步"><span class="nav-number">9.</span> <span class="nav-text">9 在多设备间同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-我的配置文件"><span class="nav-number">10.</span> <span class="nav-text">10 我的配置文件</span></a></li></ol></div>
             
           </div>
         </section>
