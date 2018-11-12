@@ -112,15 +112,15 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: The blog will introduce the whole process of how to install CUDA, TensorFlow, and MXNet environment on a Ubuntu computer. Demos of testing if the installations are successfull will also be">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_4.JPG">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_1.jpg?imageMogr2/thumbnail/!70p">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_2.JPG?imageMogr2/thumbnail/!70p">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_3.JPG">
-<meta property="og:updated_time" content="2018-07-15T12:13:12.212Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9MZj.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is93iq.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9lon.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9Qds.jpg">
+<meta property="og:updated_time" content="2018-11-12T16:16:46.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install TensorFlow and MXNet on an Ubuntu">
 <meta name="twitter:description" content="Abstract: The blog will introduce the whole process of how to install CUDA, TensorFlow, and MXNet environment on a Ubuntu computer. Demos of testing if the installations are successfull will also be">
-<meta name="twitter:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_4.JPG">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/24/is9MZj.jpg">
 
 
 
@@ -388,11 +388,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ubuntu-drivers autoinstall</span><br></pre></td></tr></table></figure>
 <p>你也可以选择只安装其中一个驱动，命令如下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nvidia-384</span><br></pre></td></tr></table></figure>
-<p>经过一段时间后，显卡驱动就安装好了。打开Software&amp;Updates就可以看到，驱动已经由原来的X server变为了 NVIDIA 384.<br><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_4.JPG" alt="NVIDIA"></p>
+<p>经过一段时间后，显卡驱动就安装好了。打开Software&amp;Updates就可以看到，驱动已经由原来的X server变为了 NVIDIA 384.<br><img src="https://s1.ax1x.com/2018/10/24/is9MZj.jpg" alt="3-4.jpg"></p>
 <h2 id="2-安装CUDA与cuDNN"><a href="#2-安装CUDA与cuDNN" class="headerlink" title="2 安装CUDA与cuDNN"></a>2 安装CUDA与cuDNN</h2><p>我们去NVIDIA官网，找到CUDA9.0的<a href="https://developer.nvidia.com/cuda-90-download-archive" target="_blank" rel="noopener">下载链接</a></p>
 <p>由于我们的操作系统是Ubuntu17.10，所以我们很容易找对对用的CUDA版本，如下图。我们需要下载runfile(local)和三个补丁(Patch1-3)。</p>
-<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_1.jpg?imageMogr2/thumbnail/!70p" alt="CUDA"></p>
-<p>下载完成后，我们再找到cuDNN的<a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">下载链接</a>，需要注册后再能下载。注册后我们便可以进入到下载页面，找到cuDNN的v7.1.4 for CUDA9.0进行下载即可。下载完毕后，切到默认的Downloads文件夹，可以看到 cudnn-9.0-linux-x64-v7.tgz压缩包。接下来就可以对他们进行安装了。<br><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_2.JPG?imageMogr2/thumbnail/!70p" alt="cuDNN"></p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is93iq.jpg" alt="3-1.jpg"></p>
+<p>下载完成后，我们再找到cuDNN的<a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">下载链接</a>，需要注册后再能下载。注册后我们便可以进入到下载页面，找到cuDNN的v7.1.4 for CUDA9.0进行下载即可。下载完毕后，切到默认的Downloads文件夹，可以看到 cudnn-9.0-linux-x64-v7.tgz压缩包。接下来就可以对他们进行安装了。<br><img src="https://s1.ax1x.com/2018/10/24/is9lon.jpg" alt="3-2.jpg"></p>
 <h3 id="2-1-gcc降级"><a href="#2-1-gcc降级" class="headerlink" title="2.1 gcc降级"></a>2.1 gcc降级</h3><p>由于CUDA 9.0仅支持GCC 6.0及以下版本，而现在的最新版本是7.0版本，所以我们需要对gcc进行降级。</p>
 <p>我们可以先在命令行输入<code>gcc</code>命令，以确定系统是否已经安装好gcc，如果安装了，则需要降级，如果未安装，我们可以直接安装低版本。假设我们的系统已经安装有gcc-7.3版本，我们现在演示降级方法。我们需要安装6.0版本。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-6</span><br><span class="line">sudo apt-get install g++-6</span><br></pre></td></tr></table></figure>
@@ -445,7 +445,7 @@
 <h3 id="3-3-验证tensorflow是否安装成功"><a href="#3-3-验证tensorflow是否安装成功" class="headerlink" title="3.3 验证tensorflow是否安装成功"></a>3.3 验证tensorflow是否安装成功</h3><p>启动终端，输入<code>python3</code>，输入以下代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">hello = tf.constant(<span class="string">'Hello, TensorFlow!'</span>)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
 <p>如果输出<code>Hello, TensorFlow!</code>则代表安装成功。</p>
-<h2 id="4-安装MXNet-Gluon"><a href="#4-安装MXNet-Gluon" class="headerlink" title="4 安装MXNet(Gluon)"></a>4 安装MXNet(Gluon)</h2><h3 id="4-1-安装Miniconda"><a href="#4-1-安装Miniconda" class="headerlink" title="4.1 安装Miniconda"></a>4.1 安装Miniconda</h3><p>根据操作系统下载并安装Miniconda（网址：<a href="https://conda.io/miniconda.html" target="_blank" rel="noopener">https://conda.io/miniconda.html</a> ）。<br><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/3/1_3.JPG" alt="Miniconda"></p>
+<h2 id="4-安装MXNet-Gluon"><a href="#4-安装MXNet-Gluon" class="headerlink" title="4 安装MXNet(Gluon)"></a>4 安装MXNet(Gluon)</h2><h3 id="4-1-安装Miniconda"><a href="#4-1-安装Miniconda" class="headerlink" title="4.1 安装Miniconda"></a>4.1 安装Miniconda</h3><p>根据操作系统下载并安装Miniconda（网址：<a href="https://conda.io/miniconda.html" target="_blank" rel="noopener">https://conda.io/miniconda.html</a> ）。<br><img src="https://s1.ax1x.com/2018/10/24/is9Qds.jpg" alt="3-3.jpg"></p>
 <p>安装时需要回答问题，均回答yes即可。</p>
 <p>安装完成后，我们需要让conda生效。需要运行一次<code>source ~/.bashrc</code>或重启命令行。</p>
 <h3 id="4-2-安装MXNet-Gluon"><a href="#4-2-安装MXNet-Gluon" class="headerlink" title="4.2 安装MXNet(Gluon)"></a>4.2 安装MXNet(Gluon)</h3><p>下载包含本书全部代码的包，解压后进入文件夹。运行如下命令。</p>

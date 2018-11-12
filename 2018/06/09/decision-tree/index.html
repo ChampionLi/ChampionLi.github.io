@@ -112,15 +112,15 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_1.JPG?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_2.jpg?imageMogr2/thumbnail/!120p">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_3.jpg">
-<meta property="og:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_4.JPG">
-<meta property="og:updated_time" content="2018-06-09T15:28:32.025Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9idA.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9Ait.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9EJP.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9nsg.jpg">
+<meta property="og:updated_time" content="2018-11-12T16:11:53.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to Decision Tree Algorithm">
 <meta name="twitter:description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
-<meta name="twitter:image" content="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_1.JPG?imageMogr2/thumbnail/!50p">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/24/is9idA.jpg">
 
 
 
@@ -481,7 +481,7 @@
 </div>
 <p>虽然有这么多的定义，但我们平时很多情况下用的都是香农信息熵，所以接下来我也采用香农信息熵对下面的其他定义进行表述。</p>
 <p>当我们有了信息熵的表达式我们就可以得出一个二分类问题的信息熵图像，如下图所示。</p>
-<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_1.JPG?imageMogr2/thumbnail/!50p" alt="Shannon-Entropy-gragh"></p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9idA.jpg" alt="2-1.jpg"></p>
 <p>我们可以看到，这个图像所表达出来的信息和我们之前举的例子完全对应，当一个事情非常容易判断的时候，也就是我们以很大的概率认为它会发生或者不会发生，那么它的信息熵就偏向0，当一个事情非常难判断的时候，我们可以认为最难的时候就是这个事件的所有可能性均相等的时候，那么它的信息熵为1. </p>
 <p>现在我们已经有了信息熵的概念，那么我们再引入第二个概念，这个概念需要建立在信息熵之上。那就是条件信息熵。有了信息熵的概念之后，我们自然而然就可以得出条件信息熵的概念，<strong>条件信息熵就是度量“在随机变量X的前提下，预测随机变量Y”的难度</strong>。</p>
 <p>信息熵表示判断难度，有了条件两个字就是说我们已经知道了一个条件之后，再让你判断变量结果，这时候的难度就是就是条件信息熵。就像上面的例子，我们发现只要小明发现他要迟到了，那么他就会打车上班，所以当我得知了小明今天快要迟到了，那么我判断他是否打车这件事就非常容易了，那么此时的条件信息熵就可以认为是0，这就是条件信息熵。如果仍然采用香农的定义方法，那么条件信息熵的数学表达式就是</p>
@@ -497,7 +497,7 @@ H(Y|X)=\sum _i P(x_i)H(Y|x_i)</script><p>有了信息熵和条件信息熵的概
 <script type="math/tex; mode=display">H(way|weather)=\frac{4}{7}(-\frac{2}{4}\log_2 \frac{2}{4}- \frac{2}{4}\log_2 \frac{2}{4})+\frac{3}{7}\times 0 = 0.57143 \\
 H(way|mood)=\frac{4}{7}(-\frac{1}{4}\log_2 \frac{1}{4}- \frac{3}{4}\log_2 \frac{3}{4})+\frac{3}{7}(-\frac{2}{3}\log_2 \frac{2}{3}- \frac{1}{3}\log_2 \frac{1}{3}) = 0.85714  \\
 H(way|time)=\frac{3}{7}(-\frac{1}{3}\log_2 \frac{1}{3}- \frac{2}{3}\log_2 \frac{2}{3})+\frac{4}{7}\times 0 = 0.39356</script><p>通过计算，我们看到小明是否迟到这个属性的条件信息熵最小，那么我们就将这个属性作为根结点。所以决策树的的雏形如下图。</p>
-<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_2.jpg?imageMogr2/thumbnail/!120p" alt="decision-tree-first"></p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9Ait.jpg" alt="2-1.jpg"></p>
 <p>知道了根结点的放置方法，那么第二个问题也就迎刃而解了，下面的结点放置哪个属性。我们只需要将已经得到的结点看做一个新的根结点，利用最小化条件信息熵的方法即可。我们将小明并不会快要迟到作为一个条件，那么表格如下：</p>
 <div class="table-container">
 <table>
@@ -532,7 +532,7 @@ H(way|time)=\frac{3}{7}(-\frac{1}{3}\log_2 \frac{1}{3}- \frac{2}{3}\log_2 \frac{
 H(way|mood)=\frac{2}{3}(-\frac{1}{2}\log_2 \frac{1}{2}- \frac{1}{2}\log_2 \frac{1}{2})+\frac{1}{3}\times 0 = 0.66667</script><p>我们看到天气因素的条件信息熵最小，为0，那么我们下一个节点就方式天气因素。这个时候其实我们就可以结束决策树的生长了，为什么呢？那么我们怎么判断什么时候结束决策树的生长呢？</p>
 <p>因为我们在一直最小化条件信息熵，所以<strong>当我们发现所有特征的信息增益均很小，或者我们没有特征可以选择了就可以停止了</strong>。至此我们就构建出了我们的决策树。</p>
 <p>那么我们最终的决策树如下图所示：</p>
-<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_3.jpg" alt="decision-tree-second"></p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9EJP.jpg" alt="2-3.jpg"></p>
 <p>通过决策树我们很容易判断出天气恶劣、小明心情不好但是上班时间又比较充裕的情况下，小明的出行方式是选择打车。</p>
 <p>所以，如何构建一个决策树的方法截止现在已经基本上全部介绍给了大家，在学术上，常用的算法有<strong>ID3算法</strong>，<strong>C4.5算法</strong>和<strong>CART算法</strong>，其实这些算法和我上面介绍的方法和思想基本上完全一样，只是在选择目标函数的时候有一些差别，我说的是最小化条件信息熵，ID3 用的是信息增益，C4.5算法用的是信息增益比，CART算法用的是基尼指数，这个指数在上面介绍信息熵的表格中就有，可以参考。</p>
 <p>决策树的原理和算法部分就基本上介绍完毕，因为防止模型过拟合也是机器学习中的一个重要议题，所以，我再简单介绍一下决策树的剪枝。</p>
@@ -603,7 +603,7 @@ H(way|mood)=\frac{2}{3}(-\frac{1}{2}\log_2 \frac{1}{2}- \frac{1}{2}\log_2 \frac{
 </table>
 </div>
 <p>利用这段程序大家可以看一下这颗决策树对天气恶劣，心情不好，但是时间还充足的情况下小明会选择哪种交通工具进行出行进行的预测。算法给出的答案如下图</p>
-<p><img src="http://oc30ymys7.bkt.clouddn.com/github/blog/2/1_4.JPG" alt="decision-tree-result"></p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9nsg.jpg" alt="2-4.jpg"></p>
 <p>这和我们推导的结果一样。</p>
 
       
