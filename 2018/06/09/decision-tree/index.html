@@ -1,0 +1,957 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="decision tree,entropy,machine learning," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
+<meta name="keywords" content="decision tree,entropy,machine learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Decision Tree Algorithm">
+<meta property="og:url" content="http://yoursite.com/2018/06/09/decision-tree/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9idA.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9Ait.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9EJP.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/is9nsg.jpg">
+<meta property="og:updated_time" content="2023-03-08T05:07:52.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction to Decision Tree Algorithm">
+<meta name="twitter:description" content="Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/24/is9idA.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/09/decision-tree/"/>
+
+  <title> Introduction to Decision Tree Algorithm | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Introduction to Decision Tree Algorithm
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-06-09T00:00:00+08:00" content="2018-06-09">
+              2018-06-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: Decision tree algorithm is a very basic kind of algorithm in machine learning, and it is also an important tag learning method . This blog explains the basic principles of the decision tree algorithm and several algorithm variants. A simple example is also implemented  to show how to construct a decision tree.</p>
+</blockquote>
+<a id="more"></a>
+<p>我们知道，在机器学习中有两类十分重要的问题，一类是分类问题，一类是回归问题。我们今天所要探讨的就是在分类和回归问题中所用到的一种非常基本的方法，叫决策树。决策树也是重要的标签学习方法。</p>
+<p>从名字来看，决策的的意思就是在众多类别中我们需要决策出我们分类的东西是属于哪一个类别，决策离散型的值的叫决策树，决策连续型值的叫回归树。用学术一点的语言就是决策树的输出是离散型随机变量，回归树的输出是连续型随机变量，这篇文章的重点是讲解输出是离散型随机变量的决策树，当你明白决策树的运行机理后，回归树也就触类旁通了。</p>
+<p>名字中的树，顾名思义，就是模型的结构是树形结构，树形结构的主要优点就是可读性较强，分类速度较快。树是由躯干和叶子组成，决策树中的有向边和结点与之对应，其中结点也有两种类型，一种是内部结点，一种是叶结点。</p>
+<p>上面的介绍的都是从字面上可以理解出的一些概念，性质上来讲，决策树是一个预测模型，它代表的是对象属性与对象值之间的一种映射关系。树中每个结点表示某个对象，内部结点表示一个特征或属性，叶结点表示一个类，而每个分叉路径则代表某个可能的属性值，而每个叶结点则对应从根节点到该叶节点所经历的路径所表示的对象的值。</p>
+<p>我们可以认为决策树就是一种 if-then规则的集合，也可以理解为它是定义在特征空间与类空间上的条件概率分布。既然是if-then规则，那么决策树具有一个重要的性质就是：<strong>互斥并且完备</strong>，也就是说每一个实例都被一条路径或一条规则所覆盖，而且只被一条路径或一条规则所覆盖。</p>
+<p>说了这么多抽象的概念，那决策树到底可以用来处理什么样的问题，那我们通过一个实际的例子来展开决策树的讲解，并且为了让大家更好入门，我也选择了一个十分简单的情景。</p>
+<p>假如小明上班可以选择两种交通工具，一种是网约车打车上班，一种是骑共享单车上班。采取这两种途径中的哪一种取决于三个因素，一个是天气情况，天气假设可分为恶劣天气和非恶劣天气，另一个因素是小明的心情，心情分为好心情和坏心情，最后一个因素是小明是否快要迟到。假设三个因素对应的小明上班方式的情况如下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">天气</th>
+<th style="text-align:center">心情</th>
+<th style="text-align:center">是否快要迟到</th>
+<th style="text-align:center">上班方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">骑车</td>
+</tr>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">打车</td>
+</tr>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">坏</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">骑车</td>
+</tr>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">坏</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">打车</td>
+</tr>
+<tr>
+<td style="text-align:center">恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">打车</td>
+</tr>
+<tr>
+<td style="text-align:center">恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">打车</td>
+</tr>
+<tr>
+<td style="text-align:center">恶劣</td>
+<td style="text-align:center">坏</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">打车</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上面这个表格就是我们所说的样本集，细心的读者可能会发现，上面的样本集少了一种情况，即天气恶劣、小明心情不好但是上班时间又比较充裕的这种情况，没错，我故意省去这一组就是想让这一组成为测试集，让大家通过构建一个决策树来预测在这种情况下，小明会采取哪一种方式上班。 </p>
+<p>现在我们已经有了数据，那么我们该如何构建一颗决策树呢？</p>
+<p><strong>在构建一颗决策树的时候我们需要解决的问题有三个：</strong></p>
+<ul>
+<li><p><strong>根结点放置哪个条件属性</strong>；</p>
+</li>
+<li><p><strong>下面的结点放置哪个属性</strong>；</p>
+</li>
+<li><p><strong>什么时候停止树的生长</strong>。</p>
+</li>
+</ul>
+<p>为了解决上面三个问题，我们需要引入一些概念。</p>
+<p>第一个引入的概念叫信息熵，英文名为 Entropy。在 Tom Mitchell 的书中是这样解释信息熵的：</p>
+<blockquote>
+<p>它确定了要编码集合 S 中任意成员（即以均匀的概率随机抽出的一个成员）的分类所需要的最少二进制位数。</p>
+</blockquote>
+<p>说实话，当时的我理解这句话是费了不少劲，其实把它转化成通俗点的语言就是说，<strong>信息熵就是“预测随机变量Y的取值”的难度，或者说度量“随机变量Y”的不确定性</strong>。</p>
+<p>通过两个例子来解释。假如你在地球上，手里握着一个铁块，当你不对铁块施力而直接松手的情况下，请你判断它是会向下坠落，还是向上飞去，根据我们的常识我们能很容易判断出石块会下落，那么判断这个事情的结果就非常容易，那么此时的信息熵就可以认为是0。</p>
+<p>再举一个例子，假如让你判断一枚匀质的硬币抛出后正面朝上还是反面朝上，这个问题我们就比较难回答了，因为正面朝上和反面朝上的概率均等，我们不能有一个很确定的判断硬币到底哪个面朝上，那么这个时候判断就比较难了，所以此时的信息熵就可以认为是1。</p>
+<p>但是上面这段话怎么转化成数学的语言进行定义和描述呢，有很多学者都提出了他们认为的信息熵表达式，我们可以通过下面这个表格看一下目前的一些信息熵的定义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">熵的名字</th>
+<th style="text-align:center">表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Shannon Entropy</td>
+<td style="text-align:center">$H_{sha}(\pi) = \sum_{i=1}^{m}p_i log_2 \frac{1}{p_i}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Pal Entropy</td>
+<td style="text-align:center">$H_{pal}(\pi) = \sum_{i=1}^{m}p_i e^{1-p_i}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Gini Index</td>
+<td style="text-align:center">$H_{gin}(\pi) = \sum_{i=1}^{m}p_i (1-p_i)$</td>
+</tr>
+<tr>
+<td style="text-align:center">Goodman-Kruskal Coefficient</td>
+<td style="text-align:center">$H_{goo}(\pi) = 1-\max_{i=1}^{m} p_i$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>虽然有这么多的定义，但我们平时很多情况下用的都是香农信息熵，所以接下来我也采用香农信息熵对下面的其他定义进行表述。</p>
+<p>当我们有了信息熵的表达式我们就可以得出一个二分类问题的信息熵图像，如下图所示。</p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9idA.jpg" alt="2-1.jpg"></p>
+<p>我们可以看到，这个图像所表达出来的信息和我们之前举的例子完全对应，当一个事情非常容易判断的时候，也就是我们以很大的概率认为它会发生或者不会发生，那么它的信息熵就偏向0，当一个事情非常难判断的时候，我们可以认为最难的时候就是这个事件的所有可能性均相等的时候，那么它的信息熵为1. </p>
+<p>现在我们已经有了信息熵的概念，那么我们再引入第二个概念，这个概念需要建立在信息熵之上。那就是条件信息熵。有了信息熵的概念之后，我们自然而然就可以得出条件信息熵的概念，<strong>条件信息熵就是度量“在随机变量X的前提下，预测随机变量Y”的难度</strong>。</p>
+<p>信息熵表示判断难度，有了条件两个字就是说我们已经知道了一个条件之后，再让你判断变量结果，这时候的难度就是就是条件信息熵。就像上面的例子，我们发现只要小明发现他要迟到了，那么他就会打车上班，所以当我得知了小明今天快要迟到了，那么我判断他是否打车这件事就非常容易了，那么此时的条件信息熵就可以认为是0，这就是条件信息熵。如果仍然采用香农的定义方法，那么条件信息熵的数学表达式就是</p>
+<p>已知$P(Y|X)$，$P(X)$，</p>
+<script type="math/tex; mode=display">H(Y|X):Y,X\in y\rightarrow \Re \\
+H(Y|X)=\sum _i P(x_i)H(Y|x_i)</script><p>有了信息熵和条件信息熵的概念，那我们就自然而然地就可以引出第三个概念，那就是信息增益，信息增益的数学定义是</p>
+<script type="math/tex; mode=display">Gain(X,Y)=H(Y)-H(Y|X)</script><p>我们通过看这个数学表达式不难看出信息增益所表达的意思。被减数是信息熵，也就是在没人给我们通风报信的时候判断结果的难度；减数是条件信息熵，也就是当我们知道了一个条件后，判断结果的难度。<strong>信息增益这个变量表达的意思就是条件x对判断结果减少了多少难度，即度量X对预测Y的能力的影响</strong>。</p>
+<p>就像有一档电视节目叫开心辞典，当答题选手无法判断答案的时候会选择三种求助方式，其实求助方式就是一种条件，当选手用过了求助方式后对回答问题的难度的减少量，就是信息增益。如果难度降低很大，那么我们就可以说信息增益很大。</p>
+<p>介绍了上面三个概念，我们就可以回答在构造决策树的时候遇到的第一个问题了：根结点放置哪个条件属性。</p>
+<p><strong>我们的放置方法是：选择信息增益最大的一个属性作为根结点。</strong></p>
+<p>因为一个数据集的信息熵是固定的，所以这个问题就转化为选择条件信息熵最小的属性，所以我们只要求出条件信息熵最小的属性就知道根结点了。 </p>
+<p>通过对例子的计算我们可以分别计算出单个特性的条件信息熵，计算过程如下图：</p>
+<script type="math/tex; mode=display">H(way|weather)=\frac{4}{7}(-\frac{2}{4}\log_2 \frac{2}{4}- \frac{2}{4}\log_2 \frac{2}{4})+\frac{3}{7}\times 0 = 0.57143 \\
+H(way|mood)=\frac{4}{7}(-\frac{1}{4}\log_2 \frac{1}{4}- \frac{3}{4}\log_2 \frac{3}{4})+\frac{3}{7}(-\frac{2}{3}\log_2 \frac{2}{3}- \frac{1}{3}\log_2 \frac{1}{3}) = 0.85714  \\
+H(way|time)=\frac{3}{7}(-\frac{1}{3}\log_2 \frac{1}{3}- \frac{2}{3}\log_2 \frac{2}{3})+\frac{4}{7}\times 0 = 0.39356</script><p>通过计算，我们看到小明是否迟到这个属性的条件信息熵最小，那么我们就将这个属性作为根结点。所以决策树的的雏形如下图。</p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9Ait.jpg" alt="2-1.jpg"></p>
+<p>知道了根结点的放置方法，那么第二个问题也就迎刃而解了，下面的结点放置哪个属性。我们只需要将已经得到的结点看做一个新的根结点，利用最小化条件信息熵的方法即可。我们将小明并不会快要迟到作为一个条件，那么表格如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">天气</th>
+<th style="text-align:center">心情</th>
+<th style="text-align:center">上班方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">骑车</td>
+</tr>
+<tr>
+<td style="text-align:center">非恶劣</td>
+<td style="text-align:center">坏</td>
+<td style="text-align:center">骑车</td>
+</tr>
+<tr>
+<td style="text-align:center">恶劣</td>
+<td style="text-align:center">好</td>
+<td style="text-align:center">打车</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>然后再次计算条件信息熵，计算过程如下图：</p>
+<script type="math/tex; mode=display">H(way|weather)=0  \\
+H(way|mood)=\frac{2}{3}(-\frac{1}{2}\log_2 \frac{1}{2}- \frac{1}{2}\log_2 \frac{1}{2})+\frac{1}{3}\times 0 = 0.66667</script><p>我们看到天气因素的条件信息熵最小，为0，那么我们下一个节点就方式天气因素。这个时候其实我们就可以结束决策树的生长了，为什么呢？那么我们怎么判断什么时候结束决策树的生长呢？</p>
+<p>因为我们在一直最小化条件信息熵，所以<strong>当我们发现所有特征的信息增益均很小，或者我们没有特征可以选择了就可以停止了</strong>。至此我们就构建出了我们的决策树。</p>
+<p>那么我们最终的决策树如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9EJP.jpg" alt="2-3.jpg"></p>
+<p>通过决策树我们很容易判断出天气恶劣、小明心情不好但是上班时间又比较充裕的情况下，小明的出行方式是选择打车。</p>
+<p>所以，如何构建一个决策树的方法截止现在已经基本上全部介绍给了大家，在学术上，常用的算法有<strong>ID3算法</strong>，<strong>C4.5算法</strong>和<strong>CART算法</strong>，其实这些算法和我上面介绍的方法和思想基本上完全一样，只是在选择目标函数的时候有一些差别，我说的是最小化条件信息熵，ID3 用的是信息增益，C4.5算法用的是信息增益比，CART算法用的是基尼指数，这个指数在上面介绍信息熵的表格中就有，可以参考。</p>
+<p>决策树的原理和算法部分就基本上介绍完毕，因为防止模型过拟合也是机器学习中的一个重要议题，所以，我再简单介绍一下决策树的剪枝。</p>
+<p>之所以会发生过拟合，是因为我们在学习的过程中过多地考虑如何提高对训练数据的正确分类上，所以有的时候就会构建出过于复杂的决策树。而决策树一旦复杂，对测试数据的分类就没那么精确了，也就是过拟合。所以根据奥卡姆剃刀的精神，要对决策树进行简化，这个过程就叫做<strong>剪枝</strong>。</p>
+<p>决策树剪枝是通过最小化决策树整体的损失函数完成的。决策树的损失函数定义为：</p>
+<script type="math/tex; mode=display">C_{\alpha}(T)=C(T)+\alpha |T|</script><p>其中，树$T$的叶节点个数为$|T|$，$C(T)$表示模型对训练数据的预测误差，即模型与训练数据的拟合程度，$|T|$表示模型复杂度，参数$\alpha$是一个非负数，控制两者之间的影响。</p>
+<p>$C(T)$的计算方法是</p>
+<script type="math/tex; mode=display">C(T)=-\sum _{t=1}^{|T|}\sum _{k=1}^{K} N_{tk}log\frac{N_{tk}}{N_t}</script><p>其中，$t$是树$T$的叶结点，该叶结点有$N_t$ 个样本，其中$k$类的样本点有$N_{tk}$ 个，$k=1,2,…,K$。</p>
+<p>有个上面的表达式就可以进行最小化损失函数的计算了，从叶结点开始递归地向上计算损失函数，如果一组叶结点回到其父结点之前与之后的整体树分别为$T_B$与$T_A$，其对应的损失函数分别为 $C_{\alpha}(T_B)$与$C_{\alpha}(T_A)$，如果</p>
+<script type="math/tex; mode=display">C_{\alpha}(T_B) \leq  C_{\alpha}(T_A)</script><p>则进行剪枝，即将父结点变为新的叶结点。</p>
+<p>因为决策树的生成在开源库 OpenCV 已经有实现，最后我再附上一段利用 OpenCV 来训练我上面例子的代码，目的也是让大家自己实现一个类似 Hello World 的程序。OpenCV 的配置方法在这里不再赘述，大家可以利用下面的代码自己作为练习。OpenCV 的内部实现过程感兴趣的同学也可以对源码进行学习，源码也可以在 OpenCV 的官网上下载到。 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"opencv2/core/core_c.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"opencv2/ml/ml.hpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//init data</span></span><br><span class="line">	<span class="keyword">float</span> fdata[<span class="number">7</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">	<span class="function">Mat <span class="title">data</span><span class="params">(<span class="number">7</span>,<span class="number">3</span>,CV_32F,fdata)</span></span>;</span><br><span class="line">	<span class="keyword">float</span> fresponses[<span class="number">7</span>] =&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="function">Mat <span class="title">responses</span><span class="params">(<span class="number">7</span>,<span class="number">1</span>,CV_32F,fresponses)</span></span>;</span><br><span class="line">	<span class="keyword">float</span> priors[]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	CvDTree *tree;</span><br><span class="line">	<span class="function">CvDTreeParams <span class="title">params</span><span class="params">( <span class="number">8</span>, <span class="comment">// max depth</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">1</span>, <span class="comment">// min sample count</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">0</span>, <span class="comment">// regression accuracy: N/A here</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// compute surrogate split, as we have missing data</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">15</span>, <span class="comment">// max number of categories (use sub-optimal algorithm for larger numbers)</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="number">0</span>, <span class="comment">// the number of cross-validation folds</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// use 1SE rule =&gt; smaller tree</span></span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="literal">true</span>, <span class="comment">// throw away the pruned tree branches</span></span></span></span><br><span class="line"><span class="function"><span class="params">		priors <span class="comment">// the array of priors, the bigger p_weight, the more attention</span></span></span></span><br><span class="line"><span class="function"><span class="params">		)</span></span>;</span><br><span class="line">	tree = <span class="keyword">new</span> CvDTree;</span><br><span class="line">	tree-&gt;train (data,CV_ROW_SAMPLE,responses,Mat(),</span><br><span class="line">		Mat(),Mat(),Mat(),</span><br><span class="line">		params);</span><br><span class="line">	<span class="comment">//try predict</span></span><br><span class="line">	<span class="keyword">float</span> sample[<span class="number">1</span>][<span class="number">3</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	Mat pred_sample = Mat(<span class="number">1</span>,<span class="number">3</span>,CV_32F,sample);</span><br><span class="line">	<span class="keyword">double</span> prediction = tree-&gt;predict (pred_sample,Mat())-&gt;value;</span><br><span class="line">	<span class="keyword">if</span>(prediction == <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Ming will go to work by bike!\n"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Ming will go to work by taxi!\n"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	tree-&gt;save (<span class="string">"tree.xml"</span>,<span class="string">"test_tree"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要进行解释的一点就是，我们需要将上面的情景进行了数据化，我们将上面的情况都作为0和1来代表进行决策树的构建。所以新的表格如下所示： </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">天气</th>
+<th style="text-align:center">心情</th>
+<th style="text-align:center">是否快要迟到</th>
+<th style="text-align:center">上班方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>利用这段程序大家可以看一下这颗决策树对天气恶劣，心情不好，但是时间还充足的情况下小明会选择哪种交通工具进行出行进行的预测。算法给出的答案如下图</p>
+<p><img src="https://s1.ax1x.com/2018/10/24/is9nsg.jpg" alt="2-4.jpg"></p>
+<p>这和我们推导的结果一样。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/decision-tree/" rel="tag">#decision tree</a>
+          
+            <a href="/tags/entropy/" rel="tag">#entropy</a>
+          
+            <a href="/tags/machine-learning/" rel="tag">#machine learning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/note-deep-learning/" rel="next" title="Note for Deep Learning">
+                <i class="fa fa-chevron-left"></i> Note for Deep Learning
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/01/parallel-computing/" rel="prev" title="Summary and Usage of Parallel Computing">
+                Summary and Usage of Parallel Computing <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="optimization,acceleration,TensorRT,summary," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: In order to improve the performance of deep learning inference, the deep learning inference acceleration technology has made remarkable progress in recent years. It effectively accelerates">
+<meta name="keywords" content="optimization,acceleration,TensorRT,summary">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Summary of Deep Learning Acceleration Methods">
+<meta property="og:url" content="http://yoursite.com/2020/08/01/deep-learningl-acceleration/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: In order to improve the performance of deep learning inference, the deep learning inference acceleration technology has made remarkable progress in recent years. It effectively accelerates">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2023-03-08T05:30:35.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Summary of Deep Learning Acceleration Methods">
+<meta name="twitter:description" content="Abstract: In order to improve the performance of deep learning inference, the deep learning inference acceleration technology has made remarkable progress in recent years. It effectively accelerates">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/01/deep-learningl-acceleration/"/>
+
+  <title> Summary of Deep Learning Acceleration Methods | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Summary of Deep Learning Acceleration Methods
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2020-08-01T00:00:00+08:00" content="2020-08-01">
+              2020-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: In order to improve the performance of deep learning inference, the deep learning inference acceleration technology has made remarkable progress in recent years. It effectively accelerates the speed of deep learning inference by optimizing the network structure, data, algorithm and hardware. This article will introduce several common deep learning acceleration techniques.</p>
+</blockquote>
+<a id="more"></a>
+<table>
+    <tr align="center">
+        <td>优化方向</td>
+        <td>优化方法</td>
+        <td>适用场景</td>
+     </tr>
+    <tr>
+        <td rowspan="4">计算优化</td>
+        <td>模型结构优化</td>
+        <td>在CNN模型上应用较多，但需要根据模型和业务特点优化计算组件</td>
+    </tr>
+    <tr>
+        <td>模型剪枝</td>
+        <td>受底层计算平台限制较多，精度损失较明显，适用于精度不敏感的模型推理应用场景</td>    
+    </tr>
+     <tr>
+        <td>模型量化</td>
+        <td>量化技术适用场景较广，加速效果明显</td>    
+    </tr>
+     <tr>
+        <td>知识蒸馏</td>
+        <td>适用于大模型的推理应用，不同模型蒸馏的效果差异明显</td>    
+    </tr>
+    <tr>
+        <td rowspan="2">系统优化</td>
+        <td>通信机制优化</td>
+        <td>PS框架适用于推荐类模型DNN浅层模型， RingAllReduce适用于DNN深度模型          </td>
+    </tr>
+    <tr>
+        <td>通信数据量优化</td>
+        <td>适用于通信占比高的应用场景</td>
+    </tr>
+    <tr>
+        <td rowspan="1">硬件优化</td>
+        <td>GPU/TPU/TensorRT</td>
+        <td>TensorRT目前仅支持推理</td>
+</tr></table>
+
+<h2 id="一、计算优化"><a href="#一、计算优化" class="headerlink" title="一、计算优化"></a>一、计算优化</h2><h3 id="1-模型结构优化"><a href="#1-模型结构优化" class="headerlink" title="1.模型结构优化"></a>1.模型结构优化</h3><p>模型结构优化的方法大部分还是基于人工经验去设计一些具有相似功效的“轻型”计算组件来替换原模型中“重型”计算组件。</p>
+<p>这一点在CNN神经网络的进化历史上显得尤为突出。比如CNN神经网络基于图像的局部感知原理设计滤波器计算组件来替代全连接神经网络，以局部计算和权值共享的方式实现了模型瘦身。而随后的NIN、VGG、GoogleNet、SqueezeNet、MobileNets、ShuffleNets等则是在滤波器上动刀，用小组件替换大组件做进一步优化，具体优化方法如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模型</th>
+<th style="text-align:center">优化结构</th>
+<th style="text-align:left">优化方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NIN</td>
+<td style="text-align:center">MLP-conv模块</td>
+<td style="text-align:left">通过1x1卷积核及Avg-pooling代替fully connected layers减小参数</td>
+</tr>
+<tr>
+<td style="text-align:center">VGG</td>
+<td style="text-align:center">3x3卷积核</td>
+<td style="text-align:left">采用连续的3x3的小卷积核代替AlexNet中的大卷积核</td>
+</tr>
+<tr>
+<td style="text-align:center">GoogleNet</td>
+<td style="text-align:center">Inception模块</td>
+<td style="text-align:left">使用多个不同尺寸的卷积层，以一种结构化的方式来捕捉不同尺寸的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">SqueezeNet</td>
+<td style="text-align:center">Fire模块</td>
+<td style="text-align:left">Squeeze层用1x1的卷积核实现数据压缩， Expand层用1x1和3x3卷积核进行特征抽取</td>
+</tr>
+<tr>
+<td style="text-align:center">MobileNets</td>
+<td style="text-align:center">Depth-wise conv模块</td>
+<td style="text-align:left">用深度可分离的卷积方式代替传统卷积方式</td>
+</tr>
+<tr>
+<td style="text-align:center">ShuffleNets</td>
+<td style="text-align:center">Group-conv模块<br>Channel-shuffle模块</td>
+<td style="text-align:left">用Channel-shuffle模块优化组间信息交换</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上述这些优化操作都依赖于人工经验，费时费力，组合优化这种事情更适合让机器来做，于是<strong>神经网络结构搜索（NAS）技术</strong>就应运而生。</p>
+<h3 id="2-模型剪枝"><a href="#2-模型剪枝" class="headerlink" title="2. 模型剪枝"></a>2. 模型剪枝</h3><p>模型剪枝的初衷就是深度学习模型的过度参数化，说白了就是你的模型太胖了，跑不动，需要减肥。根据模型剪枝的方法可以分为两大类：一类是结构化剪枝，另一类是非结构化剪枝。</p>
+<p>所谓结构化剪枝是对参数矩阵做有规律的裁剪，比如按行或列裁剪，使得裁剪后的参数矩阵仍然是一个规则的的矩阵。结构化裁剪主流的方法有Channel-level、Vector-level、Group-level、Filter-level级别的裁剪。</p>
+<p>非结构化剪枝是将原本稠密的参数矩阵裁剪为稀疏的参数矩阵，一般矩阵大小不变，其效果类似于参数正则化。因为目前大部分计算平台不支持稀疏矩阵的计算，只有结构化剪枝才能真正减少计算量。</p>
+<p>根据业界的实践经验，非结构化模型剪枝的模型精度损失较小，但受限于底层计算框架，计算加速效果有限。而结构化模型剪枝可以较大幅度地减少模型参数，实现可观的计算加速，但容易造成明显的性能损失。</p>
+<h3 id="3-模型量化"><a href="#3-模型量化" class="headerlink" title="3.模型量化"></a>3.模型量化</h3><p>模型量化是通过减少表示每个权重参数所需的比特数来压缩原始网络，从而实现计算加速。</p>
+<p>半浮点精度（FP16）和混合精度是一种常见的做法，不过需要底层计算框架支持，否则无法实现计算加速。另一种是INT8量化，即将模型的权重参数从FP32转换为INT8，以及使用INT8 进行推理。量化的加速主要得益于定点运算比浮点运算快，但从FP32量化为INT8会损失模型精度。量化不会改变权重参数的分布，只是将权重参数从一个值域映射到另一个值域，过程类似于数值的归一化。</p>
+<p>采用普通量化方法时，靠近零的浮点值在量化时没有精确地用定点值表示。因此，量化后的模型预测准确度会显著下降，如均一量化，会将具有动态值密度的浮点映射成具有恒定值密度的定点。其中一种的做法是在量化过程中做值域调整。</p>
+<p>值域调整的目标是学习能在量化后更准确地运行网络的超参数min/max，即归一化参数。根据调整的时机，可以进一步划分为训练后量化和训练时量化，代表分别为 Nvidia Calibration 和 TensorFlow Quantization-aware Training。</p>
+<h3 id="4-模型蒸馏"><a href="#4-模型蒸馏" class="headerlink" title="4.模型蒸馏"></a>4.模型蒸馏</h3><p>模型蒸馏本质上和迁移学习类似，只是它还多了一个模型压缩的目的，即通过模型蒸馏，将大模型压缩为小模型，使小模型可以跑得又快又好。所以，最基本的想法就是将大模型学习得到的知识作为先验，将先验知识传递到小规模的神经网络中，并在实际应用中部署小规模的神经网络。在实际研究中，我们将大模型称为Teacher，小模型称为Student，模型蒸馏的过程就是让Student去学习Teacher的知识。目前大部分模型蒸馏框架都是基于Teacher-Student的模式，只是有些方法会请多几个Teacher或者配个Assistant。</p>
+<h2 id="二、系统优化"><a href="#二、系统优化" class="headerlink" title="二、系统优化"></a>二、系统优化</h2><p>加速深度学习模型训练速度最有效的方法便是增加计算资源，将单机训练的模型扩展为多机训练。目前各大主流框架的多GPU分布式训练一般存在两种模式：<strong>模型并行和数据并行</strong>。</p>
+<p>模型并行是将模型切分为多个子模块，每个计算设备负责其中一个子模块的计算。数据并行则是对训练数据进行切分，将数据分片分配到不同设备上进行并行计算。随着内存和显存容量的扩大，大部分深度学习模型可以直接存放在单个节点上，以数据并行的方式运行。</p>
+<p>分布式机器学习系统的核心是参数的同步和更新，而Parameter Server（PS）是目前主流的深度学习系统默认参数同步方案。该方案中包含两类节点，一类是Server，负责存储模型参数；一类是Worker，负责模型计算。Worker在每次训练迭代开始前，从Server拉取最新的模型参数，并在本地完成模型的计算；Worker在每次训练迭代结束后，发送梯度给Server，由Server来更新参数。</p>
+<p>整个模型训练过程涉及了大量的数据交换，由于深度学习模型具有大量的参数，即便使用10GbE网络，参数的传输也会成为瓶颈。实验证明，在8个节点进行Tensorflow分布式训练，对于VGG19网络，90%的时间花在等待网络传输上面。因此，大量的研究工作集中在消除网络通信瓶颈。</p>
+<p>目前主要有两大类方向，一类是研发新的通信机制，实现最优的参数交换，如RingAllReduce。RingAllReduce将计算节点组织成环状结构，每个节点只和邻居节点进行通信，每次交换一部分数据，通过2*(N-1) 次通信就可以完成数据的同步。</p>
+<p>另一类是试图减少节点之间的数据交换量，从而消除网络通信瓶颈，如梯度压缩，其核心思想是每次只选择“重要”的梯度进行更新，从而减少通信开销。</p>
+<p>梯度累计和补偿是目前最常见的一种做法，目前大部分研究都是围绕这一点在展开。从单机单卡扩展为多机多卡是实现模型加速最有效的途径，消除网络通信瓶颈的研究只是为了追求更高的计算性价比。</p>
+<h2 id="三、硬件优化"><a href="#三、硬件优化" class="headerlink" title="三、硬件优化"></a>三、硬件优化</h2><ul>
+<li>深度学习应用开发的两个阶段<ul>
+<li>训练:利用训练数据生成和优化网络模型</li>
+<li>推理:把网络模型集成到应用程序，输入现实数据，得到推理结果</li>
+</ul>
+</li>
+<li>TensorRT深度优化了推理的运行效率<ul>
+<li>自动选取最优 kernel<ul>
+<li>矩阵乘法、卷积有多种UDA实现方式，根据数据大小和形状自动选取最优实现</li>
+</ul>
+</li>
+<li>计算图优化<ul>
+<li>通过 kerne融合、减少数据拷贝等手段，生成网络的优化计算图</li>
+</ul>
+</li>
+<li>支持fp16/int8<ul>
+<li>对数值进行精度转换与缩放，充分利用硬件的低精度高通量计算能力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>TensorRT能够优化重构由不同深度学习框架训练的深度学习模型：</p>
+<ul>
+<li>对于Caffe与TensorFlow训练的模型，若包含的操作都是TensorRT支持的，则可以直接由TensorRT优化重构；</li>
+<li>对于MXnet, PyTorch或其他框架训练的模型，若包含的操作都是TensorRT支持的，可以采用TensorRT API重建网络结构，并间接优化重构；</li>
+<li>其他框架训练的模型，转换为ONNX中间格式后，若包含的操作是TensorRT支持的，可采用TensorRT-ONNX接口予以优化；</li>
+<li>若训练的网络模型包含TensorRT不支持的操作：<ul>
+<li>TensorFlow模型可通过tf.contrib.tensorrt转换，其中不支持的操作会保留为TensorFlow计算节点；MXNet也支持类似的计算图转换方式。</li>
+<li>不支持的操作可通过Plugin API实现自定义并添加进TensorRT计算图，例如Faster Transformer的自定义扩展；</li>
+<li>将深度网络划分为两个部分，一部分包含的操作都是TensorRT支持的，可以转换为TensorRT计算图。另一部则采用其他框架实现，如MXnet或PyTorch，并建议使用C++ API实现，以确保更高效的runtime。</li>
+</ul>
+</li>
+<li>TensorRT的INT8量化需要校准（calibration）数据集，一般至少包含1000个样本（反映真实应用场景），且要求GPU的计算功能集sm &gt;= 6.1；</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/optimization/" rel="tag">#optimization</a>
+          
+            <a href="/tags/acceleration/" rel="tag">#acceleration</a>
+          
+            <a href="/tags/TensorRT/" rel="tag">#TensorRT</a>
+          
+            <a href="/tags/summary/" rel="tag">#summary</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/09/install-tensorflow-mxnet/" rel="next" title="Install TensorFlow and MXNet on an Ubuntu">
+                <i class="fa fa-chevron-left"></i> Install TensorFlow and MXNet on an Ubuntu
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、计算优化"><span class="nav-number">1.</span> <span class="nav-text">一、计算优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-模型结构优化"><span class="nav-number">1.1.</span> <span class="nav-text">1.模型结构优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-模型剪枝"><span class="nav-number">1.2.</span> <span class="nav-text">2. 模型剪枝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-模型量化"><span class="nav-number">1.3.</span> <span class="nav-text">3.模型量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-模型蒸馏"><span class="nav-number">1.4.</span> <span class="nav-text">4.模型蒸馏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、系统优化"><span class="nav-number">2.</span> <span class="nav-text">二、系统优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、硬件优化"><span class="nav-number">3.</span> <span class="nav-text">三、硬件优化</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

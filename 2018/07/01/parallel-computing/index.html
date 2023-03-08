@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="parallel computing,PPL,OpenMP,OpenCL," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: Parallel computing can speed up our programme. From data parallel to process parallel, there are many parallel tool and way that we can use. The blog will introduce The Parallel Patterns Li">
+<meta name="keywords" content="parallel computing,PPL,OpenMP,OpenCL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Summary and Usage of Parallel Computing">
+<meta property="og:url" content="http://yoursite.com/2018/07/01/parallel-computing/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: Parallel computing can speed up our programme. From data parallel to process parallel, there are many parallel tool and way that we can use. The blog will introduce The Parallel Patterns Li">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/46139/201604/46139-20160406205648093-1178215697.jpg">
+<meta property="og:updated_time" content="2023-03-08T05:09:37.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Summary and Usage of Parallel Computing">
+<meta name="twitter:description" content="Abstract: Parallel computing can speed up our programme. From data parallel to process parallel, there are many parallel tool and way that we can use. The blog will introduce The Parallel Patterns Li">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/46139/201604/46139-20160406205648093-1178215697.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/01/parallel-computing/"/>
+
+  <title> Summary and Usage of Parallel Computing | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Summary and Usage of Parallel Computing
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-07-01T00:00:00+08:00" content="2018-07-01">
+              2018-07-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Program</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: Parallel computing can speed up our programme. From data parallel to process parallel, there are many parallel tool and way that we can use. The blog will introduce The Parallel Patterns Library (PPL), Open Multi-Processing (OpenMP) and Open Computing Language (OpenCL). Other important parallel tools such as CUDA and Hadoop will be introduced as topics in later blogs.</p>
+</blockquote>
+<a id="more"></a>
+<p>In general, there are four kinds of levels parallelism in computing, which are bit-level parallelism (BLP), instruction level parallelism (ILP), data level parallelism (DLP), and task level parallelism (more commonly Thread-level parallelism, short as TLP).</p>
+<p>For data level parallelism, there are four kinds of modes for computer to perform parallel calculations. They are SISD, MISD, SIMD,  and MIMD, and the meaning of them is illustrated as follows.</p>
+<p><img src="http://images2015.cnblogs.com/blog/46139/201604/46139-20160406205648093-1178215697.jpg" alt="MIMD-mean"></p>
+<p>There are some tools to achieve the parallel computing, and the parallel scale ranges from multi-thread, multi-processe, multi-core to multi-computer. The follows are some rough classifications.</p>
+<p><strong>MPI</strong><br>The MPI is a process level parallelism. MPI adopts distributed memory system and explicitly (data distribution method) realizes parallel execution. Message transmission is performed between processes. The scalability of MPI is good, but programming model is complicated.</p>
+<p><strong>Pthreads</strong><br>Pthreads is a thread level parallelism. It uses shared memory system and is valid only on POSIX systems (linux, mac OS X, Solaris, HPUX, etc.). It is a library that can be connected to C programs. Currently, the standard C++ shared memory thread library is still under development. It may be more convenient to use this library in future to implement C++ programs.</p>
+<p><strong>OpenMP</strong><br>OpenMP is a thread level parallelism. It uses shared-memory-distribution system and implicitly (data allocation) implements parallel execution with poor scalability. Hence OpenMP only applies to SMP (Symmetric Multi- Processing symmetric multi-processing architecture and DSM (Distributed Shared Memory) system, but not suitable for clustering.</p>
+<p><strong>OpenCL</strong><br>OpenCL is a framework for heterogeneous platforms and can applied on CPU, GPU or other types of processors. OpenCL is a language (based on C99) for writing kernels (functions running on OpenCL devices) and consists of set of APIs for defining and controlling the platform. It provides parallel computing based on task partitioning and data segmentation. OpenCL is similar to the other two open industry standards, OpenGL and OpenAL, which are used for 3D graphics and computer audio, respectively.</p>
+<p><strong>CUDA</strong><br>The GPU is designed to perform complex math and set calculations. There are many stream multiprocessor(SM) in a GPU, which are similar to CPU cores. CUDA is the usefull tool Launched by Nvidia to programm the GPU. The similarities and differences between OpenCL and CUDA:</p>
+<ul>
+<li>Differences: <ul>
+<li>OpenCL is a general-purpose heterogeneous platform programming language that is cumbersome to take into account different devices.</li>
+<li>CUDA is a framework invented by nvidia specifically for programming on GPGPU. It is easy to use and easy to get started.</li>
+</ul>
+</li>
+<li>Similarities:<ul>
+<li>They are based on task parallelism and data parallelism.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Hadoop</strong><br>Hadoop is a distributed system infrastructure developed by the Apache Foundation. Users can develop distributed programs without understanding the underlying details of the distributed architecture. Hadoop makes full use of the power of clusters for high-speed computing and storage.</p>
+<h2 id="1-PPL"><a href="#1-PPL" class="headerlink" title="1 PPL"></a>1 PPL</h2><p>The Parallel Patterns Library (PPL) provides algorithms that concurrently perform work on collections of data. These algorithms resemble those provided by the Standard Template Library (STL).</p>
+<h3 id="1-1-The-parallel-for-Algorithm"><a href="#1-1-The-parallel-for-Algorithm" class="headerlink" title="1.1 The parallel_for Algorithm"></a>1.1 The <code>parallel_for</code> Algorithm</h3><p>You can convert many <code>for</code> loops to use <code>parallel_for</code>. However, the <code>parallel_for</code> algorithm differs from the <code>for</code> statement in the following ways:</p>
+<ul>
+<li><p>The <code>parallel_for</code> algorithm does not execute the tasks in a pre-determined order.</p>
+</li>
+<li><p>The <code>parallel_for</code> algorithm does not support arbitrary termination conditions. The parallel_for algorithm stops when the current value of the iteration variable is one less than last.</p>
+</li>
+<li><p>The <code>_Index_type</code> type parameter must be an <strong>integral</strong> type. This integral type can be signed or unsigned.</p>
+</li>
+<li><p>The loop iteration must be forward. The <code>parallel_for</code> algorithm throws an exception of type <code>std::invalid_argument</code> if the <code>_Step</code> parameter is less than 1.</p>
+</li>
+<li><p>The exception-handling mechanism for the <code>parallel_for</code> algorithm differs from that of a for loop. If multiple exceptions occur simultaneously in a parallel loop body, the runtime propagates only one of the exceptions to the thread that called <code>parallel_for</code>. In addition, when one loop iteration throws an exception, the runtime does not immediately stop the overall loop. Instead, the loop is placed in the cancelled state and the runtime discards any tasks that have not yet started.</p>
+</li>
+</ul>
+<h3 id="1-2-The-parallel-for-each-Algorithm"><a href="#1-2-The-parallel-for-each-Algorithm" class="headerlink" title="1.2 The parallel_for_each Algorithm"></a>1.2 The <code>parallel_for_each</code> Algorithm</h3><p>The <code>parallel_for_each</code> algorithm resembles the STL <code>std::for_each</code> algorithm, except that the <code>parallel_for_each</code> algorithm executes the tasks concurrently. Like other parallel algorithms, <code>parallel_for_each</code> does not execute the tasks in a specific order.</p>
+<h3 id="1-3-The-parallel-invoke-Algorithm"><a href="#1-3-The-parallel-invoke-Algorithm" class="headerlink" title="1.3 The parallel_invoke Algorithm"></a>1.3 The <code>parallel_invoke</code> Algorithm</h3><p>The <code>concurrency::parallel_invoke</code> algorithm executes a set of tasks in parallel. It does not return until each task finishes. This algorithm is useful when you have several independent tasks that you want to execute at the same time.</p>
+<h3 id="1-4-The-parallel-transform-Algorithm"><a href="#1-4-The-parallel-transform-Algorithm" class="headerlink" title="1.4 The parallel_transform Algorithm"></a>1.4 The <code>parallel_transform</code> Algorithm</h3><p>You can use the parallel transform algorithm to perform many data parallelization operations. For example, you can:</p>
+<ul>
+<li>Adjust the brightness of an image, and perform other image processing operations.</li>
+<li>Sum or take the dot product between two vectors, and perform other numeric calculations on vectors.</li>
+<li>Perform 3-D ray tracing, where each iteration refers to one pixel that must be rendered.</li>
+</ul>
+<blockquote>
+<p>Important: The iterator that you supply for the output of <code>parallel_transform</code> must completely overlap the input iterator or not overlap at all. The behavior of this algorithm is unspecified if the input and output iterators partially overlap.</p>
+</blockquote>
+<h3 id="1-5-The-parallel-reduce-Algorithms"><a href="#1-5-The-parallel-reduce-Algorithms" class="headerlink" title="1.5 The parallel_reduce Algorithms"></a>1.5 The <code>parallel_reduce</code> Algorithms</h3><p>The <code>parallel_reduce</code> algorithm is useful when you have a sequence of operations that satisfy the associative property. Here are some of the operations that you can perform with parallel_reduce:</p>
+<ul>
+<li>Multiply sequences of matrices to produce a matrix.</li>
+<li>Multiply a vector by a sequence of matrices to produce a vector.</li>
+<li>Compute the length of a sequence of strings.</li>
+<li>Combine a list of elements, such as strings, into one element.</li>
+</ul>
+<h3 id="1-6-Code-Example-for-PPL-Algorithms"><a href="#1-6-Code-Example-for-PPL-Algorithms" class="headerlink" title="1.6 Code Example for PPL Algorithms"></a>1.6 Code Example for PPL Algorithms</h3><p>Here is the code example for above algorithms.<br>Please add header <code>#include &lt;ppl.h&gt;</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ppl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_data</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> note;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Returns the result of adding a value to itself.</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">twice</span><span class="params">(<span class="keyword">const</span> T&amp; t)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> t + t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_for algorithm</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_for</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	concurrency::parallel_for(<span class="number">1</span>, <span class="number">6</span>, [](<span class="keyword">int</span> value) &#123;</span><br><span class="line">		<span class="built_in">std</span>::wstringstream ss;</span><br><span class="line">		ss &lt;&lt; value &lt;&lt; L' <span class="string">';</span></span><br><span class="line">		std::wcout &lt;&lt; ss.str();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_for_each algorithm: regular</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_for_each1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; my_str = &#123; <span class="string">"hi"</span>, <span class="string">"world"</span>, <span class="string">"hello"</span>, <span class="string">"c"</span>, <span class="string">"language"</span>&#125;;</span><br><span class="line">	</span><br><span class="line">	concurrency::parallel_for_each(begin(my_str), end(my_str), [](<span class="built_in">std</span>::<span class="built_in">string</span> value) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_for_each algorithm: wrong use, data should be independent</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_for_each2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; my_str = &#123; <span class="string">"hi"</span>, <span class="string">"world"</span>, <span class="string">"hello"</span>, <span class="string">"c"</span>, <span class="string">"language"</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> mark = <span class="number">100</span>;</span><br><span class="line">	concurrency::parallel_for_each(begin(my_str), end(my_str), [&amp;mark](<span class="built_in">std</span>::<span class="built_in">string</span> value) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt;<span class="string">"  "</span>&lt;&lt;mark&lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_for_each algorithm: test class data parallel</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_for_each3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	my_data data1 = &#123; <span class="number">100</span>,<span class="string">"hi"</span> &#125;;</span><br><span class="line">	my_data data2 = &#123; <span class="number">200</span>,<span class="string">"world"</span> &#125;;</span><br><span class="line">	my_data data3 = &#123; <span class="number">300</span>,<span class="string">"language"</span> &#125;;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;my_data&gt; my_str = &#123; data1,data2,data3 &#125;;</span><br><span class="line">	concurrency::parallel_for_each(begin(my_str), end(my_str), [](my_data value) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value.num &lt;&lt; <span class="string">"  "</span> &lt;&lt;value.note &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_invoke algorithm</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_invoke</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="number">54</span>;</span><br><span class="line">	<span class="keyword">double</span> d = <span class="number">5.6</span>;</span><br><span class="line">	<span class="built_in">std</span>::wstring s = <span class="string">L"Hello"</span>;</span><br><span class="line"></span><br><span class="line">	concurrency::parallel_invoke(</span><br><span class="line">		[&amp;n] &#123; n = twice(n);  &#125;,</span><br><span class="line">		[&amp;d] &#123; d = twice(d); &#125;,</span><br><span class="line">		[&amp;s] &#123; s = twice(s);&#125;</span><br><span class="line">	);</span><br><span class="line">	<span class="built_in">std</span>::wcout &lt;&lt; n &lt;&lt;<span class="string">" "</span>&lt;&lt; d&lt;&lt;<span class="string">" "</span>&lt;&lt;s&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_transform algorithm</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_transform</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; values(<span class="number">1250000</span>);</span><br><span class="line">	<span class="built_in">std</span>::generate(begin(values), end(values), <span class="built_in">std</span>::mt19937(<span class="number">42</span>));</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; results(values.size());</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; results2(values.size());</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Negate each element in parallel.</span></span><br><span class="line">	concurrency::parallel_transform(begin(values), end(values), begin(results), [](<span class="keyword">int</span> n) &#123;</span><br><span class="line">		<span class="keyword">return</span> -n;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Alternatively, use the negate class to perform the operation.</span></span><br><span class="line">	concurrency::parallel_transform(begin(values), end(values),</span><br><span class="line">		begin(results), <span class="built_in">std</span>::negate&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Demonstrate use of parallel_transform together with a binary function.</span></span><br><span class="line">	<span class="comment">// This example uses a lambda expression.</span></span><br><span class="line">	concurrency::parallel_transform(begin(values), end(values), begin(results),</span><br><span class="line">		begin(results2), [](<span class="keyword">int</span> n, <span class="keyword">int</span> m) &#123;</span><br><span class="line">		<span class="keyword">return</span> n - m;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Alternatively, use the multiplies class:</span></span><br><span class="line">	concurrency::parallel_transform(begin(values), end(values), begin(results),</span><br><span class="line">		begin(results2), <span class="built_in">std</span>::multiplies&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test Parallel_reduce algorithm</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_Parallel_reduce</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::wstring&gt; words;</span><br><span class="line">	words.push_back(<span class="string">L"Hello "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"i "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"like "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"c "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"language, "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"and "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"parallel "</span>);</span><br><span class="line">	words.push_back(<span class="string">L"programming."</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Reduce the vector to one string in parallel.</span></span><br><span class="line">	<span class="built_in">std</span>::wcout &lt;&lt; concurrency::parallel_reduce(begin(words), end(words), <span class="built_in">std</span>::wstring()) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// Alternatively, use one of following test function</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//test_Parallel_for();</span></span><br><span class="line">	<span class="comment">//test_Parallel_for_each1();</span></span><br><span class="line">	<span class="comment">//test_Parallel_for_each2();</span></span><br><span class="line">	<span class="comment">//test_Parallel_for_each3();</span></span><br><span class="line">	<span class="comment">//test_Parallel_invoke();</span></span><br><span class="line">	<span class="comment">//test_Parallel_transform();</span></span><br><span class="line">	test_Parallel_reduce();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-OpenMP"><a href="#2-OpenMP" class="headerlink" title="2 OpenMP"></a>2 OpenMP</h2><p>The basic format of Compiler Directive(<code>#pragma omp</code>) is as follows:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp directive-name [clause[ []] clause]]</span></span><br></pre></td></tr></table></figure></p>
+<p>Among them, “[]” indicates optional, and each Compiler Directive acts on the followed statement (the bracketed portion of “{}” in C++ is a compound statement).</p>
+<p>Directive-name can be: <code>paralle</code>l, <code>for</code>, <code>sections</code>, <code>single</code>, <code>atomic</code>, <code>barrier</code>, <code>critical</code>, <code>flush</code>, <code>master</code>, <code>ordered</code>, <code>threadprivate</code> (11 in total, only the first 4 have optional clauses).</p>
+<p>The clause (sentence) is equivalent to the modification of Directive, which defines some parameters of Directive. The clause can be: <code>copyin(variable-list)</code>, <code>copyprivate(variable-list)</code>, <code>default(shared | none)</code>, <code>firstprivate(variable-list)</code>, <code>if(expression)</code>, <code>lastprivate(variable-list)</code>, <code>nowait</code>, <code>num_threads(num)</code> , <code>ordered</code>, <code>private(variable-list)</code>, <code>reduction(operation: variable-list)</code>, <code>schedule(type[,size])</code>, <code>shared(variable-list)</code> (13 total).</p>
+<p>For example, <code>#pragma omp parallel</code> means that the subsequent statements will be executed in parallel by multiple threads, and the number of threads is preset by the system (generally equal to the number of logical processors, for example, i5 4 cores and 8 threaded CPUs have 8 logical processors). Optional clauses can be added to the directive. For example, <code>#pragma omp parallel num_threads(4)</code> still means that subsequent statements will be executed in parallel by multiple threads, but the number of threads is 4.</p>
+<h3 id="2-1-parallel"><a href="#2-1-parallel" class="headerlink" title="2.1 parallel"></a>2.1 <code>parallel</code></h3><p><code>parallel</code> indicates that the subsequent statement will be executed in parallel by multiple threads, which is already known. The statement (or block of statements) after <code>#pragma omp parallel</code> is called a parallel region.</p>
+<p>You can use num_threads clause to change the default number of threads.</p>
+<h3 id="2-2-for"><a href="#2-2-for" class="headerlink" title="2.2 for"></a>2.2 <code>for</code></h3><p><code>for</code> directive divides multiple iterations of the <code>for</code> loop into multiple threads, that is, the iterations performed by each thread are not repeated, and the iterations of all threads are exactly all the iterations of the C++ for loop. Here the C++ for loop requires some restrictions so that you can determine the number of loops before executing, for example, C++ for should not contain <code>breaks</code>.</p>
+<h3 id="2-3-section"><a href="#2-3-section" class="headerlink" title="2.3 section"></a>2.3 <code>section</code></h3><p>The <code>section</code> directive is used for task parallelism, which indicates that the following code block contains a section block that will be executed in parallel by multiple threads.</p>
+<h3 id="2-4-critical"><a href="#2-4-critical" class="headerlink" title="2.4 critical"></a>2.4 <code>critical</code></h3><p>When one line of code is executed by one thread, other threads cannot execute (the line of code is critical).</p>
+<h3 id="2-5-Code-Example-for-OpenMP-Algorithms"><a href="#2-5-Code-Example-for-OpenMP-Algorithms" class="headerlink" title="2.5 Code Example for OpenMP Algorithms"></a>2.5 Code Example for OpenMP Algorithms</h3><p>Here is the code example for above algorithms.<br>Please add header <code>#include&lt;omp.h&gt;</code></p>
+<blockquote>
+<p>Important: Please turn on the OpenMP in configuration <code>Property~C/C++~Language~OpenMP Support~Yes</code></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Test parallel directive</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; omp_get_thread_num();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test parallel directive with thread number</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(3)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; omp_get_thread_num();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test for directive: one format</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel_for1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data[<span class="number">1000</span>];</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; ++i)</span><br><span class="line">					data[i] = i;</span><br><span class="line">		 &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">////Test parallel directive: the othe format</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel_for2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data[<span class="number">1000</span>];</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; ++i)</span><br><span class="line">		 data[i] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">////Test section directive</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel_section</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel sections</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; omp_get_thread_num();</span><br><span class="line">		<span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; omp_get_thread_num();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Test critical directive</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_openmp_parallel_critical</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(4)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="meta">#<span class="meta-keyword">pragma</span> omp critical</span></span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; omp_get_thread_num() &lt;&lt; omp_get_thread_num();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//Alternatively, use one of following test function</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//test_openmp_parallel1();</span></span><br><span class="line">	<span class="comment">//test_openmp_parallel2();</span></span><br><span class="line">	<span class="comment">//test_openmp_parallel_for1();</span></span><br><span class="line">	<span class="comment">//test_openmp_parallel_for2();</span></span><br><span class="line">	<span class="comment">//test_openmp_parallel_section();</span></span><br><span class="line">	test_openmp_parallel_critical();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-OpenCL"><a href="#3-OpenCL" class="headerlink" title="3 OpenCL"></a>3 OpenCL</h2><p>The main design goal of OpenCL is to provide a parallel computing platform that is suitable for a variety of different devices. However, the universal property is the sacrifice of convenience, so OpenCL programming is very tedious. So here, only an example of adding two numbers is provided for demonstration.<br>The following is the code example for OpenCL programming.</p>
+<p>For environment configuration:</p>
+<ul>
+<li>Add header <code>#include &lt;CL/cl.h&gt;</code></li>
+<li>The header file and library file can be found in CUDA tool kit, so add the additional include directory as follows(my configuration, you can look for your tool kit path):<ul>
+<li><code>Property~C/C++~Regular~additional include directory~D:\NVIDIA\CUDA\CUDAToolkit\include</code></li>
+<li><code>Property~Linker~Regular~additional library directory~D:\NVIDIA\CUDA\CUDAToolkit\lib\x64</code></li>
+<li><code>Property~Linker~Import~additional dependencies~OpenCL.lib</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;CL/cl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> ARRAY_SIZE = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//1. Select the OpenCL platform and create a context</span></span><br><span class="line">	<span class="function">cl_context <span class="title">CreateContext</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cl_int errNum;</span><br><span class="line">		cl_uint numPlatforms;</span><br><span class="line">		cl_platform_id firstPlatformId;</span><br><span class="line">		cl_context context = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Select the first of the available platforms</span></span><br><span class="line">		errNum = clGetPlatformIDs(<span class="number">1</span>, &amp;firstPlatformId, &amp;numPlatforms);</span><br><span class="line">		<span class="keyword">if</span> (errNum != CL_SUCCESS || numPlatforms &lt;= <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Failed to find any OpenCL platforms."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Create an OpenCL context</span></span><br><span class="line">		cl_context_properties contextProperties[] =</span><br><span class="line">		&#123;</span><br><span class="line">			CL_CONTEXT_PLATFORM,</span><br><span class="line">			(cl_context_properties)firstPlatformId,</span><br><span class="line">			<span class="number">0</span></span><br><span class="line">		&#125;;</span><br><span class="line">		context = clCreateContextFromType(contextProperties, CL_DEVICE_TYPE_GPU,</span><br><span class="line">			<span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;errNum);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> context;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//2. Create a device and create a command queue</span></span><br><span class="line">	<span class="function">cl_command_queue <span class="title">CreateCommandQueue</span><span class="params">(cl_context context, cl_device_id *device)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cl_int errNum;</span><br><span class="line">		cl_device_id *devices;</span><br><span class="line">		cl_command_queue commandQueue = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">size_t</span> deviceBufferSize = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Get device buffer size</span></span><br><span class="line">		errNum = clGetContextInfo(context, CL_CONTEXT_DEVICES, <span class="number">0</span>, <span class="literal">NULL</span>, &amp;deviceBufferSize);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (deviceBufferSize &lt;= <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"No devices available."</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Allocate buffer space for devices</span></span><br><span class="line">		devices = <span class="keyword">new</span> cl_device_id[deviceBufferSize / <span class="keyword">sizeof</span>(cl_device_id)];</span><br><span class="line">		errNum = clGetContextInfo(context, CL_CONTEXT_DEVICES, deviceBufferSize, devices, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Pick the first of the available devices</span></span><br><span class="line">		commandQueue = clCreateCommandQueue(context, devices[<span class="number">0</span>], <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		*device = devices[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">delete</span>[] devices;</span><br><span class="line">		<span class="keyword">return</span> commandQueue;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3.Create and build program</span></span><br><span class="line">	<span class="function">cl_program <span class="title">CreateProgram</span><span class="params">(cl_context context, cl_device_id device, <span class="keyword">const</span> <span class="keyword">char</span>* fileName)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cl_int errNum;</span><br><span class="line">		cl_program program;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">std</span>::<span class="function">ifstream <span class="title">kernelFile</span><span class="params">(fileName, <span class="built_in">std</span>::ios::in)</span></span>;</span><br><span class="line">		<span class="keyword">if</span> (!kernelFile.is_open())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Failed to open file for reading: "</span> &lt;&lt; fileName &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">ostringstream</span> oss;</span><br><span class="line">		oss &lt;&lt; kernelFile.rdbuf();</span><br><span class="line"></span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> srcStdStr = oss.str();</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">char</span> *srcStr = srcStdStr.c_str();</span><br><span class="line">		program = clCreateProgramWithSource(context, <span class="number">1</span>,</span><br><span class="line">			(<span class="keyword">const</span> <span class="keyword">char</span>**)&amp;srcStr,</span><br><span class="line">			<span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		errNum = clBuildProgram(program, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> program;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Create and build objects</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">CreateMemObjects</span><span class="params">(cl_context context, cl_mem memObjects[<span class="number">3</span>],</span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">float</span> *a, <span class="keyword">float</span> *b)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		memObjects[<span class="number">0</span>] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,</span><br><span class="line">			<span class="keyword">sizeof</span>(<span class="keyword">float</span>) * ARRAY_SIZE, a, <span class="literal">NULL</span>);</span><br><span class="line">		memObjects[<span class="number">1</span>] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,</span><br><span class="line">			<span class="keyword">sizeof</span>(<span class="keyword">float</span>) * ARRAY_SIZE, b, <span class="literal">NULL</span>);</span><br><span class="line">		memObjects[<span class="number">2</span>] = clCreateBuffer(context, CL_MEM_READ_WRITE,</span><br><span class="line">			<span class="keyword">sizeof</span>(<span class="keyword">float</span>) * ARRAY_SIZE, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Release OpenCL Resources</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Cleanup</span><span class="params">(cl_context context, cl_command_queue commandQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">		cl_program program, cl_kernel kernel, cl_mem memObjects[<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (memObjects[i] != <span class="number">0</span>)</span><br><span class="line">				clReleaseMemObject(memObjects[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (commandQueue != <span class="number">0</span>)</span><br><span class="line">			clReleaseCommandQueue(commandQueue);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (kernel != <span class="number">0</span>)</span><br><span class="line">			clReleaseKernel(kernel);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (program != <span class="number">0</span>)</span><br><span class="line">			clReleaseProgram(program);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (context != <span class="number">0</span>)</span><br><span class="line">			clReleaseContext(context);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cl_context context = <span class="number">0</span>;</span><br><span class="line">		cl_command_queue commandQueue = <span class="number">0</span>;</span><br><span class="line">		cl_program program = <span class="number">0</span>;</span><br><span class="line">		cl_device_id device = <span class="number">0</span>;</span><br><span class="line">		cl_kernel kernel = <span class="number">0</span>;</span><br><span class="line">		cl_mem memObjects[<span class="number">3</span>] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line">		cl_int errNum;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 1.Select the OpenCL platform and create a context</span></span><br><span class="line">		context = CreateContext();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 2. Create a device and create a command queue</span></span><br><span class="line">		commandQueue = CreateCommandQueue(context, &amp;device);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Create and build program objects</span></span><br><span class="line">		program = CreateProgram(context, device, <span class="string">"Add.cl"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 4.Create OpenCL kernel and allocate memory space</span></span><br><span class="line">		kernel = clCreateKernel(program, <span class="string">"add_kernel"</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Create data to process</span></span><br><span class="line">		<span class="keyword">float</span> result[ARRAY_SIZE];</span><br><span class="line">		<span class="keyword">float</span> a[ARRAY_SIZE];</span><br><span class="line">		<span class="keyword">float</span> b[ARRAY_SIZE];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ARRAY_SIZE; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			a[i] = (<span class="keyword">float</span>)i;</span><br><span class="line">			b[i] = (<span class="keyword">float</span>)(ARRAY_SIZE - i);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Create a memory object</span></span><br><span class="line">		<span class="keyword">if</span> (!CreateMemObjects(context, memObjects, a, b))</span><br><span class="line">		&#123;</span><br><span class="line">			Cleanup(context, commandQueue, program, kernel, memObjects);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 5.Set kernel data and execute kernel</span></span><br><span class="line">		errNum = clSetKernelArg(kernel, <span class="number">0</span>, <span class="keyword">sizeof</span>(cl_mem), &amp;memObjects[<span class="number">0</span>]);</span><br><span class="line">		errNum |= clSetKernelArg(kernel, <span class="number">1</span>, <span class="keyword">sizeof</span>(cl_mem), &amp;memObjects[<span class="number">1</span>]);</span><br><span class="line">		errNum |= clSetKernelArg(kernel, <span class="number">2</span>, <span class="keyword">sizeof</span>(cl_mem), &amp;memObjects[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">size_t</span> globalWorkSize[<span class="number">1</span>] = &#123; ARRAY_SIZE &#125;;</span><br><span class="line">		<span class="keyword">size_t</span> localWorkSize[<span class="number">1</span>] = &#123; <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line">		errNum = clEnqueueNDRangeKernel(commandQueue, kernel, <span class="number">1</span>, <span class="literal">NULL</span>,</span><br><span class="line">			globalWorkSize, localWorkSize,</span><br><span class="line">			<span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//6.Read the execution result and release OpenCL resources</span></span><br><span class="line">		errNum = clEnqueueReadBuffer(commandQueue, memObjects[<span class="number">2</span>], CL_TRUE,</span><br><span class="line">			<span class="number">0</span>, ARRAY_SIZE * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), result,</span><br><span class="line">			<span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ARRAY_SIZE; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; result[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Executed program succesfully."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		getchar();</span><br><span class="line">		Cleanup(context, commandQueue, program, kernel, memObjects);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The kernel file is <code>Add.cl</code> is</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__<span class="function">kernel <span class="keyword">void</span> <span class="title">add_kernel</span><span class="params">(__global <span class="keyword">const</span> <span class="keyword">float</span> *a, __global <span class="keyword">const</span> <span class="keyword">float</span> *b, __global <span class="keyword">float</span> *result)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> gid = get_global_id(<span class="number">0</span>);</span><br><span class="line">	result[gid] = a[gid] + b[gid];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The all code files can be found in my <a href="https://github.com/ChampionLi/Parallel-Computing" target="_blank" rel="noopener">Github</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/parallel-computing/" rel="tag">#parallel computing</a>
+          
+            <a href="/tags/PPL/" rel="tag">#PPL</a>
+          
+            <a href="/tags/OpenMP/" rel="tag">#OpenMP</a>
+          
+            <a href="/tags/OpenCL/" rel="tag">#OpenCL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/09/decision-tree/" rel="next" title="Introduction to Decision Tree Algorithm">
+                <i class="fa fa-chevron-left"></i> Introduction to Decision Tree Algorithm
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/09/install-tensorflow-mxnet/" rel="prev" title="Install TensorFlow and MXNet on an Ubuntu">
+                Install TensorFlow and MXNet on an Ubuntu <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-PPL"><span class="nav-number">1.</span> <span class="nav-text">1 PPL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-The-parallel-for-Algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 The parallel_for Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-The-parallel-for-each-Algorithm"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 The parallel_for_each Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-The-parallel-invoke-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 The parallel_invoke Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-The-parallel-transform-Algorithm"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 The parallel_transform Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-The-parallel-reduce-Algorithms"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 The parallel_reduce Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Code-Example-for-PPL-Algorithms"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Code Example for PPL Algorithms</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-OpenMP"><span class="nav-number">2.</span> <span class="nav-text">2 OpenMP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-parallel"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 parallel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-for"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-section"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-critical"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 critical</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Code-Example-for-OpenMP-Algorithms"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Code Example for OpenMP Algorithms</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-OpenCL"><span class="nav-number">3.</span> <span class="nav-text">3 OpenCL</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

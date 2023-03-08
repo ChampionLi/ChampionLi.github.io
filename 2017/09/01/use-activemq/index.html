@@ -1,0 +1,762 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="tutorial,Java,ActiveMQ," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: Apache ActiveMQ is an open source message broker which fosters the communication from more than one client or server. This is a tutorial. This tutorial tells you how to establish ActiveMQ e">
+<meta name="keywords" content="tutorial,Java,ActiveMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Establish Apache ActiveMQ from Scratch">
+<meta property="og:url" content="http://yoursite.com/2017/09/01/use-activemq/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: Apache ActiveMQ is an open source message broker which fosters the communication from more than one client or server. This is a tutorial. This tutorial tells you how to establish ActiveMQ e">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2023-03-08T05:09:58.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Establish Apache ActiveMQ from Scratch">
+<meta name="twitter:description" content="Abstract: Apache ActiveMQ is an open source message broker which fosters the communication from more than one client or server. This is a tutorial. This tutorial tells you how to establish ActiveMQ e">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/01/use-activemq/"/>
+
+  <title> Establish Apache ActiveMQ from Scratch | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Establish Apache ActiveMQ from Scratch
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2017-09-01T00:00:00+08:00" content="2017-09-01">
+              2017-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Program</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: Apache ActiveMQ is an open source message broker which fosters the communication from more than one client or server. This is a tutorial. This tutorial tells you how to establish ActiveMQ environment in your computer and write a producer and a consumer to communicate HelloWorld with C++. </p>
+</blockquote>
+<a id="more"></a>
+<p>Apache ActiveMQ是Apache软件基金会所研发的开放源代码消息中间件，是一个纯Java程序，因此只需要操作系统支持Java虚拟机，ActiveMQ便可运行。这篇博文将介绍如何在自己的电脑上搭建起ActiveMQ的环境并完成一个消息发送者和消息接收者互相通信HelloWorld的一个C++演示程序。<br>注：以下均为64位的安装过程，32位同理。</p>
+<h2 id="1-安装Java-SDK"><a href="#1-安装Java-SDK" class="headerlink" title="1 安装Java SDK"></a>1 安装Java SDK</h2><p>首先先确认自己的电脑有没有安装Java SDK，如果没安装Java SDK会报错，做法如下（如果已安装则跳过下面步骤）：</p>
+<ul>
+<li>下载<code>jre-8u45-windows-x64.exe</code>(<a href="https://www.java.com/zh_CN/download/manual.jsp#win" target="_blank" rel="noopener">链接</a>)和<code>java_ee_sdk-6u4-jdk7-windows-x64.exe</code>(<a href="http://www.oracle.com/technetwork/java/javaee/downloads/java-ee-sdk-6u3-jdk-7u1-downloads-523391.html" target="_blank" rel="noopener">链接</a>）</li>
+<li>安装JRE(Java SE Runtime Environment)<code>jre-8u45-windows-x64.exe</code>，安装路径选默认：<code>C:\Program Files\Java\jre1.8.0_144</code></li>
+<li>安装J2EE<code>java_ee_sdk-6u4-jdk7-windows-x64.exe</code>，假如其被放在E盘下，打开CMD，进入安装程序所在目录 &gt; e：回车</li>
+<li>关键步骤：<code>java_ee_sdk-6u4-jdk7-windows-x64.exe -j &quot;C:\Program Files\Java\jre1.8.0_144&quot;</code></li>
+<li>安装开始，可以选择自己设置的安装路径，例如<code>D:\glassfish3</code>，其它选项均可选择默认进行安装</li>
+<li>安装SDK成功。</li>
+</ul>
+<h2 id="2-ActiveMQ服务端的安装"><a href="#2-ActiveMQ服务端的安装" class="headerlink" title="2 ActiveMQ服务端的安装"></a>2 ActiveMQ服务端的安装</h2><h3 id="2-1-下载"><a href="#2-1-下载" class="headerlink" title="2.1 下载"></a>2.1 下载</h3><p>首先下载<code>apache-activemq-5.15.0-bin.zip</code>压缩文件，官方下载地址：<a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">http://activemq.apache.org/download.html</a><br>解压文件到本地目录下，从它的目录来说，还是很简单的： </p>
+<ul>
+<li>bin存放的是脚本文件</li>
+<li>conf存放的是基本配置文件</li>
+<li>data存放的是日志文件</li>
+<li>docs存放的是说明文档</li>
+<li>examples存放的是简单的实例</li>
+<li>lib存放的是activemq所需jar包</li>
+<li>webapps用于存放项目的目录</li>
+</ul>
+<h3 id="2-2-启动"><a href="#2-2-启动" class="headerlink" title="2.2 启动"></a>2.2 启动</h3><p>找到\bin\win64目录下的activemq.bat文件，双击运行即可。</p>
+<h3 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h3><p>ActiveMQ默认使用的TCP连接端口是61616, 通过查看该端口的信息可以测试ActiveMQ是否成功启动：<code>netstat -an|find “61616”</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt;netstat -an|find &quot;61616&quot; </span><br><span class="line">TCP     0.0.0.0:61616     0.0.0.0:0       LISTENING</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-4-监控"><a href="#2-4-监控" class="headerlink" title="2.4 监控"></a>2.4 监控</h3><p>ActiveMQ默认启动时，启动了内置的jetty服务器，提供一个用于监控ActiveMQ的admin应用。<br>admin：<a href="http://127.0.0.1:8161/admin/，用户名和密码都是admin。" target="_blank" rel="noopener">http://127.0.0.1:8161/admin/，用户名和密码都是admin。</a><br>至此，服务端启动完毕。停止服务器，只需要按着Ctrl+Shift+C，之后输入Y即可。</p>
+<h2 id="3-依赖库的编译"><a href="#3-依赖库的编译" class="headerlink" title="3 依赖库的编译"></a>3 依赖库的编译</h2><p>首先编译依赖库：</p>
+<p><code>libapr-1.dll</code> 、<code>libapr-1.lib</code>、<code>libapriconv-1.lib</code>、<code>libaprutil-1.lib</code>、<code>libcppunit.lib</code> ，<code>libactivemq-cpp.lib</code> ，一共1个dll文件、5个lib文件，而且生成有先后顺序，生成方法如下。</p>
+<ul>
+<li>生成<code>libapr-1.dll</code> 、<code>libapr-1.lib</code>、<code>libapriconv-1.lib</code>、<code>libaprutil-1.lib</code> 所需要的工程下载地址：<a href="http://apr.apache.org/download" target="_blank" rel="noopener">http://apr.apache.org/download</a></li>
+<li>生成<code>libcppunit.lib</code> 所需要的工程下载地址：<a href="https://sourceforge.net/projects/cppunit/" target="_blank" rel="noopener">https://sourceforge.net/projects/cppunit/</a></li>
+<li>生成<code>libactivemq-cpp.lib</code> 所需要的工程下载地址：<a href="http://activemq.apache.org/cms/download.html" target="_blank" rel="noopener">http://activemq.apache.org/cms/download.html</a></li>
+</ul>
+<h3 id="3-1-生成libapr"><a href="#3-1-生成libapr" class="headerlink" title="3.1 生成libapr"></a>3.1 生成libapr</h3><p>下载<code>apr-1.6.2-win32-src.zip</code> ，解压缩后用cmake转成vs2010 x64的工程，把生成出来的<code>apr.h</code>文件拷回解压缩的include文件夹，这时候的include文件夹也是之后生成库文件需要依赖的头文件，命名为<code>apr</code>。</p>
+<p>打开cmake生成的后的文件夹里面<code>APR.sln</code> ，选择好所需要的配置(如Release)和平台(如x64)，编译<code>libapr-1</code>工程，生成<code>libapr-1.dll</code> 和<code>libapr-1.lib</code> 。</p>
+<h3 id="3-2-生成libapriconv"><a href="#3-2-生成libapriconv" class="headerlink" title="3.2 生成libapriconv"></a>3.2 生成libapriconv</h3><p>下载<code>apr-iconv-1.2.1-win32-src-r2.zip</code>，解压缩打开<code>apriconv.dsp</code>，并转成vs2010版本。</p>
+<p>将<code>apr</code>文件夹拷进include文件夹，对工程属性进行配置，选择好所需要的配置(如Release)和平台(如x64)，编译<code>apriconv</code>工程，生成<code>apriconv-1.lib</code> 。</p>
+<h3 id="3-3-生成libaprutil"><a href="#3-3-生成libaprutil" class="headerlink" title="3.3 生成libaprutil"></a>3.3 生成libaprutil</h3><p>下载<code>apr-util-1.6.0-win32-src.zip</code>，解压缩打开<code>aprutil.dsp</code>，并转成vs2010版本。</p>
+<p>将<code>apr</code>文件夹拷进include文件夹，对工程属性进行配置，选择好所需要的配置(如Release)和平台(如x64)，编译<code>aprutil</code>工程，生成<code>aprutil-1.lib</code> 。</p>
+<h3 id="3-4-生成libcppunit"><a href="#3-4-生成libcppunit" class="headerlink" title="3.4 生成libcppunit"></a>3.4 生成libcppunit</h3><p>下载<code>cppunit-1.12.1.tar.gz</code>，解压缩打开<code>\src\cppunit\cppunit.dsp</code>，并转成vs2010版本。</p>
+<p>选择好所需要的配置(如Release)和平台(如x64)，编译<code>cppunit</code>工程，生成<code>cppunit.lib</code> ，为了统一名字更名为<code>libcppunit.lib</code>。</p>
+<h3 id="3-5-生成libactivemq"><a href="#3-5-生成libactivemq" class="headerlink" title="3.5 生成libactivemq"></a>3.5 生成libactivemq</h3><p>下载<code>activemq-cpp-library-3.9.4-src.zip</code>，解压缩打开<code>\vs2010-build\activemq-cpp.sln</code>。</p>
+<p>将libapr、libapriconv、libaprutil、libcppunit自带的头文件文件夹拷到vs2010-build\include文件夹下，对工程属性进行配置，选择好所需要的配置(如Release)和平台(如x64)，编译<code>activemq-cpp</code>工程，生成<code>libactivemq-cpp.lib</code> 。</p>
+<h2 id="4-写出一个通过ActiveMQ通信的HelloWorld"><a href="#4-写出一个通过ActiveMQ通信的HelloWorld" class="headerlink" title="4 写出一个通过ActiveMQ通信的HelloWorld"></a>4 写出一个通过ActiveMQ通信的HelloWorld</h2><p>新建一个vs2010的工程，在inc文件夹下拷贝libapr、libapriconv、libaprutil、libcppunit自带的头文件文件夹，以及libactivemq自带头文件文件夹中的examples和main文件夹，一共6个文件夹。</p>
+<p>在\lib\x64文件夹下拷贝<code>libapr-1.lib</code>、<code>libapriconv-1.lib</code>、<code>libaprutil-1.lib</code>、<code>libcppunit.lib</code> ，<code>libactivemq-cpp.lib</code> ，一共5个文件。</p>
+<p>在\bin\x64文件夹下拷贝<code>libapr-1.dll</code> （注：\bin\x86平台不需要此dll）。</p>
+<p>在工程中新建<code>main.cpp</code>，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Licensed to the Apache Software Foundation (ASF) under one or more</span></span><br><span class="line"><span class="comment"> * contributor license agreements.  See the NOTICE file distributed with</span></span><br><span class="line"><span class="comment"> * this work for additional information regarding copyright ownership.</span></span><br><span class="line"><span class="comment"> * The ASF licenses this file to You under the Apache License, Version 2.0</span></span><br><span class="line"><span class="comment"> * (the "License"); you may not use this file except in compliance with</span></span><br><span class="line"><span class="comment"> * the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"> * distributed under the License is distributed on an "AS IS" BASIS,</span></span><br><span class="line"><span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"> * limitations under the License.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// START SNIPPET: demo</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;activemq/library/ActiveMQCPP.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/lang/Thread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/lang/Runnable.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/util/concurrent/CountDownLatch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/lang/Integer.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/lang/Long.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;decaf/lang/System.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;activemq/core/ActiveMQConnectionFactory.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;activemq/util/Config.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/Connection.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/Session.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/TextMessage.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/BytesMessage.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/MapMessage.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/ExceptionListener.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cms/MessageListener.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> activemq::core;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> decaf::util::concurrent;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> decaf::util;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> decaf::lang;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cms;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorldProducer</span> :</span> <span class="keyword">public</span> Runnable &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    Connection* connection;</span><br><span class="line">    Session* session;</span><br><span class="line">    Destination* destination;</span><br><span class="line">    MessageProducer* producer;</span><br><span class="line">    <span class="keyword">int</span> numMessages;</span><br><span class="line">    <span class="keyword">bool</span> useTopic;</span><br><span class="line">    <span class="keyword">bool</span> sessionTransacted;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> brokerURI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    HelloWorldProducer(<span class="keyword">const</span> HelloWorldProducer&amp;);</span><br><span class="line">    HelloWorldProducer&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> HelloWorldProducer&amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    HelloWorldProducer(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; brokerURI, <span class="keyword">int</span> numMessages, <span class="keyword">bool</span> useTopic = <span class="literal">false</span>, <span class="keyword">bool</span> sessionTransacted = <span class="literal">false</span>) :</span><br><span class="line">        connection(<span class="literal">NULL</span>),</span><br><span class="line">        session(<span class="literal">NULL</span>),</span><br><span class="line">        destination(<span class="literal">NULL</span>),</span><br><span class="line">        producer(<span class="literal">NULL</span>),</span><br><span class="line">        numMessages(numMessages),</span><br><span class="line">        useTopic(useTopic),</span><br><span class="line">        sessionTransacted(sessionTransacted),</span><br><span class="line">        brokerURI(brokerURI) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~HelloWorldProducer()&#123;</span><br><span class="line">        cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a ConnectionFactory</span></span><br><span class="line">            <span class="built_in">auto_ptr</span>&lt;ConnectionFactory&gt; connectionFactory(</span><br><span class="line">                ConnectionFactory::createCMSConnectionFactory(brokerURI));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a Connection</span></span><br><span class="line">            connection = connectionFactory-&gt;createConnection();</span><br><span class="line">            connection-&gt;start();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a Session</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;sessionTransacted) &#123;</span><br><span class="line">                session = connection-&gt;createSession(Session::SESSION_TRANSACTED);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                session = connection-&gt;createSession(Session::AUTO_ACKNOWLEDGE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create the destination (Topic or Queue)</span></span><br><span class="line">            <span class="keyword">if</span> (useTopic) &#123;</span><br><span class="line">                destination = session-&gt;createTopic(<span class="string">"TEST.FOO"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                destination = session-&gt;createQueue(<span class="string">"TEST.FOO"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a MessageProducer from the Session to the Topic or Queue</span></span><br><span class="line">            producer = session-&gt;createProducer(destination);</span><br><span class="line">            producer-&gt;setDeliveryMode(DeliveryMode::NON_PERSISTENT);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create the Thread Id String</span></span><br><span class="line">            <span class="built_in">string</span> threadIdStr = Long::toString(Thread::currentThread()-&gt;getId());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a messages</span></span><br><span class="line">            <span class="built_in">string</span> text = (<span class="built_in">string</span>) <span class="string">"Hello world! from thread "</span> + threadIdStr;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> ix = <span class="number">0</span>; ix &lt; numMessages; ++ix) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">auto_ptr</span>&lt;TextMessage&gt; message(session-&gt;createTextMessage(text));</span><br><span class="line">                message-&gt;setIntProperty(<span class="string">"Integer"</span>, ix);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Sent message #%d from thread %s\n"</span>, ix + <span class="number">1</span>, threadIdStr.c_str());</span><br><span class="line">                producer-&gt;send(message.get());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (CMSException&amp; e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cleanup</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                connection-&gt;close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (cms::CMSException&amp; ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Destroy resources.</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">delete</span> destination;</span><br><span class="line">            destination = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> producer;</span><br><span class="line">            producer = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> session;</span><br><span class="line">            session = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> connection;</span><br><span class="line">            connection = <span class="literal">NULL</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CMSException&amp; e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorldConsumer</span> :</span> <span class="keyword">public</span> ExceptionListener,</span><br><span class="line">                           <span class="keyword">public</span> MessageListener,</span><br><span class="line">                           <span class="keyword">public</span> Runnable &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    CountDownLatch latch;</span><br><span class="line">    CountDownLatch doneLatch;</span><br><span class="line">    Connection* connection;</span><br><span class="line">    Session* session;</span><br><span class="line">    Destination* destination;</span><br><span class="line">    MessageConsumer* consumer;</span><br><span class="line">    <span class="keyword">long</span> waitMillis;</span><br><span class="line">    <span class="keyword">bool</span> useTopic;</span><br><span class="line">    <span class="keyword">bool</span> sessionTransacted;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> brokerURI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    HelloWorldConsumer(<span class="keyword">const</span> HelloWorldConsumer&amp;);</span><br><span class="line">    HelloWorldConsumer&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> HelloWorldConsumer&amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    HelloWorldConsumer(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; brokerURI, <span class="keyword">int</span> numMessages, <span class="keyword">bool</span> useTopic = <span class="literal">false</span>, <span class="keyword">bool</span> sessionTransacted = <span class="literal">false</span>, <span class="keyword">int</span> waitMillis = <span class="number">30000</span>) :</span><br><span class="line">        latch(<span class="number">1</span>),</span><br><span class="line">        doneLatch(numMessages),</span><br><span class="line">        connection(<span class="literal">NULL</span>),</span><br><span class="line">        session(<span class="literal">NULL</span>),</span><br><span class="line">        destination(<span class="literal">NULL</span>),</span><br><span class="line">        consumer(<span class="literal">NULL</span>),</span><br><span class="line">        waitMillis(waitMillis),</span><br><span class="line">        useTopic(useTopic),</span><br><span class="line">        sessionTransacted(sessionTransacted),</span><br><span class="line">        brokerURI(brokerURI) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~HelloWorldConsumer() &#123;</span><br><span class="line">        cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">waitUntilReady</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        latch.await();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a ConnectionFactory</span></span><br><span class="line">            <span class="built_in">auto_ptr</span>&lt;ConnectionFactory&gt; connectionFactory(</span><br><span class="line">                ConnectionFactory::createCMSConnectionFactory(brokerURI));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a Connection</span></span><br><span class="line">            connection = connectionFactory-&gt;createConnection();</span><br><span class="line">            connection-&gt;start();</span><br><span class="line">            connection-&gt;setExceptionListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a Session</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;sessionTransacted == <span class="literal">true</span>) &#123;</span><br><span class="line">                session = connection-&gt;createSession(Session::SESSION_TRANSACTED);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                session = connection-&gt;createSession(Session::AUTO_ACKNOWLEDGE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create the destination (Topic or Queue)</span></span><br><span class="line">            <span class="keyword">if</span> (useTopic) &#123;</span><br><span class="line">                destination = session-&gt;createTopic(<span class="string">"TEST.FOO"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                destination = session-&gt;createQueue(<span class="string">"TEST.FOO"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Create a MessageConsumer from the Session to the Topic or Queue</span></span><br><span class="line">            consumer = session-&gt;createConsumer(destination);</span><br><span class="line"></span><br><span class="line">            consumer-&gt;setMessageListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span>.flush();</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span>.flush();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Indicate we are ready for messages.</span></span><br><span class="line">            latch.countDown();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Wait while asynchronous messages come in.</span></span><br><span class="line">            doneLatch.await(waitMillis);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (CMSException&amp; e) &#123;</span><br><span class="line">            <span class="comment">// Indicate we are ready for messages.</span></span><br><span class="line">            latch.countDown();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Called from the consumer since this class is a registered MessageListener.</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(<span class="keyword">const</span> Message* message)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">const</span> TextMessage* textMessage = <span class="keyword">dynamic_cast</span>&lt;<span class="keyword">const</span> TextMessage*&gt; (message);</span><br><span class="line">            <span class="built_in">string</span> text = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (textMessage != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                text = textMessage-&gt;getText();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                text = <span class="string">"NOT A TEXTMESSAGE!"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"Message #%d Received: %s\n"</span>, count, text.c_str());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (CMSException&amp; e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Commit all messages.</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;sessionTransacted) &#123;</span><br><span class="line">            session-&gt;commit();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// No matter what, tag the count down latch until done.</span></span><br><span class="line">        doneLatch.countDown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If something bad happens you see it here as this class is also been</span></span><br><span class="line">    <span class="comment">// registered as an ExceptionListener with the connection.</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(<span class="keyword">const</span> CMSException&amp; ex AMQCPP_UNUSED)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"CMS Exception occurred.  Shutting down client.\n"</span>);</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cleanup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                connection-&gt;close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (cms::CMSException&amp; ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Destroy resources.</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">delete</span> destination;</span><br><span class="line">            destination = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> consumer;</span><br><span class="line">            consumer = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> session;</span><br><span class="line">            session = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">delete</span> connection;</span><br><span class="line">            connection = <span class="literal">NULL</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CMSException&amp; e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc AMQCPP_UNUSED, <span class="keyword">char</span>* argv[] AMQCPP_UNUSED)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    activemq::library::ActiveMQCPP::initializeLibrary();</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"=====================================================\n"</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Starting the example:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------------------------------\n"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set the URI to point to the IP Address of your broker.</span></span><br><span class="line">    <span class="comment">// add any optional params to the url to enable things like</span></span><br><span class="line">    <span class="comment">// tightMarshalling or tcp logging etc.  See the CMS web site for</span></span><br><span class="line">    <span class="comment">// a full list of configuration options.</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">//  http://activemq.apache.org/cms/</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Wire Format Options:</span></span><br><span class="line">    <span class="comment">// =========================</span></span><br><span class="line">    <span class="comment">// Use either stomp or openwire, the default ports are different for each</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Examples:</span></span><br><span class="line">    <span class="comment">//    tcp://127.0.0.1:61616                      default to openwire</span></span><br><span class="line">    <span class="comment">//    tcp://127.0.0.1:61616?wireFormat=openwire  same as above</span></span><br><span class="line">    <span class="comment">//    tcp://127.0.0.1:61613?wireFormat=stomp     use stomp instead</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// SSL:</span></span><br><span class="line">    <span class="comment">// =========================</span></span><br><span class="line">    <span class="comment">// To use SSL you need to specify the location of the trusted Root CA or the</span></span><br><span class="line">    <span class="comment">// certificate for the broker you want to connect to.  Using the Root CA allows</span></span><br><span class="line">    <span class="comment">// you to use failover with multiple servers all using certificates signed by</span></span><br><span class="line">    <span class="comment">// the trusted root.  If using client authentication you also need to specify</span></span><br><span class="line">    <span class="comment">// the location of the client Certificate.</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">//     System::setProperty( "decaf.net.ssl.keyStore", "&lt;path&gt;/client.pem" );</span></span><br><span class="line">    <span class="comment">//     System::setProperty( "decaf.net.ssl.keyStorePassword", "password" );</span></span><br><span class="line">    <span class="comment">//     System::setProperty( "decaf.net.ssl.trustStore", "&lt;path&gt;/rootCA.pem" );</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// The you just specify the ssl transport in the URI, for example:</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">//     ssl://localhost:61617</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> brokerURI =</span><br><span class="line">        <span class="string">"failover:(tcp://localhost:61616"</span></span><br><span class="line"><span class="comment">//        "?wireFormat=openwire"</span></span><br><span class="line"><span class="comment">//        "&amp;transport.useInactivityMonitor=false"</span></span><br><span class="line"><span class="comment">//        "&amp;connection.alwaysSyncSend=true"</span></span><br><span class="line"><span class="comment">//        "&amp;connection.useAsyncSend=true"</span></span><br><span class="line"><span class="comment">//        "?transport.commandTracingEnabled=true"</span></span><br><span class="line"><span class="comment">//        "&amp;transport.tcpTracingEnabled=true"</span></span><br><span class="line"><span class="comment">//        "&amp;wireFormat.tightEncodingEnabled=true"</span></span><br><span class="line">        <span class="string">")"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//============================================================</span></span><br><span class="line">    <span class="comment">// set to true to use topics instead of queues</span></span><br><span class="line">    <span class="comment">// Note in the code above that this causes createTopic or</span></span><br><span class="line">    <span class="comment">// createQueue to be used in both consumer an producer.</span></span><br><span class="line">    <span class="comment">//============================================================</span></span><br><span class="line">    <span class="keyword">bool</span> useTopics = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">bool</span> sessionTransacted = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> numMessages = <span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> startTime = System::currentTimeMillis();</span><br><span class="line"></span><br><span class="line">    <span class="function">HelloWorldProducer <span class="title">producer</span><span class="params">(brokerURI, numMessages, useTopics)</span></span>;</span><br><span class="line">        <span class="function">HelloWorldConsumer <span class="title">consumer</span><span class="params">(brokerURI, numMessages, useTopics, sessionTransacted)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start the consumer thread.</span></span><br><span class="line">    <span class="function">Thread <span class="title">consumerThread</span><span class="params">(&amp;consumer)</span></span>;</span><br><span class="line">    consumerThread.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Wait for the consumer to indicate that its ready to go.</span></span><br><span class="line">    consumer.waitUntilReady();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start the producer thread.</span></span><br><span class="line">    <span class="function">Thread <span class="title">producerThread</span><span class="params">(&amp;producer)</span></span>;</span><br><span class="line">    producerThread.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Wait for the threads to complete.</span></span><br><span class="line">    producerThread.join();</span><br><span class="line">    consumerThread.join();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> endTime = System::currentTimeMillis();</span><br><span class="line">    <span class="keyword">double</span> totalTime = (<span class="keyword">double</span>)(endTime - startTime) / <span class="number">1000.0</span>;</span><br><span class="line"></span><br><span class="line">    consumer.close();</span><br><span class="line">    producer.close();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Time to completion = "</span> &lt;&lt; totalTime &lt;&lt; <span class="string">" seconds."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------------------------------\n"</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Finished with the example."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"=====================================================\n"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    activemq::library::ActiveMQCPP::shutdownLibrary();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// END SNIPPET: demo</span></span><br></pre></td></tr></table></figure>
+<p>代码中的参数<code>useTopic</code>可以进行相关配置，从而实现是进行主题式还是序列式的通信。</p>
+<p>配置好对工程属性进行配置，选择好所需要的配置(如Release)和平台(如x64)，编译工程，启动ActiveMQ后运行工程，即可看到 producer和consumer在进行HelloWorld的通信。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tutorial/" rel="tag">#tutorial</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/ActiveMQ/" rel="tag">#ActiveMQ</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/11/vs-dll-exe/" rel="next" title="Write a Dynamic Link Library with Visual Studio from Scratch">
+                <i class="fa fa-chevron-left"></i> Write a Dynamic Link Library with Visual Studio from Scratch
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/01/hexo-blog/" rel="prev" title="Establish a Personal Blog with Hexo from Scratch">
+                Establish a Personal Blog with Hexo from Scratch <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Java-SDK"><span class="nav-number">1.</span> <span class="nav-text">1 安装Java SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ActiveMQ服务端的安装"><span class="nav-number">2.</span> <span class="nav-text">2 ActiveMQ服务端的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-下载"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-启动"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-测试"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-监控"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-依赖库的编译"><span class="nav-number">3.</span> <span class="nav-text">3 依赖库的编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-生成libapr"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 生成libapr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-生成libapriconv"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 生成libapriconv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-生成libaprutil"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 生成libaprutil</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-生成libcppunit"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 生成libcppunit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-生成libactivemq"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 生成libactivemq</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-写出一个通过ActiveMQ通信的HelloWorld"><span class="nav-number">4.</span> <span class="nav-text">4 写出一个通过ActiveMQ通信的HelloWorld</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
