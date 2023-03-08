@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Visual Studio,Windows,tutorial," />
+  <meta name="keywords" content="scene flow,deep learning,note," />
 
 
 
@@ -104,27 +104,18 @@
 
 
 
-<meta name="description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
-<meta name="keywords" content="Visual Studio,Windows,tutorial">
+<meta name="description" content="Abstract: Scene flow, which is a 3D version of optical flow, represents how each point in an image or point cloud changes in the two preceding and following frames. One paper in CVPR 2021 illustrates">
+<meta name="keywords" content="scene flow,deep learning,note">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Write a Dynamic Link Library with Visual Studio from Scratch">
-<meta property="og:url" content="http://yoursite.com/2016/08/11/vs-dll-exe/index.html">
+<meta property="og:title" content="Running Note for Rigid 3D Scene Flow">
+<meta property="og:url" content="http://yoursite.com/2022/08/20/Rigid3DSceneFlow/index.html">
 <meta property="og:site_name" content="CVision">
-<meta property="og:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
+<meta property="og:description" content="Abstract: Scene flow, which is a 3D version of optical flow, represents how each point in an image or point cloud changes in the two preceding and following frames. One paper in CVPR 2021 illustrates">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isS30s.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isS1mj.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isSQXQ.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isSM6g.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isSK1S.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isSYt0.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isS87n.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/24/isSJkq.jpg">
-<meta property="og:updated_time" content="2023-03-08T05:10:12.527Z">
+<meta property="og:updated_time" content="2023-03-08T09:22:50.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Write a Dynamic Link Library with Visual Studio from Scratch">
-<meta name="twitter:description" content="Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call t">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/24/isS30s.jpg">
+<meta name="twitter:title" content="Running Note for Rigid 3D Scene Flow">
+<meta name="twitter:description" content="Abstract: Scene flow, which is a 3D version of optical flow, represents how each point in an image or point cloud changes in the two preceding and following frames. One paper in CVPR 2021 illustrates">
 
 
 
@@ -145,9 +136,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/11/vs-dll-exe/"/>
+  <link rel="canonical" href="http://yoursite.com/2022/08/20/Rigid3DSceneFlow/"/>
 
-  <title> Write a Dynamic Link Library with Visual Studio from Scratch | CVision </title>
+  <title> Running Note for Rigid 3D Scene Flow | CVision </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -297,7 +288,7 @@
             
             
               
-                Write a Dynamic Link Library with Visual Studio from Scratch
+                Running Note for Rigid 3D Scene Flow
               
             
           </h1>
@@ -309,8 +300,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T00:00:00+08:00" content="2016-08-11">
-              2016-08-11
+            <time itemprop="dateCreated" datetime="2022-08-20T00:00:00+08:00" content="2022-08-20">
+              2022-08-20
             </time>
           </span>
 
@@ -335,8 +326,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tech/Program/" itemprop="url" rel="index">
-                    <span itemprop="name">Program</span>
+                  <a href="/categories/Tech/Scene-Flow/" itemprop="url" rel="index">
+                    <span itemprop="name">Scene Flow</span>
                   </a>
                 </span>
 
@@ -369,56 +360,23 @@
 
       
         <blockquote>
-<p>Abstract: This is a tutorial. This tutorial tells you how to creat a solution with Visual Studio containing a project which exports a .dll and a project which build a .exe. And the .exe should call the functions in the .dll.</p>
+<p>Abstract: Scene flow, which is a 3D version of optical flow, represents how each point in an image or point cloud changes in the two preceding and following frames. One paper in CVPR 2021 illustrates a weakly supervised learning of Rigid 3D Scene Flow approach. This article focuses on documenting running process of the official code.</p>
 </blockquote>
 <a id="more"></a>
-<p>我们在这里建立一个实现加法的函数dll，然后再用一个exe调用这个dll函数中的加法函数为例，说明如何使用Visual Studio写一个生成dll与exe的解决方案。以D盘为例，首先建立一个文件夹AddSolution。</p>
-<p>1、建立项目AddFunction</p>
-<ul>
-<li><p>然后打开Visual Studio，文件-新建-项目-Win32控制台应用程序-名称：AddFunction 位置：D:\AddSolution-应用程序类型：DLL 勾选预编译头-完成。</p>
-</li>
-<li><p>（可选）配置Debug，改平台为x64，配置为Release，改平台为x64。</p>
-</li>
-<li><p>添加头文件AddFunction.h</p>
-</li>
-</ul>
-<p>2、建立项目TestAdd</p>
-<ul>
-<li><p>同理，打开Visual Studio，文件-新建-项目-Win32控制台应用程序-名称：TestAdd 位置：D:\AddSolution-应用程序类型：控制台应用程序 勾选预编译头-完成。</p>
-</li>
-<li><p>（可选）配置Debug，改平台为x64，配置为Release，改平台为x64。</p>
-</li>
-<li><p>在D:\AddSolution\TestAdd\TestAdd添加3个文件夹，bin、include、lib。</p>
-</li>
-<li><p>在”解决方案’TestAdd’”右键-添加-现有项目-D:\AddSolution\AddFunction\AddFunction\AddFunction.vcxproj，此时两个项目处于一个解决方案中，此时的<code>$(SolutionDir)</code>为TestAdd解决方案所在文件夹。</p>
-</li>
-</ul>
-<p>3、写程序。</p>
-<p><code>AddFunction.h</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_CDECL __cdecl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_STDCALL __stdcall</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MYAPI_EXPORTS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_EXPORTS __declspec(dllimport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">MY_EXPORTS <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><code>AddFunction.cpp</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> add1, <span class="keyword">int</span> add2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (add1 + add2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>TestAdd.cpp</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"AddFunction.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> a, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line">	a = add(b, c);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Result is "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4、设置属性。</p>
-<ul>
-<li>设置AddFunction</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/10/24/isS30s.jpg" alt="1-1.jpg"></p>
-<p><img src="https://s1.ax1x.com/2018/10/24/isS1mj.jpg" alt="1-2.jpg"></p>
-<p><img src="https://s1.ax1x.com/2018/10/24/isSQXQ.jpg" alt="1-3.jpg"></p>
-<ul>
-<li>编译成功后，将<code>AddFunction.h</code>文件拷贝到D:\AddSolution\TestAdd\TestAdd\include</li>
-<li>设置TestAdd</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/10/24/isSM6g.jpg" alt="1-4.jpg"></p>
-<p><img src="https://s1.ax1x.com/2018/10/24/isSK1S.jpg" alt="1-5.jpg"></p>
-<p><img src="https://s1.ax1x.com/2018/10/24/isSYt0.jpg" alt="1-6.jpg"></p>
-<p><img src="https://s1.ax1x.com/2018/10/24/isS87n.jpg" alt="1-7.jpg"></p>
-<ul>
-<li>编译成功，运行，显示结果。</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/10/24/isSJkq.jpg" alt="1-8.jpg"></p>
+<h1 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h1><p>首先按照 <a href="https://github.com/zgojcic/Rigid3DSceneFlow" target="_blank" rel="noopener">Rigid3DSceneFlow的官方文档</a>安装环境:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export CXX=g++-7</span><br><span class="line">conda config --append channels conda-forge</span><br><span class="line">conda create --name rigid_3dsf python=3.7</span><br><span class="line">source activate rigid_3dsf</span><br><span class="line">conda install --file requirements.txt</span><br><span class="line">conda install -c open3d-admin open3d=0.9.0.0</span><br><span class="line">conda install -c intel scikit-learn</span><br></pre></td></tr></table></figure>
+<p>注：在我电脑里，所有的安装环境是安装在了<code>py3-mink</code>这个环境名里<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n py3-mink python=3.7</span><br><span class="line">conda activate py3-mink</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、编译MinkowskiEngine"><a href="#二、编译MinkowskiEngine" class="headerlink" title="二、编译MinkowskiEngine"></a>二、编译MinkowskiEngine</h1><p>接下来是安装<a href="https://github.com/NVIDIA/MinkowskiEngine" target="_blank" rel="noopener">MinkowskiEngine</a>:</p>
+<p>首先安装Pytorch，我的电脑安装的CUDA 11.3，所以需要安装对应版本的Pytorch。</p>
+<p>第一个需要注意的点是不能用<a href="https://pytorch.org/" target="_blank" rel="noopener">Pytorch官网</a>提供的conda安装，因为安装上的是CPU版本，即使你选择的是GPU，所以需要用pip安装方式。</p>
+<p>第二个需要注意的点是，不能安装最新版的Pytorch(1.11.0)和CUDA11.3版本，因为MinkowskiEngine会编译不过（这个问题折腾了一周多的时间）……实践证明，可以编译得过的是如下版本，可以在这里找到：<a href="https://pytorch.org/get-started/previous-versions/" target="_blank" rel="noopener">INSTALLING PREVIOUS VERSIONS OF PYTORCH</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install openblas-devel -c anaconda</span><br><span class="line">pip install torch==1.10.0+cu111 torchvision==0.11.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+<p>在正式编译之前还需要确认g++版本，需要g++-7才可以（我的电脑之前是g++-5），具体操作和切换方法参考：<a href="https://blog.csdn.net/YuYunTan/article/details/84205462" target="_blank" rel="noopener">安装g++版本7与g++多版本共存</a></p>
+<p>然后就可以编译MinkowskiEngine了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Install MinkowskiEngine</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Uncomment the following line to specify the cuda home. Make sure `$CUDA_HOME/nvcc --version` is 11.X</span><br><span class="line"><span class="meta">#</span> export CUDA_HOME=/usr/local/cuda-11.1</span><br><span class="line">pip install -U git+https://github.com/NVIDIA/MinkowskiEngine -v --no-deps --install-option="--blas_include_dirs=$&#123;CONDA_PREFIX&#125;/include" --install-option="--blas=openblas"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Or if you want local MinkowskiEngine</span><br><span class="line">git clone https://github.com/NVIDIA/MinkowskiEngine.git</span><br><span class="line">cd MinkowskiEngine</span><br><span class="line">python setup.py install --blas_include_dirs=$&#123;CONDA_PREFIX&#125;/include --blas=openblas</span><br></pre></td></tr></table></figure>
+<h1 id="三、运行Rigid3DSceneFlow"><a href="#三、运行Rigid3DSceneFlow" class="headerlink" title="三、运行Rigid3DSceneFlow"></a>三、运行Rigid3DSceneFlow</h1><p>以上便是Rigid3DSceneFlow的环境安装部分，接下来的数据与模型下载和运行就可以按照Rigid3DSceneFlow的描述继续进行了，没啥大问题。</p>
+<p>唯一需要注意的一点是，在运行<code>eval.py</code>的时候会报错<code>AttributeError: module &#39;open3d&#39; has no attribute &#39;pipelines&#39;</code>，是open3d版本更新导致的。解决方法是：搜索文件中出现的 o3d.piplines.xxx ，把.pipelines 删掉，改成o3d.xxx。参考<a href="https://www.freesion.com/article/34651255448/" target="_blank" rel="noopener">UBUNTU16中OPEN3D算法测试笔记</a></p>
+<p>但是这个工程没法可视化，也没提供可视化代码，<strong>需要自己编写代码【TODO】</strong>，用<a href="https://www.keyshot.com/" target="_blank" rel="noopener">KeyShot</a>显示点云，大致流程参考：<a href="https://github.com/zgojcic/Rigid3DSceneFlow/issues/3" target="_blank" rel="noopener">https://github.com/zgojcic/Rigid3DSceneFlow/issues/3</a></p>
 
       
     </div>
@@ -441,11 +399,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Visual-Studio/" rel="tag">#Visual Studio</a>
+            <a href="/tags/scene-flow/" rel="tag">#scene flow</a>
           
-            <a href="/tags/Windows/" rel="tag">#Windows</a>
+            <a href="/tags/deep-learning/" rel="tag">#deep learning</a>
           
-            <a href="/tags/tutorial/" rel="tag">#tutorial</a>
+            <a href="/tags/note/" rel="tag">#note</a>
           
         </div>
       
@@ -454,13 +412,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/08/01/deep-learningl-acceleration/" rel="next" title="Summary of Deep Learning Acceleration Methods">
+                <i class="fa fa-chevron-left"></i> Summary of Deep Learning Acceleration Methods
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/01/use-activemq/" rel="prev" title="Establish Apache ActiveMQ from Scratch">
-                Establish Apache ActiveMQ from Scratch <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +568,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、安装环境"><span class="nav-number">1.</span> <span class="nav-text">一、安装环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、编译MinkowskiEngine"><span class="nav-number">2.</span> <span class="nav-text">二、编译MinkowskiEngine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、运行Rigid3DSceneFlow"><span class="nav-number">3.</span> <span class="nav-text">三、运行Rigid3DSceneFlow</span></a></li></ol></div>
             
           </div>
         </section>
