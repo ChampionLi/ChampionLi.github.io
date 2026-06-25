@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="paper,perception,BEV," />
+  <meta name="keywords" content="end2end,vla,paper," />
 
 
 
@@ -104,20 +104,18 @@
 
 
 
-<meta name="description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
-<meta name="keywords" content="paper,perception,BEV">
+<meta name="description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
+<meta name="keywords" content="end2end,vla,paper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
-<meta property="og:url" content="http://yoursite.com/2025/08/31/paper-bevfusion/index.html">
+<meta property="og:title" content="[Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail">
+<meta property="og:url" content="http://yoursite.com/2026/05/17/paper-alpamayo/index.html">
 <meta property="og:site_name" content="CVision">
-<meta property="og:description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
+<meta property="og:description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://s41.ax1x.com/2026/06/25/pmt2sIO.png">
-<meta property="og:updated_time" content="2026-06-25T07:45:35.524Z">
+<meta property="og:updated_time" content="2026-06-25T09:19:27.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
-<meta name="twitter:description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
-<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/25/pmt2sIO.png">
+<meta name="twitter:title" content="[Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail">
+<meta name="twitter:description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
 
 
 
@@ -138,9 +136,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2025/08/31/paper-bevfusion/"/>
+  <link rel="canonical" href="http://yoursite.com/2026/05/17/paper-alpamayo/"/>
 
-  <title> [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework | CVision </title>
+  <title> [Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail | CVision </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -290,7 +288,7 @@
             
             
               
-                [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework
+                [Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail
               
             
           </h1>
@@ -302,8 +300,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2025-08-31T00:00:00+08:00" content="2025-08-31">
-              2025-08-31
+            <time itemprop="dateCreated" datetime="2026-05-17T00:00:00+08:00" content="2026-05-17">
+              2026-05-17
             </time>
           </span>
 
@@ -328,8 +326,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
-                    <span itemprop="name">Perception</span>
+                  <a href="/categories/Tech/End2End/" itemprop="url" rel="index">
+                    <span itemprop="name">End2End</span>
                   </a>
                 </span>
 
@@ -362,38 +360,53 @@
 
       
         <blockquote>
-<p>Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion approach where camera and LiDAR streams independently extract features into a shared BEV space before dynamic fusion. It explains the principles of modality-independent processing to handle LiDAR malfunctions; the camera stream based on adapted Lift-Splat-Shoot with Dual-Swin backbone, view projection, and BEV encoder; the LiDAR stream using popular detectors like PointPillars or CenterPoint; the lightweight dynamic fusion module with channel-spatial fusion and adaptive selection; and experimental highlights on nuScenes, demonstrating superior performance under normal (69.2% mAP) and robust settings (+15.7% to 28.9% mAP) while maintaining strong generalization.</p>
+<p>Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-language-action (VLA) model that integrates structured Chain of Causation (CoC) reasoning with trajectory planning to address long-tail safety-critical scenarios. It details the principles of causally grounded reasoning aligned with driving decisions; the modular architecture built on Cosmos-Reason backbone with efficient multi-camera tokenization and a diffusion-based action expert for real-time feasible trajectories; the hybrid CoC dataset construction via human-in-the-loop and auto-labeling; and the multi-stage training combining supervised fine-tuning for reasoning elicitation with GRPO-based RL post-training to optimize reasoning quality, reasoning-action consistency, and trajectory performance. Experiments demonstrate notable gains in planning accuracy and collision reduction in both open-loop and closed-loop settings, highlighting a practical path toward interpretable and robust Level 4 autonomy.</p>
 </blockquote>
 <a id="more"></a>
-<p>最近读了2022年的NeurIPS论文《BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework》，作者是北大和阿里团队的Tingting Liang等。这篇论文不让相机依赖LiDAR，避免故障时崩溃。现实中LiDAR可能出问题，这框架能独立运行相机流，还保持高性能。现在多模态融合热门，这篇是典型代表。</p>
-<h2 id="背景和动机：融合的痛点和独立性需求"><a href="#背景和动机：融合的痛点和独立性需求" class="headerlink" title="背景和动机：融合的痛点和独立性需求"></a>背景和动机：融合的痛点和独立性需求</h2><p>自动驾驶感知靠LiDAR和相机：LiDAR给精确点云，相机补纹理颜色。但早期方法分开处理，再后融合。BEV（鸟瞰图）成标准，因为车在地上跑，BEV便于规划。还有的融合方案用LiDAR点或提案查询图像特征。但作者发现隐患：这些方法依赖LiDAR输入，如果LiDAR故障（反射低、传输 glitch 或视场不全），整个系统哑火。这限制实际部署。</p>
-<p>动机：理想融合应让每个模态独立工作，有两者更好。作者提出BEVFusion，相机流不靠LiDAR，解耦依赖。简单却有效，正常训超SOTA，鲁棒训（模拟故障）大胜。</p>
-<h2 id="核心原理：独立流-BEV融合"><a href="#核心原理：独立流-BEV融合" class="headerlink" title="核心原理：独立流 + BEV融合"></a>核心原理：独立流 + BEV融合</h2><p>BEVFusion原理是模态解耦：相机和LiDAR独立转BEV特征，再融合。见下图。</p>
-<p><a href="https://imgchr.com/i/pmt2sIO" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/25/pmt2sIO.png" alt="pmt2sIO.png"></a></p>
+<p>先是看到了alpamayo1.5的论文，开源在 <a href="https://github.com/NVlabs/alpamayo1.5" target="_blank" rel="noopener">https://github.com/NVlabs/alpamayo1.5</a> ，然后顺便看下Alpamayo-R1的论文，思路是让端到端自动驾驶“会思考”。他们在Alpamayo-VA基础上，加入了结构化的因果推理（Chain of Causation），让模型不只预测轨迹，还能解释“为什么这么开”。这对长尾场景特别有用，因为纯模仿学习在稀有危险情况里容易翻车。</p>
+<p>框架思路很清晰：用VLA（Vision-Language-Action）把视觉、语言推理和动作预测统一起来，再通过强化学习对齐推理和实际行为。不是空谈可解释性，而是真正让推理帮助规划更安全。</p>
+<h2 id="背景和动机：端到端需要“思考”能力"><a href="#背景和动机：端到端需要“思考”能力" class="headerlink" title="背景和动机：端到端需要“思考”能力"></a>背景和动机：端到端需要“思考”能力</h2><p>端到端（E2E）自动驾驶近年发展很快，大模型+大数据让性能不断提升，但作者指出一个核心痛点：在长尾、安全关键场景里，监督信号稀疏，模型缺乏因果理解，容易出问题。传统模块化系统有明确推理步骤，但端到端往往黑箱，直接从传感器到控制，泛化差。</p>
+<p>LLM的Chain-of-Thought（CoT）启发了他们：推理能让模型在语言空间探索多种可能，再落地到动作。但驾驶场景不能纯文本自由推理，需要<strong>因果接地</strong>（causally grounded），把观察到的证据和具体驾驶决策连起来。Alpamayo-R1的目标就是搭建这种“推理-动作”桥梁，提升长尾鲁棒性，同时保持实时性。</p>
+<h2 id="核心原理：结构化因果推理-VLA统一建模"><a href="#核心原理：结构化因果推理-VLA统一建模" class="headerlink" title="核心原理：结构化因果推理 + VLA统一建模"></a>核心原理：结构化因果推理 + VLA统一建模</h2><p>论文的核心是<strong>规划导向的推理</strong>：推理不是装饰，而是功能组件，直接服务动作预测。</p>
 <ul>
-<li><strong>相机独立</strong>：不用LiDAR点查询图像，直接从多视图图像生成BEV特征。避深度缺失问题。</li>
-<li><strong>BEV统一</strong>：两者特征同空间（X × Y × C），动态融合选重要信息。</li>
-<li><strong>鲁棒性</strong>：LiDAR缺时，相机流独跑；两者有时，提升准度。</li>
+<li><strong>Chain of Causation (CoC)</strong>：结构化推理痕迹。每个痕迹包含：观察到的关键因素（critical components，如前方车辆、红灯、车道线）→ 明确驾驶决策（纵向/横向，如跟车、让行、变道）→ 自然语言因果链。避免模糊描述（如“小心点”）和未来信息泄露，确保只用历史可观察证据。</li>
+<li><strong>VLA框架</strong>：视觉（多相机）→ 语言推理（Cosmos-Reason骨干）→ 动作（扩散解码器生成轨迹）。推理输出作为条件，指导轨迹生成，实现“先想后动”。</li>
+<li><strong>对齐机制</strong>：用RL确保推理质量和推理-动作一致性。模型不能说一套做一套。</li>
 </ul>
-<p>原理上，避先验依赖，用数据学融合。泛化强，可插任意单模态网。</p>
-<h2 id="模型结构：双流-融合-头"><a href="#模型结构：双流-融合-头" class="headerlink" title="模型结构：双流 + 融合 + 头"></a>模型结构：双流 + 融合 + 头</h2><p>结构直观：相机流、LiDAR流、动态融合、任务头。</p>
+<p>原理上，这让模型从“模仿专家轨迹”升级到“理解为什么这么做”，提升泛化和安全性。</p>
+<h2 id="模型结构：模块化VLA设计"><a href="#模型结构：模块化VLA设计" class="headerlink" title="模型结构：模块化VLA设计"></a>模型结构：模块化VLA设计</h2><p>AR1是模块化的，便于扩展（下图）：</p>
 <ul>
-<li><strong>相机流</strong>：三模块。<ol>
-<li>Image-view Encoder：Dual-Swin-Tiny骨干 + FPN颈，提取多尺度特征。加Adaptive Module（自适应池化 + 1×1 conv）对齐上采样。</li>
-<li>View Projector：深度分类，转图像特征到3D ego坐标，生成伪体素V ($X × Y × Z × C$)。</li>
-<li>BEV Encoder：S2C操作（reshape压Z维） + 四层3x3 conv，生成$F_{camera} (X × Y × C_{camera})$。</li>
+<li><strong>视觉编码</strong>：支持单图、多相机、多时序tokenization。默认用Cosmos-Reason的ViT，高效压缩多相机输入（triplane或Flex等进一步降token）。关键是减少token数，保证实时。</li>
+<li><strong>推理骨干</strong>：Cosmos-Reason（为Physical AI预训练的VLM）。输入多相机+历史ego-motion+可选文本（导航指令），输出CoC-style推理痕迹。</li>
+<li><strong>动作解码</strong>：扩散-based trajectory decoder（flow matching）。用离散token训练（便于VLM统一序列），推理时用连续专家解码生成平滑、可执行轨迹（unicycle动力学建模，加速度+曲率）。推理条件动作生成，实现对齐。</li>
+<li><strong>整体流程</strong>：多模态token序列 → Cosmos-Reason生成推理 + 离散轨迹token → 动作专家转连续轨迹。</li>
+</ul>
+<p>结构亮点是<strong>解耦却协作</strong>：VLM负责高层次因果理解，扩散专家负责低层次物理可行性。</p>
+<h2 id="实现细节：混合数据-多阶段训练"><a href="#实现细节：混合数据-多阶段训练" class="headerlink" title="实现细节：混合数据 + 多阶段训练"></a>实现细节：混合数据 + 多阶段训练</h2><p>实现基于Cosmos系列，强调实用。</p>
+<ul>
+<li><strong>CoC数据集</strong>：混合人工+自动标注。人工两阶段（关键组件 + 决策 + 合成CoC），规则过滤无效数据；自动用大模型+元动作检测生成大规模数据。QA严格，确保因果正确。</li>
+<li><strong>训练三阶段</strong>：<ol>
+<li><strong>动作模态注入</strong>：在VLM上加离散轨迹token，SFT学习联合预测推理+动作。引入动作专家（flow matching），训练时VLM输出离散，专家解码连续。</li>
+<li><strong>激发推理</strong>：用CoC数据集SFT，让模型学会生成结构化因果痕迹。</li>
+<li><strong>RL后训练（重点）</strong>：用GRPO优化。奖励三部分：<ul>
+<li><strong>推理质量</strong>：大推理模型（LRM）打分，评估行为一致性和因果正确性。</li>
+<li><strong>推理-动作一致性</strong>：解析推理决策 vs. 实际轨迹元动作，匹配给正奖励。</li>
+<li><strong>轨迹质量</strong>：L2模仿 + 碰撞惩罚 + jerk平滑。<br>数据精选：优先模型内部偏好与外部奖励不一致的样本，提高效率。</li>
+</ul>
+</li>
 </ol>
 </li>
-<li><strong>LiDAR流</strong>：任意网，如PointPillars、CenterPoint、TransFusion，转点云到$F_{lidar} (X × Y × C_{lidar})$。</li>
-<li><strong>动态融合</strong>：concat $F_{Camera}$和$F_{lidar}$，3×3 conv降维 + 通道注意力（GAP + FC + sigmoid），选重要特征。公式：$F_{fused} = σ(W × avg(F)) × F$。</li>
-<li><strong>检测头</strong>：BEV特征接锚基（如PointPillars）、无锚（如CenterPoint）或Transformer头（如TransFusion），预测3D框。</li>
 </ul>
-<p>整体端到端，相机不挂LiDAR。</p>
-<h2 id="实现细节：通用设计和训练"><a href="#实现细节：通用设计和训练" class="headerlink" title="实现细节：通用设计和训练"></a>实现细节：通用设计和训练</h2><p>实现基于PyTorch，超参：BEV 200×100 (0.4m分辨)，相机输入1600×900。相机用LSS适配：Dual-Swin-T backbone，ADP模块。融合简单conv+SE。训练：CBGS，24epoch，AdamW。鲁棒aug：随机掉物体框内LiDAR点（prob 0.5），模拟故障。</p>
-<p>细节上，体素化用[-54,54]x[-54,54]x[-5,3]，Z=8。扩展易，换头或流。</p>
-<h2 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h2><p>在nuScenes测。正常训：BEVFusion+CenterPoint mAP 68.5%、NDS 71.3%（超TransFusion 68.9%、69.4%）。用TransFusion头 mAP 69.2%。鲁棒训（掉点aug）：mAP 57.3%（超基线15.7%-28.9%）。LiDAR全缺时，仍有39.2% mAP。消融：ADP +2.1% mAP；动态融合优静态。实时：23.2 FPS。</p>
-<p>这些显示框架泛化鲁棒，实际潜力大。</p>
-<h2 id="一点感想"><a href="#一点感想" class="headerlink" title="一点感想"></a>一点感想</h2><p>BEVFusion的框架是解耦双流+BEV融，思想实用，补融合短板。</p>
+<p>RL让模型从“模仿”转向“自我优化”，显著提升长尾一致性和安全性。推理时99ms端到端，实时可用。</p>
+<h2 id="实验部分：长尾显著提升"><a href="#实验部分：长尾显著提升" class="headerlink" title="实验部分：长尾显著提升"></a>实验部分：长尾显著提升</h2><p>实验覆盖开环、闭环和实车。</p>
+<ul>
+<li><strong>开环</strong>：CoC数据集上，AR1比纯轨迹基线minADE改善明显，尤其挑战场景。Scaling（0.5B到7B）持续提升。</li>
+<li><strong>闭环（AlpaSim）</strong>：碰撞率降35%，规划准确率提12%。RL后推理质量+45%，一致性+37%。</li>
+<li><strong>实车</strong>：城市道路测试，成功部署，延迟低。</li>
+<li><strong>消融</strong>：CoC推理、RL对齐、视觉tokenization各有贡献。推理在交叉口让行等场景体现明显优势。</li>
+</ul>
+<p>结果显示：推理不是锦上添花，而是长尾性能的关键。</p>
+<h2 id="小结和感想"><a href="#小结和感想" class="headerlink" title="小结和感想"></a>小结和感想</h2><p>Alpamayo-R1的框架是用结构化CoC把推理和VLA动作预测桥接起来，三阶段训练（注入动作 → SFT推理 → RL对齐）让模型既懂“为什么”，又能“做得对”。VLA让视觉语言动作统一，RL则提供闭环反馈，解决纯模仿的短板。这条路很务实，向L4迈进了一步。当然，计算成本和数据集构建还有优化空间，但整体思路值得参考。</p>
 
       
     </div>
@@ -416,11 +429,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/end2end/" rel="tag">#end2end</a>
+          
+            <a href="/tags/vla/" rel="tag">#vla</a>
+          
             <a href="/tags/paper/" rel="tag">#paper</a>
-          
-            <a href="/tags/perception/" rel="tag">#perception</a>
-          
-            <a href="/tags/BEV/" rel="tag">#BEV</a>
           
         </div>
       
@@ -429,17 +442,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2025/08/03/paper-bevformer/" rel="next" title="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
-                <i class="fa fa-chevron-left"></i> [Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              <a href="/2025/12/28/paper-uniad/" rel="next" title="[Paper] UniAD: Planning-oriented Autonomous Driving">
+                <i class="fa fa-chevron-left"></i> [Paper] UniAD: Planning-oriented Autonomous Driving
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2025/12/28/paper-uniad/" rel="prev" title="[Paper] UniAD: Planning-oriented Autonomous Driving">
-                [Paper] UniAD: Planning-oriented Autonomous Driving <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +598,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机：融合的痛点和独立性需求"><span class="nav-number">1.</span> <span class="nav-text">背景和动机：融合的痛点和独立性需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：独立流-BEV融合"><span class="nav-number">2.</span> <span class="nav-text">核心原理：独立流 + BEV融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：双流-融合-头"><span class="nav-number">3.</span> <span class="nav-text">模型结构：双流 + 融合 + 头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：通用设计和训练"><span class="nav-number">4.</span> <span class="nav-text">实现细节：通用设计和训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分"><span class="nav-number">5.</span> <span class="nav-text">实验部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一点感想"><span class="nav-number">6.</span> <span class="nav-text">一点感想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机：端到端需要“思考”能力"><span class="nav-number">1.</span> <span class="nav-text">背景和动机：端到端需要“思考”能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：结构化因果推理-VLA统一建模"><span class="nav-number">2.</span> <span class="nav-text">核心原理：结构化因果推理 + VLA统一建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：模块化VLA设计"><span class="nav-number">3.</span> <span class="nav-text">模型结构：模块化VLA设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：混合数据-多阶段训练"><span class="nav-number">4.</span> <span class="nav-text">实现细节：混合数据 + 多阶段训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分：长尾显著提升"><span class="nav-number">5.</span> <span class="nav-text">实验部分：长尾显著提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结和感想"><span class="nav-number">6.</span> <span class="nav-text">小结和感想</span></a></li></ol></div>
             
           </div>
         </section>

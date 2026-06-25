@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog post provides an overview of the 2021 paper “Swin Transformer: Hierarchical Vision Transformer using Shifted Windows” by Ze Liu and colleagues at Microsoft Research Asia, proposin">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T03:42:51.379Z">
+<meta property="og:updated_time" content="2026-06-25T08:14:48.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows">
 <meta name="twitter:description" content="Abstract: This blog post provides an overview of the 2021 paper “Swin Transformer: Hierarchical Vision Transformer using Shifted Windows” by Ze Liu and colleagues at Microsoft Research Asia, proposin">
@@ -368,24 +368,24 @@
 <p>论文想做个通用视觉backbone，像ResNet一样多面手。动机：设计层次Transformer，类似CNN的金字塔特征；用局部窗口注意力降复杂度到线性（O(n)）。Swin（Shifted Windows）的名字就点出关键：移位窗口连接局部，建跨窗联系。结果？能在ImageNet分类、COCO检测、ADE20K分割上超SOTA，还兼容all-MLP架构。</p>
 <h2 id="核心原理：层次表示-移位窗口注意力"><a href="#核心原理：层次表示-移位窗口注意力" class="headerlink" title="核心原理：层次表示 + 移位窗口注意力"></a>核心原理：层次表示 + 移位窗口注意力</h2><p>Swin的核心是适应视觉的两个创新：层次结构和移位窗口。</p>
 <ul>
-<li><strong>层次表示</strong>：不像ViT固定patch大小，Swin从小patch起步，逐层合并邻域patch，形成金字塔特征图（类似FPN）。输入图像切成4x4 patch（灰块），深层合并成更大尺度。这解决尺度变异，方便dense任务（如检测用多尺度融合）。</li>
+<li><strong>层次表示</strong>：不像ViT固定patch大小，Swin从小patch起步，逐层合并邻域patch，形成金字塔特征图（类似FPN）。输入图像切成4×4 patch（灰块），深层合并成更大尺度。这解决尺度变异，方便dense任务（如检测用多尺度融合）。</li>
 <li><strong>移位窗口注意力</strong>：全局注意力太贵，Swin限自注意力在非重叠局部窗口内（红块），窗口数固定，复杂度线性于图像大小。关键是“移位”：连续层间窗口移位（图2），桥接前层窗口，建全局联系。为什么移位？直接全局O(n²)不行，滑动窗虽局部但硬件慢（不同query不同key）。移位让query共享key，高效。</li>
 </ul>
 <p>加相对位置偏置（relative position bias）：注意力公式加B矩阵，编码相对位置（表4证明有效）。这引入翻译不变性，补Transformer的inductive bias缺失。</p>
 <p>原理上，Swin平衡全局（注意力）和局部（窗口），线性复杂度让高分辨率可行。</p>
 <h2 id="模型结构：Swin-Transformer块的堆叠"><a href="#模型结构：Swin-Transformer块的堆叠" class="headerlink" title="模型结构：Swin Transformer块的堆叠"></a>模型结构：Swin Transformer块的堆叠</h2><p>结构是Transformer编码器的层次变体，分4阶段（stages），每阶段降分辨率。</p>
 <ul>
-<li><strong>输入处理</strong>：图像切成4x4 patch，线性投影到C维嵌入（C=96 for Tiny）。加位置编码（相对偏置在注意力里处理）。</li>
+<li><strong>输入处理</strong>：图像切成4×4 patch，线性投影到C维嵌入（C=96 for Tiny）。加位置编码（相对偏置在注意力里处理）。</li>
 <li><strong>Swin Transformer块</strong>：每块两个子模块：<ol>
 <li>Window Multi-head Self-Attention (W-MSA) 或 Shifted W-MSA (SW-MSA)：标准MSA，但限窗口。移位层用cyclic shift实现（高效，避免padding）。</li>
 <li>MLP：两层全连接，GELU激活。<br>残差+LayerNorm连接。连续块：W-MSA + SW-MSA交替（移位建连）。</li>
 </ol>
 </li>
-<li><strong>阶段过渡</strong>：Patch Merging层合并2x2邻域，降分辨率2x，通道翻倍（concat+线性）。</li>
+<li><strong>阶段过渡</strong>：Patch Merging层合并2×2邻域，降分辨率2×，通道翻倍（concat+线性）。</li>
 </ul>
 <p>变体：Swin-T (Tiny, C=96, 层数{2,2,6,2})，Swin-S/B/L更大。参数28M-197M，FLOPs4.5G-34.5G。整体像ResNet，但注意力替换卷积。</p>
-<h2 id="实现细节：简单高效的工程实践"><a href="#实现细节：简单高效的工程实践" class="headerlink" title="实现细节：简单高效的工程实践"></a>实现细节：简单高效的工程实践</h2><p>实现上，基于PyTorch，代码开源。超参：头数d=32，MLP扩展α=4。训练用AdamW，cosine衰减，aug如RandAug/Mixup。ImageNet-1K训300epoch，batch 1024；大分辨率微调。预训ImageNet-22K提升。效率：移位窗比滑动窗快3-4x（表5），cyclic实现优于padding。</p>
-<p>附录有详细arch和设置：分类用GAP+线性头；检测用3x schedule；分割用UperNet，160k iter。stochastic depth率0.2-0.5防过拟。</p>
+<h2 id="实现细节：简单高效的工程实践"><a href="#实现细节：简单高效的工程实践" class="headerlink" title="实现细节：简单高效的工程实践"></a>实现细节：简单高效的工程实践</h2><p>实现上，基于PyTorch，代码开源。超参：头数d=32，MLP扩展α=4。训练用AdamW，cosine衰减，aug如RandAug/Mixup。ImageNet-1K训300epoch，batch 1024；大分辨率微调。预训ImageNet-22K提升。效率：移位窗比滑动窗快3-4×（表5），cyclic实现优于padding。</p>
+<p>附录有详细arch和设置：分类用GAP+线性头；检测用3× schedule；分割用UperNet，160k iter。stochastic depth率0.2-0.5防过拟。</p>
 <h2 id="实验部分：性能和消融"><a href="#实验部分：性能和消融" class="headerlink" title="实验部分：性能和消融"></a>实验部分：性能和消融</h2><p>第4节实验在ImageNet-1K分类、COCO检测、ADE20K分割上验证。Swin超ViT/DeiT和ResNeXt，延迟类似。</p>
 <ul>
 <li><strong>分类</strong>：Swin-T 81.3% top-1（ViT-S 79.9%），Swin-L 87.3%（预训22K）。大输入如384²提升到82.2%（表8，附录）。</li>
@@ -393,7 +393,7 @@
 <li><strong>分割</strong>：UperNet上，Swin-T 46.1 mIoU（DeiT-S 44.0），Swin-L 53.5（超SETR +3.2）。</li>
 </ul>
 <p>消融移位窗+1.1% acc / +2.8 AP / +2.8 mIoU。相对偏置+1.2% acc等。不同注意力方法：移位比Performer快，准+2.3%（表6）。附录更多exp：不同输入大小，acc随分辨率涨但速度降；Swin-Mixer验证通用性（81.3% vs MLP-Mixer 76.4%）。</p>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>Swin的框架是层次+移位窗，思想是高效全局建模，补视觉短板。现在2025年，它影响了Swin V2、视频Transformer等。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>Swin的框架是层次+移位窗，思想是高效全局建模，补视觉短板。它影响了Swin V2、视频Transformer等。</p>
 
       
     </div>
@@ -427,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/12/05/note-philosophers-done/" rel="next" title="Note for What Have Philosophers Done">
-                <i class="fa fa-chevron-left"></i> Note for What Have Philosophers Done
+              <a href="/2024/11/30/paper-vit/" rel="next" title="[Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale">
+                <i class="fa fa-chevron-left"></i> [Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale
               </a>
             
           </div>

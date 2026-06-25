@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="perception,BEV,paper," />
+  <meta name="keywords" content="paper,perception,BEV," />
 
 
 
@@ -105,14 +105,14 @@
 
 
 <meta name="description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
-<meta name="keywords" content="perception,BEV,paper">
+<meta name="keywords" content="paper,perception,BEV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
 <meta property="og:url" content="http://yoursite.com/2025/01/19/paper-lss/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T03:50:16.036Z">
+<meta property="og:updated_time" content="2026-06-25T08:07:42.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
 <meta name="twitter:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
@@ -377,7 +377,7 @@
 <h3 id="1-Lift：从2D图像抬升到3D-frustum（视锥体）"><a href="#1-Lift：从2D图像抬升到3D-frustum（视锥体）" class="headerlink" title="1. Lift：从2D图像抬升到3D frustum（视锥体）"></a>1. Lift：从2D图像抬升到3D frustum（视锥体）</h3><p>第一步是处理每张图像独立，把它从平面“抬升”到3D空间。为什么独立？因为这样保持了排列不变性，不依赖相机顺序。</p>
 <p>关键挑战：单目图像深度是模糊的（一个像素可能对应远处或近处的物体）。论文不直接回归深度，而是为每个像素预测一个<strong>深度分布</strong>（categorical distribution）。具体来说：</p>
 <ul>
-<li>输入一张图像 X（3xHxW），用CNN（论文用EfficientNet-B0预训练骨干）提取特征。</li>
+<li>输入一张图像 X（3×H×W），用CNN（论文用EfficientNet-B0预训练骨干）提取特征。</li>
 <li>对于每个像素 p（坐标 h,w），网络预测两个东西：<ul>
 <li>一个上下文向量 $c ∈ R^C$（C是通道数，代表语义特征）。</li>
 <li>一个深度分布 $α ∈ △^{D-1}$（softmax输出，D是离散深度 bin 的数量，比如从4m到45m，每1m一个bin）。</li>
@@ -394,7 +394,7 @@
 <p>这个步骤隐式反投影：不用显式深度图，而是用分布编码所有可能深度。结果是每个相机一个大点云（D×H×W点），共享3D坐标系。</p>
 <h3 id="2-Splat：溅射到BEV平面，形成栅格表示"><a href="#2-Splat：溅射到BEV平面，形成栅格表示" class="headerlink" title="2. Splat：溅射到BEV平面，形成栅格表示"></a>2. Splat：溅射到BEV平面，形成栅格表示</h3><p>现在有n个frustum点云，怎么融合？用“Splat”：根据内外参，把所有点“溅射”到参考平面（通常是地面，BEV坐标）。</p>
 <ul>
-<li>BEV网格是 X x Y（论文用-50m到50m，每0.5m一格，200x200）。</li>
+<li>BEV网格是 X × Y（论文用-50m到50m，每0.5m一格，200×200）。</li>
 <li>每个点根据内外参投影到BEV平面，落到“柱子”（pillar）里——pillar是无限高的voxel（体素），像PointPillars里的设计。</li>
 <li>用sum pooling聚合每个pillar里的特征（不是max pooling，因为sum更可微）。</li>
 </ul>
@@ -403,7 +403,7 @@
 <h3 id="3-Shoot：射击轨迹，实现端到端规划"><a href="#3-Shoot：射击轨迹，实现端到端规划" class="headerlink" title="3. Shoot：射击轨迹，实现端到端规划"></a>3. Shoot：射击轨迹，实现端到端规划</h3><p>前两步给出BEV表示 $y ∈ R^{C × X × Y}$，可以接CNN做分割。但论文更野心：用它做规划！</p>
 <p>规划 Framing成分类：预测K个模板轨迹的分布（模板从专家轨迹K-Means得来，论文用K=1000，5秒轨迹，每0.25s采样）。</p>
 <ul>
-<li>模型输出cost map c_o(x,y)（BEV上的成本函数）。</li>
+<li>模型输出cost map $c_o(x,y)$（BEV上的成本函数）。</li>
 <li>轨迹概率用Boltzmann形式：$p(τ_i | o) = exp(-sum_{x,y in τ_i} c_o(x,y)) / Z$。</li>
 <li>训练用交叉熵，标签是ground-truth轨迹最近邻模板。</li>
 <li>测试时，“射击”模板到cost map，选最低成本的执行。</li>
@@ -413,7 +413,7 @@
 <ul>
 <li>图像端：EfficientNet-B0提取特征，抬升frustum。</li>
 <li>BEV端：ResNet-like CNN处理splat后tensor（14.3M参数）。</li>
-<li>输入图像缩到128x352，BEV 200x200，深度D=41（4-45m）。</li>
+<li>输入图像缩到128×352，BEV 200×200，深度D=41（4-45m）。</li>
 </ul>
 <p>效率关键：frustum pooling用cumsum trick，Titan V上35Hz。训练用Adam，300k步。</p>
 <p>论文强调模型对相机rig鲁棒：训练时随机掉相机或加噪声，能学到融合策略，甚至零样本转移到新rig（nuScenes训，Lyft测）。</p>
@@ -440,11 +440,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
             <a href="/tags/perception/" rel="tag">#perception</a>
           
             <a href="/tags/BEV/" rel="tag">#BEV</a>
-          
-            <a href="/tags/paper/" rel="tag">#paper</a>
           
         </div>
       

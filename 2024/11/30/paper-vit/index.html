@@ -107,14 +107,14 @@
 <meta name="description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
 <meta name="keywords" content="paper,detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale">
+<meta property="og:title" content="[Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale">
 <meta property="og:url" content="http://yoursite.com/2024/11/30/paper-vit/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T03:40:17.510Z">
+<meta property="og:updated_time" content="2026-06-25T08:22:36.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale">
+<meta name="twitter:title" content="[Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale">
 <meta name="twitter:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
 
 
@@ -138,7 +138,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2024/11/30/paper-vit/"/>
 
-  <title> [Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale | CVision </title>
+  <title> [Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale | CVision </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -288,7 +288,7 @@
             
             
               
-                [Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale
+                [Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale
               
             
           </h1>
@@ -376,7 +376,7 @@
 <li><strong>输入层</strong>：图像分块 + 线性投影 + 位置编码 + [class] token。</li>
 <li><strong>Transformer块</strong>：每块两个子模块：<ol>
 <li>多头自注意力（MSA）：LN后注意力，残差连接。</li>
-<li>前馈网络（MLP）：LN后两层全连接（GELU激活），残差。<br>公式：z’ = MSA(LN(z)) + z，z = MLP(LN(z’)) + z’。</li>
+<li>前馈网络（MLP）：LN后两层全连接（GELU激活），残差。<br>公式：$z’ = MSA(LN(z)) + z$，$z = MLP(LN(z’)) + z’$。</li>
 </ol>
 </li>
 <li><strong>输出</strong>：最后一层[class] token过MLP头，softmax分类。</li>
@@ -405,7 +405,7 @@
 <li><strong>注意力图可视</strong>：低层局部，高层全局，像CNN的层次。</li>
 </ul>
 <p>这些细节帮实现，避免坑。</p>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>ViT的框架是图像序列化+纯Transformer，思想是靠数据规模克服偏置缺失。结构简单，实现易扩展，现在扩散到检测、分割。2025年了，ViT衍生出Swin、DETR等，但原论文的纯净思路值得回味。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>ViT的框架是图像序列化+纯Transformer，思想是靠数据规模克服偏置缺失。结构简单，实现易扩展，现在扩散到检测、分割。ViT衍生出Swin、DETR等，但原论文的纯净思路值得回味。</p>
 
       
     </div>
@@ -447,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/12/05/note-philosophers-done/" rel="prev" title="Note for What Have Philosophers Done">
-                Note for What Have Philosophers Done <i class="fa fa-chevron-right"></i>
+              <a href="/2024/12/21/paper-swintransformer/" rel="prev" title="[Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows">
+                [Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
