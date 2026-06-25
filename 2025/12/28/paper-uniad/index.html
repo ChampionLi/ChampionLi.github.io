@@ -1,0 +1,740 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="paper,end2end," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: This blog post offers an overview of the 2023 paper “UniAD: Planning-oriented Autonomous Driving” by Yihan Hu, Hongyang Li and colleagues, proposing a unified end-to-end framework that coor">
+<meta name="keywords" content="paper,end2end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] UniAD: Planning-oriented Autonomous Driving">
+<meta property="og:url" content="http://yoursite.com/2025/12/28/paper-uniad/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: This blog post offers an overview of the 2023 paper “UniAD: Planning-oriented Autonomous Driving” by Yihan Hu, Hongyang Li and colleagues, proposing a unified end-to-end framework that coor">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T04:15:24.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] UniAD: Planning-oriented Autonomous Driving">
+<meta name="twitter:description" content="Abstract: This blog post offers an overview of the 2023 paper “UniAD: Planning-oriented Autonomous Driving” by Yihan Hu, Hongyang Li and colleagues, proposing a unified end-to-end framework that coor">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2025/12/28/paper-uniad/"/>
+
+  <title> [Paper] UniAD: Planning-oriented Autonomous Driving | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] UniAD: Planning-oriented Autonomous Driving
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2025-12-28T00:00:00+08:00" content="2025-12-28">
+              2025-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/End2End/" itemprop="url" rel="index">
+                    <span itemprop="name">End2End</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: This blog post offers an overview of the 2023 paper “UniAD: Planning-oriented Autonomous Driving” by Yihan Hu, Hongyang Li and colleagues, proposing a unified end-to-end framework that coordinates perception, prediction, and planning tasks around the ultimate goal of safe ego-vehicle planning. It details the query-based design connecting modules in BEV space: TrackFormer for joint detection and tracking, MapFormer for online mapping, MotionFormer for multi-agent multimodal trajectory prediction with agent-map and goal interactions, OccFormer for instance-aware occupancy forecasting, and a simple attention-based planner leveraging ego queries and occupancy for collision avoidance. Implementation uses two-stage training with shared matching, and experiments on nuScenes validate the planning-oriented philosophy through strong joint and modular results across all tasks. </p>
+</blockquote>
+<a id="more"></a>
+<p>最近读了2023年的CVPR论文《UniAD: Planning-oriented Autonomous Driving》，作者是上海AI实验室的Yihan Hu等。这篇论文不是简单堆叠任务，而是从规划这个终极目标倒推，设计了一个端到端的统一框架UniAD，整合感知、预测和规划的全栈模块。思路很务实：传统方法模块独立容易误差累积，多任务学习又协调差，UniAD则用Transformer查询接口串联一切，互相补益，最终服务规划。论文基于多相机图像输入，纯视觉，实用性强。</p>
+<h2 id="背景和动机：为什么需要规划导向的统一框架？"><a href="#背景和动机：为什么需要规划导向的统一框架？" class="headerlink" title="背景和动机：为什么需要规划导向的统一框架？"></a>背景和动机：为什么需要规划导向的统一框架？</h2><p>背景：自动驾驶系统通常是模块化的：感知（检测、跟踪、地图），预测（运动、占用），规划。工业方案往往每个模块独立模型（图1a），方便分工，但信息丢失、误差累积严重。多任务学习（MTL）共享骨干加头（图1b），省资源，但任务目标不一致，协调难。端到端方法（图1c）尝试直连感知预测到规划，但早期要么直接优规划（c1，忽略中间），要么只部分模块（c2，碎片化）。</p>
+<p>作者的洞察：理想框架应“规划导向”（planning-oriented），所有前置任务优先服务规划（c3）。为什么？规划是自驾车的“终极目标”——安全高效路径。感知预测不是孤立，而是为规划提供互补抽象：感知给当前状态，预测给未来动态。UniAD就是这样：用统一查询接口沟通任务，从全局视角建模代理交互，避免累积误差，提升智能。</p>
+<h2 id="核心原理：查询接口-任务优先级"><a href="#核心原理：查询接口-任务优先级" class="headerlink" title="核心原理：查询接口 + 任务优先级"></a>核心原理：查询接口 + 任务优先级</h2><p>UniAD的原理是“规划为中心”，任务按序优先：感知（跟踪+地图）给基础抽象，预测（运动+占用）加动态，规划用之决策。关键是Transformer解码器结构，所有模块用查询（queries）接口连接。</p>
+<ul>
+<li><strong>查询设计</strong>：查询是高抽象向量，跨模块传信息。如跟踪模块输出代理查询（Q_A），传给运动模块建交互。查询像“桥梁”，让上游知识下游用，避免信息丢失。</li>
+<li><strong>任务优先</strong>：感知优先代理（动态）和地图（静态），预测优先多代理联合运动和场景占用，规划用ego查询避碰撞。端到端优化，梯度回传协调。</li>
+<li><strong>BEV统一</strong>：所有在鸟瞰图（BEV）空间操作，统一坐标，便于交互。</li>
+</ul>
+<p>原理上，UniAD不像MTL并行头，而是序列级联，互补：跟踪稳代理ID，地图给道路约束，运动预测交互，占用避占区。</p>
+<h2 id="模型结构：全栈Transformer解码器"><a href="#模型结构：全栈Transformer解码器" class="headerlink" title="模型结构：全栈Transformer解码器"></a>模型结构：全栈Transformer解码器</h2><p>UniAD结构是CNN骨干 + BEV编码器 + 序列Transformer模块（图2）。输入多视图图像，输出规划轨迹。骨干用V2-99（类似ResNet），FPN颈融合多尺度。视图变换用BEVFormer的时空Transformer生成BEV特征B。然后是核心模块，每个是N层Transformer解码器（N=6），用查询交互。</p>
+<p>细说每个模块：</p>
+<ol>
+<li><strong>TrackFormer（跟踪模块）</strong>：联合检测和多目标跟踪（MOT），无后处理。查询分两类：检测查询（新生代理）和跟踪查询（历史代理）。初始化检测查询捕新生，跟踪查询自注意力聚合时序。都attend BEV特征B，输出Q_A（代理抽象，包括ego查询）。细节：N层，每层MHSA + MHCA，监督每层。避免NMS，用查询继承ID，稳时序。为什么关键？稳代理ID，供下游预测用，避免碎片。</li>
+<li><strong>MapFormer（地图模块）</strong>：在线地图建模，四类元素（车道、分割线、可驶区、行人道）。基于Panoptic SegFormer，用地图查询稀疏表示道路。查询attend B，输出Q_M（地图抽象）。细节：东西类（things：车道等）用实例查询，可驶区（stuff）用语义查询。N层，逐层监督。为什么重要？提供静态约束，如车道限运动预测，提升安全。</li>
+<li><strong>MotionFormer（运动预测模块）</strong>：场景中心多代理多模态轨迹预测。用Q_A和Q_M输入，预测所有代理未来T=12步轨迹（top-K模态）。细节：N层，每层三交互：代理-代理（MHSA/MHCA）、代理-地图（同）、代理-目标点（变形注意力，精炼端点）。运动查询Q=上下文+位置（场景锚、代理锚、当前位、预测端点）。非线性优化（训练时）平滑轨迹，遵运动学（抖动、曲率等）。ego查询显式建模，自驾车交互。为什么牛？联合预测交互，考虑地图，准+物理合理。</li>
+<li><strong>OccFormer（占用预测模块）</strong>：场景占用网格预测，带代理ID。To=4步（比运动短，省算）。细节：To块，每块时间MLP融合代理特征G_t（从MotionFormer max-pool Q_X + 跟踪Q_A + 位嵌入）。场景特征F_0从B下采样，块内自注意力 + 跨注意力（F_ds attend G_t，掩码限占区）。残差连接，上采样解码F_t_dec。实例占用O_A = U_t * F_t_dec（U_t从掩码特征MLP）。为什么独特？代理-场景融合，无后聚类，直出实例占用，帮规划避撞。</li>
+<li><strong>Planner（规划模块）</strong>：用MotionFormer ego查询 + 命令嵌入（左转、直行、右转）attend B，解码未来轨迹ˆτ。推理时牛顿优化避占区（从OccFormer二值O）。细节：多射击生成候选，成本f= L2(ˆτ) + 碰撞（高斯核，λ调）。无HD地图/路由，靠命令导。为什么简单有效？用上游抽象，直接优安全。</li>
+</ol>
+<p>整体：查询串联（Q_A到Motion/Occ，ego Q到Planner），端到端。BEV统一空间，时序靠BEVFormer。</p>
+<h2 id="实现细节：两阶段训练-损失设计"><a href="#实现细节：两阶段训练-损失设计" class="headerlink" title="实现细节：两阶段训练 + 损失设计"></a>实现细节：两阶段训练 + 损失设计</h2><p>实现基于PyTorch，nuScenes数据集（1000场景，多相机）。输入：6视图图像，历史3帧。</p>
+<ul>
+<li><strong>训练</strong>：两阶段稳。阶段1：预训感知（跟踪+地图），6 epoch，载BEVFormer权重（骨干、FPN、BEV编码器、检测解码）。冻骨干省存，损失L1 = L_track + L_map。阶段2：全任务20 epoch，载阶段1，损失L2 = L_track + L_map + L_motion + L_occ + L_plan。AdamW，batch 1/A100，CBGS采样。</li>
+<li><strong>损失</strong>：匹配共享（二分匹配，继承跟踪）。跟踪：焦点 + L1框 + GIoU。地图：Dice + CE语义，焦点 + L1点东西。运动：负对数似然模态 + L1轨迹。占用：CE + Lovasz-Softmax。规划：L1 + 方向L1 + 模仿（平滑L1）。权重调，如λ_motion=2。</li>
+<li><strong>超参</strong>：查询数300（代理+地图），BEV 200x100 (0.5m分辨)，T=12s (0.5Hz)，To=4。非线性优：抖动、曲率等5项。</li>
+<li><strong>推理</strong>：单前向，规划优&lt;1ms。变体：UniAD-S (R50)，-B (R101)，-L (V2-99)。</li>
+</ul>
+<h2 id="实验部分：全面超SOTA-消融分析"><a href="#实验部分：全面超SOTA-消融分析" class="headerlink" title="实验部分：全面超SOTA + 消融分析"></a>实验部分：全面超SOTA + 消融分析</h2><p>第4节实验在nuScenes val/test。UniAD-L test NDS 71.4%、mAP 47.5%、规划L2 0.73m、碰撞0.31%（超BEVerse +8.5 NDS）。val上，联合Ablation（表2）：加模块逐提，感知帮预测（-9.7% minADE），预测帮规划（-0.51碰撞）。模块结果：跟踪AMOTA 35.9%（+6.5超MUTR3D），地图IoU-lane 31.3%，运动minADE 0.71m（-38.3%超PnPNet），占用VPQ-near 54.7%，规划L2 1.03m（-51.2%超ST-P3）。</p>
+<p>消融：MotionFormer组件各贡（表8，锚+交互-15.8% minADE）。Occ交互+2.4 IoU-far。规划优-0.41碰撞。可视（图3）：复杂场景准规划。失败：长尾如大卡车（Sup）。</p>
+<p>实验证：规划导向协调好，端到端强。</p>
+<h2 id="小结和感想"><a href="#小结和感想" class="headerlink" title="小结和感想"></a>小结和感想</h2><p>UniAD框架是查询级联的全栈Transformer，思想规划导向，互补抽象。结构优雅，实现稳，实验牛。比碎片方法智能，启发大模型自驾。缺点？计算大（1.5k GFLOPs），但潜力无限。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+            <a href="/tags/end2end/" rel="tag">#end2end</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/08/31/paper-bevfusion/" rel="next" title="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
+                <i class="fa fa-chevron-left"></i> [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机：为什么需要规划导向的统一框架？"><span class="nav-number">1.</span> <span class="nav-text">背景和动机：为什么需要规划导向的统一框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：查询接口-任务优先级"><span class="nav-number">2.</span> <span class="nav-text">核心原理：查询接口 + 任务优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：全栈Transformer解码器"><span class="nav-number">3.</span> <span class="nav-text">模型结构：全栈Transformer解码器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：两阶段训练-损失设计"><span class="nav-number">4.</span> <span class="nav-text">实现细节：两阶段训练 + 损失设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分：全面超SOTA-消融分析"><span class="nav-number">5.</span> <span class="nav-text">实验部分：全面超SOTA + 消融分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结和感想"><span class="nav-number">6.</span> <span class="nav-text">小结和感想</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

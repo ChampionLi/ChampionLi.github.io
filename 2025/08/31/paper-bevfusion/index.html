@@ -1,0 +1,743 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="perception,BEV,paper," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
+<meta name="keywords" content="perception,BEV,paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
+<meta property="og:url" content="http://yoursite.com/2025/08/31/paper-bevfusion/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T04:15:11.891Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
+<meta name="twitter:description" content="Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion appro">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2025/08/31/paper-bevfusion/"/>
+
+  <title> [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2025-08-31T00:00:00+08:00" content="2025-08-31">
+              2025-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
+                    <span itemprop="name">Perception</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: TThis blog post offers an overview of the 2022 paper “BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework” by Tingting Liang and colleagues, introducing a disentangled fusion approach where camera and LiDAR streams independently extract features into a shared BEV space before dynamic fusion. It explains the principles of modality-independent processing to handle LiDAR malfunctions; the camera stream based on adapted Lift-Splat-Shoot with Dual-Swin backbone, view projection, and BEV encoder; the LiDAR stream using popular detectors like PointPillars or CenterPoint; the lightweight dynamic fusion module with channel-spatial fusion and adaptive selection; and experimental highlights on nuScenes, demonstrating superior performance under normal (69.2% mAP) and robust settings (+15.7% to 28.9% mAP) while maintaining strong generalization.</p>
+</blockquote>
+<a id="more"></a>
+<p>最近读了2022年的NeurIPS论文《BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework》，作者是北大和阿里团队的Tingting Liang等。这篇论文不让相机依赖LiDAR，避免故障时崩溃。现实中LiDAR可能出问题，这框架能独立运行相机流，还保持高性能。现在多模态融合热门，这篇是典型代表。</p>
+<h2 id="背景和动机：融合的痛点和独立性需求"><a href="#背景和动机：融合的痛点和独立性需求" class="headerlink" title="背景和动机：融合的痛点和独立性需求"></a>背景和动机：融合的痛点和独立性需求</h2><p>自动驾驶感知靠LiDAR和相机：LiDAR给精确点云，相机补纹理颜色。但早期方法分开处理，再后融合。BEV（鸟瞰图）成标准，因为车在地上跑，BEV便于规划。还有的融合方案用LiDAR点或提案查询图像特征。但作者发现隐患：这些方法依赖LiDAR输入，如果LiDAR故障（反射低、传输 glitch 或视场不全），整个系统哑火。这限制实际部署。</p>
+<p>动机：理想融合应让每个模态独立工作，有两者更好。作者提出BEVFusion，相机流不靠LiDAR，解耦依赖。简单却有效，正常训超SOTA，鲁棒训（模拟故障）大胜。</p>
+<h2 id="核心原理：独立流-BEV融合"><a href="#核心原理：独立流-BEV融合" class="headerlink" title="核心原理：独立流 + BEV融合"></a>核心原理：独立流 + BEV融合</h2><p>BEVFusion原理是模态解耦：相机和LiDAR独立转BEV特征，再融合。见图2。</p>
+<ul>
+<li><strong>相机独立</strong>：不用LiDAR点查询图像，直接从多视图图像生成BEV特征。避深度缺失问题。</li>
+<li><strong>BEV统一</strong>：两者特征同空间（X x Y x C），动态融合选重要信息。</li>
+<li><strong>鲁棒性</strong>：LiDAR缺时，相机流独跑；两者有时，提升准度。</li>
+</ul>
+<p>原理上，避先验依赖，用数据学融合。泛化强，可插任意单模态网。</p>
+<h2 id="模型结构：双流-融合-头"><a href="#模型结构：双流-融合-头" class="headerlink" title="模型结构：双流 + 融合 + 头"></a>模型结构：双流 + 融合 + 头</h2><p>结构直观：相机流、LiDAR流、动态融合、任务头。</p>
+<ul>
+<li><strong>相机流</strong>：三模块。<ol>
+<li>Image-view Encoder：Dual-Swin-Tiny骨干 + FPN颈，提取多尺度特征。加Adaptive Module（自适应池化 + 1x1 conv）对齐上采样。</li>
+<li>View Projector：深度分类，转图像特征到3D ego坐标，生成伪体素V (X x Y x Z x C)。</li>
+<li>BEV Encoder：S2C操作（reshape压Z维） + 四层3x3 conv，生成F_Camera (X x Y x C_Camera)。</li>
+</ol>
+</li>
+<li><strong>LiDAR流</strong>：任意网，如PointPillars、CenterPoint、TransFusion，转点云到F_LiDAR (X x Y x C_LiDAR)。</li>
+<li><strong>动态融合</strong>：concat F_Camera和F_LiDAR，3x3 conv降维 + 通道注意力（GAP + FC + sigmoid），选重要特征。公式：F_fused = σ(W <em> avg(F)) </em> F。</li>
+<li><strong>检测头</strong>：BEV特征接锚基（如PointPillars）、无锚（如CenterPoint）或Transformer头（如TransFusion），预测3D框。</li>
+</ul>
+<p>整体端到端，相机不挂LiDAR。</p>
+<h2 id="实现细节：通用设计和训练"><a href="#实现细节：通用设计和训练" class="headerlink" title="实现细节：通用设计和训练"></a>实现细节：通用设计和训练</h2><p>实现基于PyTorch，超参：BEV 200x100 (0.4m分辨)，相机输入1600x900。相机用LSS适配：Dual-Swin-T backbone，ADP模块。融合简单conv+SE。训练：CBGS，24epoch，AdamW。鲁棒aug：随机掉物体框内LiDAR点（prob 0.5），模拟故障。</p>
+<p>细节上，体素化用[-54,54]x[-54,54]x[-5,3]，Z=8。扩展易，换头或流。</p>
+<h2 id="实验部分：简单说说第4节的结果"><a href="#实验部分：简单说说第4节的结果" class="headerlink" title="实验部分：简单说说第4节的结果"></a>实验部分：简单说说第4节的结果</h2><p>第4节在nuScenes测。正常训：BEVFusion+CenterPoint mAP 68.5%、NDS 71.3%（超TransFusion 68.9%、69.4%）。用TransFusion头 mAP 69.2%。鲁棒训（掉点aug）：mAP 57.3%（超基线15.7%-28.9%）。LiDAR全缺时，仍有39.2% mAP。消融：ADP +2.1% mAP；动态融合优静态。实时：23.2 FPS。</p>
+<p>这些显示框架泛化鲁棒，实际潜力大。</p>
+<h2 id="一点感想"><a href="#一点感想" class="headerlink" title="一点感想"></a>一点感想</h2><p>BEVFusion的框架是解耦双流+BEV融，思想实用，补融合短板。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perception/" rel="tag">#perception</a>
+          
+            <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/08/03/paper-bevformer/" rel="next" title="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
+                <i class="fa fa-chevron-left"></i> [Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/12/28/paper-uniad/" rel="prev" title="[Paper] UniAD: Planning-oriented Autonomous Driving">
+                [Paper] UniAD: Planning-oriented Autonomous Driving <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机：融合的痛点和独立性需求"><span class="nav-number">1.</span> <span class="nav-text">背景和动机：融合的痛点和独立性需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：独立流-BEV融合"><span class="nav-number">2.</span> <span class="nav-text">核心原理：独立流 + BEV融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：双流-融合-头"><span class="nav-number">3.</span> <span class="nav-text">模型结构：双流 + 融合 + 头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：通用设计和训练"><span class="nav-number">4.</span> <span class="nav-text">实现细节：通用设计和训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分：简单说说第4节的结果"><span class="nav-number">5.</span> <span class="nav-text">实验部分：简单说说第4节的结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一点感想"><span class="nav-number">6.</span> <span class="nav-text">一点感想</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

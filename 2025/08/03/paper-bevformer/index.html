@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="perception,BEV,paper," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
+<meta name="keywords" content="perception,BEV,paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
+<meta property="og:url" content="http://yoursite.com/2025/08/03/paper-bevformer/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T04:13:45.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
+<meta name="twitter:description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2025/08/03/paper-bevformer/"/>
+
+  <title> [Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2025-08-03T00:00:00+08:00" content="2025-08-03">
+              2025-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
+                    <span itemprop="name">Perception</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues at Shanghai AI Laboratory, introducing a Transformer-based encoder for unified BEV features in autonomous driving without explicit depth reliance. It explains the principles of grid-shaped BEV queries with spatial cross-attention for multi-view aggregation and temporal self-attention for recursive history fusion; the CNN-plus-encoder structure with task heads for detection and segmentation; implementation details like deformable sampling and ego alignment; and experimental highlights on nuScenes, including state-of-the-art NDS (56.9%), improved velocity estimation, and occlusion handling. </p>
+</blockquote>
+<a id="more"></a>
+<p>这篇论文解决的是自动驾驶感知的痛点：怎么从多相机2D图像生成统一的鸟瞰图（BEV），支持检测和地图分割。论文巧妙结合了Transformer和时空信息，不靠深度估计，避免了累积误差，还能处理时序数据。为什么实用？因为BEV是规划的桥梁，能统一多任务。</p>
+<h2 id="背景和动机"><a href="#背景和动机" class="headerlink" title="背景和动机"></a>背景和动机</h2><p>自动驾驶感知离不开3D理解，比如检测物体或分割地图。相机便宜，长距识别强，却难从2D转3D。传统单目方法独立处理每视图，融合差；BEV方法流行，但多靠深度估计（如LSS），易出错，影响检测准度。论文认为Transformer的注意力能动态聚合特征，不用硬深度先验，就能学BEV。</p>
+<p>另一个点是时序：人类开车靠视频推测速度和遮挡，但多相机检测少用时间信息。简单栈帧费算力，还干扰。作者想用BEV桥接时空，像RNN隐状态，递归传历史信息。动机：设计不靠深度的BEV生成器，支持多任务，高效用时空数据，提升低可见度下的召回和速度估计。</p>
+<h2 id="核心原理：网格查询-时空注意力"><a href="#核心原理：网格查询-时空注意力" class="headerlink" title="核心原理：网格查询 + 时空注意力"></a>核心原理：网格查询 + 时空注意力</h2><p>BEVFormer的核心是时空Transformer，用网格BEV查询（queries）动态查空间/时间，聚合特征。见图1。</p>
+<ul>
+<li><strong>网格BEV查询</strong>：预定义网格状查询（像DETR的对象查询），每个代表BEV一格。查询不靠深度，靠注意力灵活学表示。</li>
+<li><strong>空间交叉注意力</strong>：每个查询从感兴趣区域（ROI）提取多相机特征。ROI用相机内外参投影3D点到2D视图，采样特征点。变形注意力（Deformable Attention）高效，只采样关键点，避免全局算。</li>
+<li><strong>时间自注意力</strong>：递归融合历史BEV。当前查询attend前帧BEV（对齐ego运动），传时序线索。益处：估速准，识遮挡物，低开销。</li>
+</ul>
+<p>原理上，BEVFormer避深度敏感，用注意力学时空关联。BEV统一表示，多任务友好。</p>
+<h2 id="模型结构：时空Transformer编码器"><a href="#模型结构：时空Transformer编码器" class="headerlink" title="模型结构：时空Transformer编码器"></a>模型结构：时空Transformer编码器</h2><p>结构是CNN backbone + BEVFormer编码器 + 任务头。输入多相机图像（可选多帧）。</p>
+<ul>
+<li><strong>CNN Backbone</strong>：ResNet或VoVNet提取多视图特征，加位置编码。</li>
+<li><strong>BEVFormer编码器</strong>：L=6层，每层时空模块：<ol>
+<li>时间自注意力：查询attend历史BEV（初始空）。</li>
+<li>空间交叉注意力：查询采样多视图ROI特征。</li>
+<li>FFN：前馈网络，加残差+Norm。</li>
+</ol>
+</li>
+<li><strong>任务头</strong>：BEV输出接Deformable DETR头检测，或mask解码器分割。</li>
+</ul>
+<p>整体递归：当前BEV存历史，下帧用。像视频Transformer，但BEV桥接高效。</p>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p>实现基于PyTorch，超参：BEV 200x100 (0.5m分辨)，查询网格50x30。采样点K=4，注意力头8。训练：AdamW，nuScenes 24epoch，aug如翻转。时间融合用前6关键帧，ego对齐。扩展：加占用头或规划。</p>
+<p>细节上，ROI投影用内外参，采样用双线性。历史BEV存4-6帧，推理实时。</p>
+<h2 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h2><p>实验在nuScenes上测。BEVFormer-ResNet101在test集NDS 56.9%（感知综合分），比之前SOTA高9点，和LiDAR基线平齐。检测mAP 45.1%，速度估mAVE 0.409m/s低。时序益处：低可见（夜/雨）召回高10%+，速度准因历史。消融：时空模块各+3-5 NDS。地图分割mIoU 62.0%，超之前。</p>
+<p>这些结果显示BEVFormer在相机感知上追LiDAR，时空设计实用。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>读BEVFormer，觉得它桥接时空的思路优雅，简化多相机感知。现在2025年，它影响了BEVFormer v2等。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perception/" rel="tag">#perception</a>
+          
+            <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/08/02/paper-bevdet/" rel="next" title="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
+                <i class="fa fa-chevron-left"></i> [Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/08/31/paper-bevfusion/" rel="prev" title="[Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework">
+                [Paper] BEVFusion: A Simple and Robust LiDAR-Camera Fusion Framework <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机"><span class="nav-number">1.</span> <span class="nav-text">背景和动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：网格查询-时空注意力"><span class="nav-number">2.</span> <span class="nav-text">核心原理：网格查询 + 时空注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：时空Transformer编码器"><span class="nav-number">3.</span> <span class="nav-text">模型结构：时空Transformer编码器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-number">4.</span> <span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分"><span class="nav-number">5.</span> <span class="nav-text">实验部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">6.</span> <span class="nav-text">感想</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

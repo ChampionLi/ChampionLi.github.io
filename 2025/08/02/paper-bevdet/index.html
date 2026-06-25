@@ -1,0 +1,736 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="perception,BEV,paper," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
+<meta name="keywords" content="perception,BEV,paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
+<meta property="og:url" content="http://yoursite.com/2025/08/02/paper-bevdet/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T04:14:57.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
+<meta name="twitter:description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2025/08/02/paper-bevdet/"/>
+
+  <title> [Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2025-08-02T00:00:00+08:00" content="2025-08-02">
+              2025-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
+                    <span itemprop="name">Perception</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomous driving. It details the four-stage pipeline: an image-view encoder for feature extraction; a view transformer (leveraging LSS) for implicit depth-based projection to BEV; a BEV encoder for spatial refinement; and a task head for predictions.</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景和动机"><a href="#背景和动机" class="headerlink" title="背景和动机"></a>背景和动机</h2><p>在自动驾驶里，感知系统需要从多个相机捕捉的图像中理解周围环境，比如检测物体位置、尺寸、方向和速度，然后交给规划模块决策。传统方法在图像视图（image-view）中处理，先在每张图上做2D检测，再转到3D空间。问题是没法统一处理多视图融合，计算开销大；而且3D检测和BEV语义分割用不同的范式，导致多任务学习不方便。</p>
+<p>论文从2D检测的范式中得到启发，比如Faster R-CNN模块化、可扩展的设计。而且，BEV语义分割已经有一些成功的范式，例如LSS，为什么不扩展到3D物体检测呢？论文的核心动机就是提出了这个“BEVDet”模块化范式。</p>
+<h2 id="BEVDet的核心框架：四个模块的流水线"><a href="#BEVDet的核心框架：四个模块的流水线" class="headerlink" title="BEVDet的核心框架：四个模块的流水线"></a>BEVDet的核心框架：四个模块的流水线</h2><p>BEVDet的设计很模块化，像搭积木一样分成四个部分：图像视图编码器（image-view encoder）、视图变换器（view transformer）、BEV编码器（BEV encoder）和任务特定头（task-specific head）。每个模块有明确分工，从输入的多张图像一步步推到BEV中的3D预测。整个流程是端到端的。</p>
+<ol>
+<li><strong>图像视图编码器</strong>：负责从每张相机图像中提取特征。论文用Swin Transformer作为骨干网络（backbone），再加一个颈部（neck）来融合多尺度特征。为什么Swin？因为它在图像分类和检测上表现好，注意力机制能捕捉长距离依赖。输入是N张图像（N是相机数，比如nuScenes的6个），输出是图像视图下的特征图。简单说，就是把原始RGB图像转成高维特征，准备好下一步变换。也可以使用Resnet作为这一步的backbone。</li>
+<li><strong>视图变换器</strong>：把图像视图特征“抬升”到BEV空间。论文直接借用了Lift-Splat-Shoot（LSS）方法：先为每个像素预测深度分布（不是精确深度，而是分类分布），生成一个伪点云；然后根据相机内外参，把这些点云“溅射”（splat）到BEV网格上，形成栅格化表示。LSS的好处是隐式处理深度不确定性，不依赖激光雷达。这个变换是像素级的，解耦了前后模块的数据增强——这点后面会说。</li>
+<li><strong>BEV编码器</strong>：论文用ResNet结构的CNN来编码，添加上采样和池化层来调整分辨率。为什么需要这个？因为原始BEV特征可能还不够鲁棒，这里能捕捉BEV空间的上下文，比如物体的相对位置和速度。</li>
+<li><strong>任务特定头</strong>：针对3D物体检测预测目标值，包括类别、位置、尺寸、方向和速度。论文用CenterPoint的head，它基于中心点预测，适合BEV的栅格表示。为什么CenterPoint？因为它在LiDAR-based检测上证明有效，能直接在BEV上操作。</li>
+</ol>
+<p>整个框架如图2所示，从图像空间到BEV空间的转换很顺畅。论文没发明新模块，全是复用现有技术。</p>
+<h2 id="方法和实现的关键点：数据增强与过拟合处理"><a href="#方法和实现的关键点：数据增强与过拟合处理" class="headerlink" title="方法和实现的关键点：数据增强与过拟合处理"></a>方法和实现的关键点：数据增强与过拟合处理</h2><p>论文还讨论了实现中的挑战，特别是过拟合。起初，论文用类似FCOS3D的参数设置训练，结果模型在BEV空间过拟合严重。图像视图数据是N倍的（每个场景多相机），但BEV部分数据少，容量又强。</p>
+<p>原因如下：</p>
+<p>在训练batch（一批数据）里，图像视图编码器（image-view encoder）每次要处理N张图像的特征提取。所以，对于一个场景（scene），它“看到”的数据是N倍的——相当于每个场景贡献了6份图像数据，让这个模块学得特别丰富。简单说：图像端数据多，训练机会足，模型不容易饿肚子。</p>
+<p>视图变换器（view transformer，用LSS方法）把N张图像的特征“抬升”并融合成一张BEV特征图。所以，BEV编码器（BEV encoder）和后面的检测头（head）在每个batch里，只处理1份BEV数据（一个场景的鸟瞰表示），而不是N份。结果：BEV端的“有效训练样本”只有图像端的1/N。数据少，模型就容易记住训练集的噪声或特定模式，而不是学到泛化能力。</p>
+<p>BEV部分用ResNet之类的强大骨干，参数多，容量（模型的表达能力 model capacity）大，拟合复杂模式的能力强（比如捕捉物体位置、速度的细微变化）。但高容量+低数据=灾难！模型太“聪明”了，会把有限的BEV数据过分拟合（比如死记硬背每个场景的像素级细节），一到新数据就傻眼。</p>
+<p>解决方案是分空间数据增强：</p>
+<ul>
+<li><strong>图像视图增强</strong>：借鉴LSS，添加旋转、缩放、随机裁剪等操作，提升图像编码器的泛化。但这对BEV部分影响小，因为视图变换解耦了它们。</li>
+<li><strong>BEV视图增强</strong>：这是创新点，借鉴LiDAR方法，在BEV空间加翻转、缩放、旋转。为什么有效？因为BEV是规划友好的空间，这些操作直接正则化了位置、方向和速度的预测，避免模型死记硬背。</li>
+</ul>
+<p>实现细节上，输入图像分辨率可调（从704x256到1408x512），BEV网格是128x128或更高。计算量控制在几百GFLOPs，推理速度快。论文提到，BEVDet对平移、方向和速度感知特别强，因为BEV显式编码了这些属性。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perception/" rel="tag">#perception</a>
+          
+            <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/01/19/paper-lss/" rel="next" title="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
+                <i class="fa fa-chevron-left"></i> [Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/08/03/paper-bevformer/" rel="prev" title="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
+                [Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机"><span class="nav-number">1.</span> <span class="nav-text">背景和动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BEVDet的核心框架：四个模块的流水线"><span class="nav-number">2.</span> <span class="nav-text">BEVDet的核心框架：四个模块的流水线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法和实现的关键点：数据增强与过拟合处理"><span class="nav-number">3.</span> <span class="nav-text">方法和实现的关键点：数据增强与过拟合处理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

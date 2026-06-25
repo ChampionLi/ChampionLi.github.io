@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="paper,detection," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
+<meta name="keywords" content="paper,detection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale">
+<meta property="og:url" content="http://yoursite.com/2024/11/30/paper-vit/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T03:40:17.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale">
+<meta name="twitter:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2024/11/30/paper-vit/"/>
+
+  <title> [Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] ViT: An Image is Worth 16×16 Words：Transformers for Image Recognition at Scale
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2024-11-30T00:00:00+08:00" content="2024-11-30">
+              2024-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Detection/" itemprop="url" rel="index">
+                    <span itemprop="name">Detection</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapting the Transformer to vision by treating images as sequences of patches. It covers the principles of patch embedding and global attention; the encoder-only structure with variants like ViT-Base/Large/Huge; implementation aspects including pre-training on large datasets and fine-tuning; and key experimental insights on scaling effects, where large-scale pre-training outperforms CNN inductive biases on benchmarks like ImageNet, plus appendix details on hyperparameters and visualizations.<br><a id="more"></a></p>
+</blockquote>
+<p>这篇论文把NLP里的Transformer直接搬到图像识别上，证明了纯注意力模型在大规模数据下能碾压CNN。读起来挺有启发，尤其是它强调“规模大于归纳偏置”的想法。现在大模型时代，这思路更显先见。</p>
+<h2 id="背景和动机"><a href="#背景和动机" class="headerlink" title="背景和动机"></a>背景和动机</h2><p>在NLP里，Transformer已经是标配：预训练大模型，再微调小任务，性能飙升。但视觉领域还是CNN的天下，从LeNet到ResNet，大家都依赖卷积的局部性和平移不变性。作者们好奇：Transformer这么牛，为什么不直接用在图像上？之前有人试过，但要么和CNN混用（比如加注意力层），要么用特殊注意力（局部或轴向），效率低，没大规模化。</p>
+<p>动机简单：图像也能看成序列。作者最小改动地应用标准Transformer——把图像切成小块（patch），像处理词一样喂给模型。关键洞察：Transformer没CNN的内置偏置（inductive bias，如局部性），小数据集上弱，但大数据上强。论文验证：用14M-300M图像预训，ViT在ImageNet等基准上赶超SOTA CNN，还省计算。</p>
+<h2 id="核心原理：图像序列化和注意力处理"><a href="#核心原理：图像序列化和注意力处理" class="headerlink" title="核心原理：图像序列化和注意力处理"></a>核心原理：图像序列化和注意力处理</h2><p>ViT的原理是把2D图像转1D序列，让Transformer捕捉全局依赖。</p>
+<ul>
+<li><strong>图像分块（Patch Extraction）</strong>：输入图像（$H × W × C$）切成$P × P$小块（默认16×16），展平每个块成向量，再线性投影到D维嵌入（像NLP的词嵌入）。加位置编码（学到的或固定的），防止模型忽略空间信息。序列长度$N = (H×W)/P^2$，加个[class] token汇总全局表示（像BERT的CLS）。</li>
+<li><strong>注意力机制</strong>：全用Transformer的自注意力。每个位置attend所有位置，捕捉远距离关系（CNN难）。多头注意力（Multi-Head）并行多视角，公式同原Transformer：Q、K、V投影后点积softmax。MLP层加非线性。没卷积，纯前馈。</li>
+</ul>
+<p>为什么有效？注意力全局，数据大时学到CNN的偏置（locality等）。小数据弱，但预训放大优势。</p>
+<h2 id="模型结构：简单堆叠的Transformer编码器"><a href="#模型结构：简单堆叠的Transformer编码器" class="headerlink" title="模型结构：简单堆叠的Transformer编码器"></a>模型结构：简单堆叠的Transformer编码器</h2><p>ViT结构就是Transformer编码器堆叠（L层，默认12-24），没解码器，因为是分类任务。</p>
+<ul>
+<li><strong>输入层</strong>：图像分块 + 线性投影 + 位置编码 + [class] token。</li>
+<li><strong>Transformer块</strong>：每块两个子模块：<ol>
+<li>多头自注意力（MSA）：LN后注意力，残差连接。</li>
+<li>前馈网络（MLP）：LN后两层全连接（GELU激活），残差。<br>公式：z’ = MSA(LN(z)) + z，z = MLP(LN(z’)) + z’。</li>
+</ol>
+</li>
+<li><strong>输出</strong>：最后一层[class] token过MLP头，softmax分类。</li>
+</ul>
+<p>变体：ViT-Base (L=12, D=768, heads=12)，ViT-Large (L=24, D=1024, heads=16)，ViT-Huge (L=32, D=1280, heads=16)。参数从86M到632M，类似BERT。</p>
+<p>结构简洁，没CNN层，全注意力+MLP。</p>
+<h2 id="实现细节：预训和微调的工程优化"><a href="#实现细节：预训和微调的工程优化" class="headerlink" title="实现细节：预训和微调的工程优化"></a>实现细节：预训和微调的工程优化</h2><p>实现上，作者用最小改动：基于标准Transformer库。</p>
+<ul>
+<li><strong>预训练</strong>：监督分类，大数据集如JFT-300M（300M图像，18k类）。AdamW优化，warmup+cosine衰减。输入224×224，patch 16×16。混合精度加速。</li>
+<li><strong>微调</strong>：换头，调分辨率（用2D插值位置编码）。加Mixup、CutMix正则。分辨率高时，用positional embedding调整。</li>
+<li><strong>计算效率</strong>：序列长短（196 for 224/16），比像素级注意力省（O(N²) vs O(HW²)）。TPU上训JFT需几天。</li>
+</ul>
+<p>代码开源（vision_transformer），易上手。</p>
+<h2 id="实验部分：规模效应和比较"><a href="#实验部分：规模效应和比较" class="headerlink" title="实验部分：规模效应和比较"></a>实验部分：规模效应和比较</h2><p>第4节实验是论文亮点，证明ViT在大规模预训下牛。关键点：</p>
+<ul>
+<li><strong>预训数据集影响</strong>：小数据集（ImageNet 1M）上，ViT弱于ResNet（e.g., ViT-L/16: 76.5% vs BiT-L: 80.0%）。但用ImageNet-21k (14M)，ViT追平；JFT-300M (300M)，ViT超SOTA（ViT-L/16: 87.1% top-1 on ImageNet）。结论：规模&gt;偏置。</li>
+<li><strong>缩放性能</strong>：模型大、数据多、计算多，性能线性涨（log-log plot）。ViT-H/14在JFT上88.55% ImageNet，省资源（比Noisy Student少4x FLOPs）。</li>
+<li><strong>转移学习</strong>：微调到CIFAR-100 (94.55%)、Oxford Flowers等，超CNN。VTAB 19任务套件77.63%，自然/结构/遥感子集都强。</li>
+<li><strong>消融</strong>：小patch (e.g., 14×14)更好（细粒度）。位置编码学的好于sin/cos。混合架构（前CNN后Transformer）在小数据好，但大数据ViT纯种胜。</li>
+</ul>
+<h2 id="附录：一些实用细节"><a href="#附录：一些实用细节" class="headerlink" title="附录：一些实用细节"></a>附录：一些实用细节</h2><p>附录有超参表、变体实验。重要点：</p>
+<ul>
+<li><strong>超参数</strong>：batch 4096，lr 0.3，weight decay 0.1。DropPath率0.1防过拟。</li>
+<li><strong>分辨率调整</strong>：微调时上采样位置编码，用bicubic插值。</li>
+<li><strong>自监督预训</strong>：试了，但监督更好（或许数据不够）。</li>
+<li><strong>注意力图可视</strong>：低层局部，高层全局，像CNN的层次。</li>
+</ul>
+<p>这些细节帮实现，避免坑。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>ViT的框架是图像序列化+纯Transformer，思想是靠数据规模克服偏置缺失。结构简单，实现易扩展，现在扩散到检测、分割。2025年了，ViT衍生出Swin、DETR等，但原论文的纯净思路值得回味。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+            <a href="/tags/detection/" rel="tag">#detection</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/06/02/paper-detr/" rel="next" title="[Paper] DETR: End-to-End Object Detection with Transformers">
+                <i class="fa fa-chevron-left"></i> [Paper] DETR: End-to-End Object Detection with Transformers
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/12/05/note-philosophers-done/" rel="prev" title="Note for What Have Philosophers Done">
+                Note for What Have Philosophers Done <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机"><span class="nav-number">1.</span> <span class="nav-text">背景和动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：图像序列化和注意力处理"><span class="nav-number">2.</span> <span class="nav-text">核心原理：图像序列化和注意力处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：简单堆叠的Transformer编码器"><span class="nav-number">3.</span> <span class="nav-text">模型结构：简单堆叠的Transformer编码器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：预训和微调的工程优化"><span class="nav-number">4.</span> <span class="nav-text">实现细节：预训和微调的工程优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分：规模效应和比较"><span class="nav-number">5.</span> <span class="nav-text">实验部分：规模效应和比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录：一些实用细节"><span class="nav-number">6.</span> <span class="nav-text">附录：一些实用细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">7.</span> <span class="nav-text">感想</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

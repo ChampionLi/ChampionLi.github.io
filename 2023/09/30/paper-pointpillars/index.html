@@ -1,0 +1,773 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="perception,paper," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: This blog post offers an overview of the 2019 paper “PointPillars: Fast Encoders for Object Detection from Point Clouds” by Alex H. Lang and colleagues, presenting a pillar-based encoder th">
+<meta name="keywords" content="perception,paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] PointPillars: Fast Encoders for Object Detection from Point Clouds">
+<meta property="og:url" content="http://yoursite.com/2023/09/30/paper-pointpillars/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: This blog post offers an overview of the 2019 paper “PointPillars: Fast Encoders for Object Detection from Point Clouds” by Alex H. Lang and colleagues, presenting a pillar-based encoder th">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/25/pmtwFt1.png">
+<meta property="og:updated_time" content="2026-06-25T03:25:37.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] PointPillars: Fast Encoders for Object Detection from Point Clouds">
+<meta name="twitter:description" content="Abstract: This blog post offers an overview of the 2019 paper “PointPillars: Fast Encoders for Object Detection from Point Clouds” by Alex H. Lang and colleagues, presenting a pillar-based encoder th">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/25/pmtwFt1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2023/09/30/paper-pointpillars/"/>
+
+  <title> [Paper] PointPillars: Fast Encoders for Object Detection from Point Clouds | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] PointPillars: Fast Encoders for Object Detection from Point Clouds
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2023-09-30T00:00:00+08:00" content="2023-09-30">
+              2023-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
+                    <span itemprop="name">Perception</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: This blog post offers an overview of the 2019 paper “PointPillars: Fast Encoders for Object Detection from Point Clouds” by Alex H. Lang and colleagues, presenting a pillar-based encoder that learns features from vertical columns of LiDAR points using simplified PointNets, enabling efficient 2D convolutional detection. It covers the principles of converting sparse point clouds into a dense pseudo-image via pillar feature encoding (with point decorations); the 2D backbone with top-down and upsampling paths; the SSD detection head for oriented 3D boxes; key implementation details including data augmentation and loss design; and experimental results on KITTI, achieving state-of-the-art BEV and 3D performance at 62 Hz (up to 105 Hz), significantly outperforming prior methods in both speed and accuracy.<br><a id="more"></a></p>
+</blockquote>
+<p>这篇工作把点云转成“柱子”（pillars）来学特征，然后用2D卷积做检测。论文提出了一种简单高效的编码器PointPillars，在KITTI基准上，纯LiDAR就打败很多融合方法，速度达到62Hz（更快版105Hz）。它平衡了速度和精度，避开了3D卷积的慢和手工特征的局限。现在很多检测框架还在参考它的思路。</p>
+<h2 id="背景和动机：点云检测的效率难题"><a href="#背景和动机：点云检测的效率难题" class="headerlink" title="背景和动机：点云检测的效率难题"></a>背景和动机：点云检测的效率难题</h2><p>自动驾驶里，LiDAR点云是核心传感器，能给精确3D信息。但点云稀疏、无序、3D，怎么高效转成检测友好的格式是个老问题。早期方法用固定手工特征（如按网格统计高度、密度），快但精度一般。后来VoxelNet用PointNet学体素特征，再3D卷积，精度高但慢（4.4Hz）。SECOND改进后到20Hz，但3D卷积还是瓶颈。</p>
+<p>作者观察到，鸟瞰（BEV）视角下，垂直方向信息有限，不需要精细体素划分。于是提出“柱子”（pillars）：垂直柱子学特征，水平用2D CNN。动机很简单——追求实时（real-time）部署，又不牺牲太多精度。</p>
+<h2 id="核心原理：Pillar编码-端到端学习"><a href="#核心原理：Pillar编码-端到端学习" class="headerlink" title="核心原理：Pillar编码 + 端到端学习"></a>核心原理：Pillar编码 + 端到端学习</h2><p>PointPillars原理是“柱状特征学习”。把点云按x-y平面均匀划分成柱子（像垂直柱），每个柱子里的点用简化PointNet学特征，然后散射回伪图像（pseudo-image），后续全2D处理。</p>
+<ul>
+<li><strong>为什么柱子？</strong> 柱子天然对齐BEV，避免z方向手工调bin。学特征比固定编码（如高度直方图）更灵活，能捕捉点分布、反射率等丰富信息。</li>
+<li><strong>端到端</strong>：从原始点云到3D框，全可微。避免多阶段误差累积。</li>
+<li><strong>效率</strong>：所有操作转2D卷积，GPU友好。稀疏柱子（大多空）用掩码处理，进一步提速。</li>
+</ul>
+<p>整体像把3D问题“压扁”成2D，保留必要信息。</p>
+<h2 id="模型结构：编码器-骨干-检测头"><a href="#模型结构：编码器-骨干-检测头" class="headerlink" title="模型结构：编码器 + 骨干 + 检测头"></a>模型结构：编码器 + 骨干 + 检测头</h2><p>结构清晰三部分（如下图）：</p>
+<p><a href="https://imgchr.com/i/pmtwFt1" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/25/pmtwFt1.png" alt="pmtwFt1.png"></a></p>
+<ol>
+<li><strong>Pillar Feature Net（编码器）</strong>：<ul>
+<li>输入点云，按分辨率（如0.16m）分柱子。</li>
+<li>每个点扩9维：原始(x,y,z,r) + 柱均值偏移$(x_c,y_c,z_c)$ + 柱中心偏移$(x_p,y_p)$。</li>
+<li>简化PointNet：线性层+BN+ReLU，每点得特征，然后max-pool得柱特征。</li>
+<li>散射回伪图像$(C x H x W)$，稀疏变密集伪图。</li>
+</ul>
+</li>
+<li><strong>Backbone（2D CNN）</strong>：类似VoxelNet，但全2D。<ul>
+<li>Top-down：多Block（stride递增，通道递增），提取多尺度。</li>
+<li>Upsample + concat：融合不同分辨率特征。</li>
+<li>输出高维特征图。</li>
+</ul>
+</li>
+<li><strong>Detection Head</strong>：SSD单阶段头。<ul>
+<li>锚框回归3D框（x,y,z,w,l,h,θ）。</li>
+<li>Focal loss分类，Smooth L1回归，方向softmax辅助朝向。</li>
+</ul>
+</li>
+</ol>
+<p>整个网络轻量，车类和行人/骑行者可共享骨干（stride略调）。</p>
+<h2 id="实现细节：工程优化和训练"><a href="#实现细节：工程优化和训练" class="headerlink" title="实现细节：工程优化和训练"></a>实现细节：工程优化和训练</h2><p>实现基于PyTorch，后用TensorRT加速。</p>
+<ul>
+<li><strong>数据</strong>：KITTI，训练时只用投影到图像的点（模拟真实）。</li>
+<li><strong>增强</strong>：地面真值采样（database）+ 每框扰动（小旋转平移）+ 全局翻转/旋转/缩放/平移。作者发现少量增强对行人更好。</li>
+<li><strong>锚框和匹配</strong>：2D IoU匹配，z和高单独回归。</li>
+<li><strong>损失</strong>：SECOND风格，定位+分类+方向。</li>
+<li><strong>训练</strong>：Adam，160 epoch，学习率衰减。Batch小（2-4）。</li>
+<li><strong>推理</strong>：NMS（轴对齐，0.5 IoU）。</li>
+<li><strong>变体</strong>：不同分辨率调速度/精度（0.12²到0.28²）。</li>
+</ul>
+<p>细节上，柱子数限12000/样本，点/柱限100，零填充或采样。装饰点特征是提升关键。</p>
+<h2 id="实验部分：速度精度双赢"><a href="#实验部分：速度精度双赢" class="headerlink" title="实验部分：速度精度双赢"></a>实验部分：速度精度双赢</h2><p>在KITTI val/test全面测。</p>
+<ul>
+<li><strong>BEV/3D</strong>：车Easy/Mod/Hard mAP超SECOND、VoxelNet等，行人和骑行者也领先融合方法。AOS（朝向）68.86%，领先。</li>
+<li><strong>速度</strong>：62Hz（TensorRT），匹配SOTA精度；调分辨率到105Hz，仍接近顶尖。</li>
+<li><strong>定性</strong>：可视化紧框，失败多在远/遮挡或混淆（行人/杆子、骑行者/桌子）。</li>
+<li><strong>消融</strong>：<ul>
+<li>分辨率：大柱子快，精度略降（行人/骑行者敏感）。</li>
+<li>编码：学特征大幅优固定编码，尤其大柱子。</li>
+<li>装饰/增强：xp/yp +0.5 mAP，数据库采样稳。</li>
+<li>骨干瘦身：通道减半仍强，加速明显。</li>
+</ul>
+</li>
+</ul>
+<p>实验证明：Pillar编码高效，2D全流程实时，学特征胜手工。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>PointPillars的框架简单实用——柱子学特征 + 2D骨干，避3D卷积坑，端到端学丰富表示。比VoxelNet快很多，还不输精度，现在很多BEV检测还在用类似思路。局限是稀疏场景下小物体稍弱，但整体性价比高。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perception/" rel="tag">#perception</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/05/01/paper-centernet/" rel="next" title="[Paper] CenterNet: Objects as Points">
+                <i class="fa fa-chevron-left"></i> [Paper] CenterNet: Objects as Points
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/06/02/paper-detr/" rel="prev" title="[Paper] DETR: End-to-End Object Detection with Transformers">
+                [Paper] DETR: End-to-End Object Detection with Transformers <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景和动机：点云检测的效率难题"><span class="nav-number">1.</span> <span class="nav-text">背景和动机：点云检测的效率难题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理：Pillar编码-端到端学习"><span class="nav-number">2.</span> <span class="nav-text">核心原理：Pillar编码 + 端到端学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型结构：编码器-骨干-检测头"><span class="nav-number">3.</span> <span class="nav-text">模型结构：编码器 + 骨干 + 检测头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节：工程优化和训练"><span class="nav-number">4.</span> <span class="nav-text">实现细节：工程优化和训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验部分：速度精度双赢"><span class="nav-number">5.</span> <span class="nav-text">实验部分：速度精度双赢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">6.</span> <span class="nav-text">感想</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

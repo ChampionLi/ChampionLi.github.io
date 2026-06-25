@@ -1,0 +1,770 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic|Georgia Pro:300,300italic,400,400italic,700,700italic|Source Han Serif Medium:300,300italic,400,400italic,700,700italic|Bodoni MT:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="perception,BEV,paper," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="CVision" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
+<meta name="keywords" content="perception,BEV,paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
+<meta property="og:url" content="http://yoursite.com/2025/01/19/paper-lss/index.html">
+<meta property="og:site_name" content="CVision">
+<meta property="og:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2026-06-25T03:50:16.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
+<meta name="twitter:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2025/01/19/paper-lss/"/>
+
+  <title> [Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D | CVision </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CVision</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My Life and Research</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/Tech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/categories/Life" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            life
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2025-01-19T00:00:00+08:00" content="2025-01-19">
+              2025-01-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/Perception/" itemprop="url" rel="index">
+                    <span itemprop="name">Perception</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-camera images in autonomous driving. It highlights the framework’s three core steps: “Lift,” which implicitly unprojects 2D images into 3D frustums using latent depth distributions; “Splat,” which fuses these into a rasterized BEV grid via pillar pooling; and “Shoot,” which enables interpretable motion planning by evaluating template trajectories on a learned cost map. </p>
+</blockquote>
+<a id="more"></a>
+<p>论文的核心是解决多相机输入怎么直接融合成鸟瞰图（BEV）表示的问题，不依赖激光雷达，只靠图像就能得到3D感知。</p>
+<p>在自动驾驶里，感知系统不是简单地从单张照片里抠出物体，而是要处理一堆相机拍的图像，把它们融合成一个统一的“上帝视角”——鸟瞰图。论文提出的“LSS”框架（Lift-Splat-Shoot的缩写），巧妙地用隐式反投影把2D图像抬升到3D空间，再扁平化成BEV。这思路不只适用于自驾车，还能启发其他多视图任务。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>想象一下，你开着车，车上装了6个相机，分别拍前后左右。每个相机都有自己的视角（坐标系），但规划系统需要一个统一的鸟瞰图：从上往下看，整个场景的语义表示，比如哪里是车、哪里是路、哪里能走。这不是简单的图像分割，因为输入是多视图的，输出要换坐标系（从相机局部到 ego-car 全局）。</p>
+<p>传统方法有啥痛点？比如，先在每张图像上跑2D检测，再根据相机内外参（intrinsics和extrinsics）转到3D空间进行匹配和融合。这听起来直观，但有三个问题：</p>
+<ol>
+<li><strong>没法端到端学习</strong>：检测和融合是分开的，模型学不到怎么最好地融合多相机信息。</li>
+<li><strong>无法准确的估计深度和融合</strong>：2D检测推3D检测，因为问题是“变态”的，深度常常估计不准确，一般称这种3D框为“伪3D”或“2.5D”。且由于深度估计不准，同一个物体在不同相机里的位置可能差很多，无法准确地匹配和融合。</li>
+<li><strong>对称性缺失</strong>：论文强调了三个关键对称性——平移等变（图像移位，输出也移）、排列不变（相机顺序不影响输出）、ego-frame 等距等变（旋转/平移ego坐标，输出跟着变）。简单方法能继承前两个，但第三个往往丢了。</li>
+</ol>
+<p>本论文的方法，既保持这些对称性，又端到端可微分。核心思路：不直接预测深度，而是隐式地“抬升”图像到3D，再“溅射”到BEV平面。</p>
+<h2 id="核心框架：Lift-Splat-Shoot-的三部曲"><a href="#核心框架：Lift-Splat-Shoot-的三部曲" class="headerlink" title="核心框架：Lift-Splat-Shoot 的三部曲"></a>核心框架：Lift-Splat-Shoot 的三部曲</h2><p>论文的方法部分是重头戏，分成三个步骤：Lift（抬升）、Splat（溅射）和Shoot（射击）。</p>
+<h3 id="1-Lift：从2D图像抬升到3D-frustum（视锥体）"><a href="#1-Lift：从2D图像抬升到3D-frustum（视锥体）" class="headerlink" title="1. Lift：从2D图像抬升到3D frustum（视锥体）"></a>1. Lift：从2D图像抬升到3D frustum（视锥体）</h3><p>第一步是处理每张图像独立，把它从平面“抬升”到3D空间。为什么独立？因为这样保持了排列不变性，不依赖相机顺序。</p>
+<p>关键挑战：单目图像深度是模糊的（一个像素可能对应远处或近处的物体）。论文不直接回归深度，而是为每个像素预测一个<strong>深度分布</strong>（categorical distribution）。具体来说：</p>
+<ul>
+<li>输入一张图像 X（3xHxW），用CNN（论文用EfficientNet-B0预训练骨干）提取特征。</li>
+<li>对于每个像素 p（坐标 h,w），网络预测两个东西：<ul>
+<li>一个上下文向量 $c ∈ R^C$（C是通道数，代表语义特征）。</li>
+<li>一个深度分布 $α ∈ △^{D-1}$（softmax输出，D是离散深度 bin 的数量，比如从4m到45m，每1m一个bin）。</li>
+</ul>
+</li>
+<li>然后，为像素 p 生成一个“射线”上的点云：每个深度 $d ∈ D$，对应一个点 (h,w,d)，特征是 $c_d = α_d * c$（外积）。</li>
+</ul>
+<p>这就形成了一个 frustum 形状的点云（视锥体，像个喇叭，从相机扩散出去）。为什么这样设计？</p>
+<ul>
+<li>如果 α 是 one-hot（只在某个 d 非零），就退化成伪激光雷达（pseudolidar），深度确定。</li>
+<li>如果 α 均匀，就均匀分布特征，像OFT方法。</li>
+<li>模型能学到深度不确定性，比如模糊物体均匀撒特征。</li>
+</ul>
+<p>这个步骤隐式反投影：不用显式深度图，而是用分布编码所有可能深度。结果是每个相机一个大点云（D×H×W点），共享3D坐标系。</p>
+<h3 id="2-Splat：溅射到BEV平面，形成栅格表示"><a href="#2-Splat：溅射到BEV平面，形成栅格表示" class="headerlink" title="2. Splat：溅射到BEV平面，形成栅格表示"></a>2. Splat：溅射到BEV平面，形成栅格表示</h3><p>现在有n个frustum点云，怎么融合？用“Splat”：根据内外参，把所有点“溅射”到参考平面（通常是地面，BEV坐标）。</p>
+<ul>
+<li>BEV网格是 X x Y（论文用-50m到50m，每0.5m一格，200x200）。</li>
+<li>每个点根据内外参投影到BEV平面，落到“柱子”（pillar）里——pillar是无限高的voxel（体素），像PointPillars里的设计。</li>
+<li>用sum pooling聚合每个pillar里的特征（不是max pooling，因为sum更可微）。</li>
+</ul>
+<p>为了效率，论文用“cumsum trick”：先排序点云，按pillar id累加特征，再在边界减法求sum。这避免了padding，加速2倍（autograd友好）。他们管这个层叫“Frustum Pooling”，独立于相机数n，输出固定C × X × Y tensor。</p>
+<p>这个步骤保持了ego-frame等距等变：旋转ego坐标，所有点跟着转，输出也转。融合是数据驱动的，模型学到怎么处理重叠视图或噪声。</p>
+<h3 id="3-Shoot：射击轨迹，实现端到端规划"><a href="#3-Shoot：射击轨迹，实现端到端规划" class="headerlink" title="3. Shoot：射击轨迹，实现端到端规划"></a>3. Shoot：射击轨迹，实现端到端规划</h3><p>前两步给出BEV表示 $y ∈ R^{C × X × Y}$，可以接CNN做分割。但论文更野心：用它做规划！</p>
+<p>规划 Framing成分类：预测K个模板轨迹的分布（模板从专家轨迹K-Means得来，论文用K=1000，5秒轨迹，每0.25s采样）。</p>
+<ul>
+<li>模型输出cost map c_o(x,y)（BEV上的成本函数）。</li>
+<li>轨迹概率用Boltzmann形式：$p(τ_i | o) = exp(-sum_{x,y in τ_i} c_o(x,y)) / Z$。</li>
+<li>训练用交叉熵，标签是ground-truth轨迹最近邻模板。</li>
+<li>测试时，“射击”模板到cost map，选最低成本的执行。</li>
+</ul>
+<p>这比NMP的hard-margin loss优雅，因为cost map可解释（可视化高成本区如障碍）。端到端：从图像到规划，反向传播优化整个链条。</p>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p>架构上，两个骨干：</p>
+<ul>
+<li>图像端：EfficientNet-B0提取特征，抬升frustum。</li>
+<li>BEV端：ResNet-like CNN处理splat后tensor（14.3M参数）。</li>
+<li>输入图像缩到128x352，BEV 200x200，深度D=41（4-45m）。</li>
+</ul>
+<p>效率关键：frustum pooling用cumsum trick，Titan V上35Hz。训练用Adam，300k步。</p>
+<p>论文强调模型对相机rig鲁棒：训练时随机掉相机或加噪声，能学到融合策略，甚至零样本转移到新rig（nuScenes训，Lyft测）。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>LSS的魅力在于“隐式”：不强求精确深度，而是用分布和溅射让模型自己学3D表示。这保持了对称性，又端到端，适合真实自驾场景（相机抖动、丢失常见）。比起依赖lidar的方案，便宜可扩展。缺点？单帧输入，未来加时序视频能更好。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perception/" rel="tag">#perception</a>
+          
+            <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/12/21/paper-swintransformer/" rel="next" title="[Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows">
+                <i class="fa fa-chevron-left"></i> [Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/08/02/paper-bevdet/" rel="prev" title="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
+                [Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Chiangbin Li" />
+          <p class="site-author-name" itemprop="name">Chiangbin Li</p>
+          <p class="site-description motion-element" itemprop="description">Dreams don't work unless you DO</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChampionLi" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.leiphone.com/author/yangjinyue" target="_blank" title="Leiphone">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Leiphone
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:li_xiang_bin@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心框架：Lift-Splat-Shoot-的三部曲"><span class="nav-number">2.</span> <span class="nav-text">核心框架：Lift-Splat-Shoot 的三部曲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Lift：从2D图像抬升到3D-frustum（视锥体）"><span class="nav-number">2.1.</span> <span class="nav-text">1. Lift：从2D图像抬升到3D frustum（视锥体）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Splat：溅射到BEV平面，形成栅格表示"><span class="nav-number">2.2.</span> <span class="nav-text">2. Splat：溅射到BEV平面，形成栅格表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Shoot：射击轨迹，实现端到端规划"><span class="nav-number">2.3.</span> <span class="nav-text">3. Shoot：射击轨迹，实现端到端规划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-number">3.</span> <span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chiangbin Li</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
