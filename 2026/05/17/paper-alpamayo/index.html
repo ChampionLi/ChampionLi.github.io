@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="end2end,vla,paper," />
+  <meta name="keywords" content="paper,end2end,vla," />
 
 
 
@@ -105,17 +105,19 @@
 
 
 <meta name="description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
-<meta name="keywords" content="end2end,vla,paper">
+<meta name="keywords" content="paper,end2end,vla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail">
 <meta property="og:url" content="http://yoursite.com/2026/05/17/paper-alpamayo/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T09:19:27.695Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmN4sSO.png">
+<meta property="og:updated_time" content="2026-06-26T14:27:37.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail">
 <meta name="twitter:description" content="Abstract: This blog post offers an overview of the NVIDIA paper “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,” presenting a vision-lang">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmN4sSO.png">
 
 
 
@@ -375,6 +377,7 @@
 </ul>
 <p>原理上，这让模型从“模仿专家轨迹”升级到“理解为什么这么做”，提升泛化和安全性。</p>
 <h2 id="模型结构：模块化VLA设计"><a href="#模型结构：模块化VLA设计" class="headerlink" title="模型结构：模块化VLA设计"></a>模型结构：模块化VLA设计</h2><p>AR1是模块化的，便于扩展（下图）：</p>
+<p><a href="https://imgchr.com/i/pmN4sSO" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmN4sSO.png" alt="pmN4sSO.png"></a></p>
 <ul>
 <li><strong>视觉编码</strong>：支持单图、多相机、多时序tokenization。默认用Cosmos-Reason的ViT，高效压缩多相机输入（triplane或Flex等进一步降token）。关键是减少token数，保证实时。</li>
 <li><strong>推理骨干</strong>：Cosmos-Reason（为Physical AI预训练的VLM）。输入多相机+历史ego-motion+可选文本（导航指令），输出CoC-style推理痕迹。</li>
@@ -429,11 +432,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/paper/" rel="tag">#paper</a>
+          
             <a href="/tags/end2end/" rel="tag">#end2end</a>
           
             <a href="/tags/vla/" rel="tag">#vla</a>
-          
-            <a href="/tags/paper/" rel="tag">#paper</a>
           
         </div>
       

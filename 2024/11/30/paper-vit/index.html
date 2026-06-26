@@ -112,10 +112,12 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T08:22:36.316Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNnXm8.png">
+<meta property="og:updated_time" content="2026-06-26T14:39:07.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] ViT: An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale">
 <meta name="twitter:description" content="Abstract: This blog post provides a overview of the 2021 ICLR paper “An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale” by Alexey Dosovitskiy and team at Google Brain, adapti">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmNnXm8.png">
 
 
 
@@ -366,6 +368,7 @@
 <h2 id="背景和动机"><a href="#背景和动机" class="headerlink" title="背景和动机"></a>背景和动机</h2><p>在NLP里，Transformer已经是标配：预训练大模型，再微调小任务，性能飙升。但视觉领域还是CNN的天下，从LeNet到ResNet，大家都依赖卷积的局部性和平移不变性。作者们好奇：Transformer这么牛，为什么不直接用在图像上？之前有人试过，但要么和CNN混用（比如加注意力层），要么用特殊注意力（局部或轴向），效率低，没大规模化。</p>
 <p>动机简单：图像也能看成序列。作者最小改动地应用标准Transformer——把图像切成小块（patch），像处理词一样喂给模型。关键洞察：Transformer没CNN的内置偏置（inductive bias，如局部性），小数据集上弱，但大数据上强。论文验证：用14M-300M图像预训，ViT在ImageNet等基准上赶超SOTA CNN，还省计算。</p>
 <h2 id="核心原理：图像序列化和注意力处理"><a href="#核心原理：图像序列化和注意力处理" class="headerlink" title="核心原理：图像序列化和注意力处理"></a>核心原理：图像序列化和注意力处理</h2><p>ViT的原理是把2D图像转1D序列，让Transformer捕捉全局依赖。</p>
+<p><a href="https://imgchr.com/i/pmNnXm8" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNnXm8.png" alt="pmNnXm8.png"></a></p>
 <ul>
 <li><strong>图像分块（Patch Extraction）</strong>：输入图像（$H × W × C$）切成$P × P$小块（默认16×16），展平每个块成向量，再线性投影到D维嵌入（像NLP的词嵌入）。加位置编码（学到的或固定的），防止模型忽略空间信息。序列长度$N = (H×W)/P^2$，加个[class] token汇总全局表示（像BERT的CLS）。</li>
 <li><strong>注意力机制</strong>：全用Transformer的自注意力。每个位置attend所有位置，捕捉远距离关系（CNN难）。多头注意力（Multi-Head）并行多视角，公式同原Transformer：Q、K、V投影后点积softmax。MLP层加非线性。没卷积，纯前馈。</li>

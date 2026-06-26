@@ -112,10 +112,13 @@
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog post provides an overview of the 2021 paper “Swin Transformer: Hierarchical Vision Transformer using Shifted Windows” by Ze Liu and colleagues at Microsoft Research Asia, proposin">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T08:14:48.844Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNUadA.png">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNnLOf.png">
+<meta property="og:updated_time" content="2026-06-26T14:37:56.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows">
 <meta name="twitter:description" content="Abstract: This blog post provides an overview of the 2021 paper “Swin Transformer: Hierarchical Vision Transformer using Shifted Windows” by Ze Liu and colleagues at Microsoft Research Asia, proposin">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmNUadA.png">
 
 
 
@@ -369,11 +372,13 @@
 <h2 id="核心原理：层次表示-移位窗口注意力"><a href="#核心原理：层次表示-移位窗口注意力" class="headerlink" title="核心原理：层次表示 + 移位窗口注意力"></a>核心原理：层次表示 + 移位窗口注意力</h2><p>Swin的核心是适应视觉的两个创新：层次结构和移位窗口。</p>
 <ul>
 <li><strong>层次表示</strong>：不像ViT固定patch大小，Swin从小patch起步，逐层合并邻域patch，形成金字塔特征图（类似FPN）。输入图像切成4×4 patch（灰块），深层合并成更大尺度。这解决尺度变异，方便dense任务（如检测用多尺度融合）。</li>
-<li><strong>移位窗口注意力</strong>：全局注意力太贵，Swin限自注意力在非重叠局部窗口内（红块），窗口数固定，复杂度线性于图像大小。关键是“移位”：连续层间窗口移位（图2），桥接前层窗口，建全局联系。为什么移位？直接全局O(n²)不行，滑动窗虽局部但硬件慢（不同query不同key）。移位让query共享key，高效。</li>
+<li><strong>移位窗口注意力</strong>：全局注意力太贵，Swin限自注意力在非重叠局部窗口内（红块），窗口数固定，复杂度线性于图像大小。关键是“移位”：连续层间窗口移位（下图），桥接前层窗口，建全局联系。为什么移位？直接全局O(n²)不行，滑动窗虽局部但硬件慢（不同query不同key）。移位让query共享key，高效。</li>
 </ul>
+<p><a href="https://imgchr.com/i/pmNUadA" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNUadA.png" alt="pmNUadA.png"></a></p>
 <p>加相对位置偏置（relative position bias）：注意力公式加B矩阵，编码相对位置（表4证明有效）。这引入翻译不变性，补Transformer的inductive bias缺失。</p>
 <p>原理上，Swin平衡全局（注意力）和局部（窗口），线性复杂度让高分辨率可行。</p>
 <h2 id="模型结构：Swin-Transformer块的堆叠"><a href="#模型结构：Swin-Transformer块的堆叠" class="headerlink" title="模型结构：Swin Transformer块的堆叠"></a>模型结构：Swin Transformer块的堆叠</h2><p>结构是Transformer编码器的层次变体，分4阶段（stages），每阶段降分辨率。</p>
+<p><a href="https://imgchr.com/i/pmNnLOf" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNnLOf.png" alt="pmNnLOf.png"></a></p>
 <ul>
 <li><strong>输入处理</strong>：图像切成4×4 patch，线性投影到C维嵌入（C=96 for Tiny）。加位置编码（相对偏置在注意力里处理）。</li>
 <li><strong>Swin Transformer块</strong>：每块两个子模块：<ol>

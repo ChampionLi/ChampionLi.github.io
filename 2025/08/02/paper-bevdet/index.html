@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="paper,perception,BEV," />
+  <meta name="keywords" content="perception,BEV,paper," />
 
 
 
@@ -105,17 +105,19 @@
 
 
 <meta name="description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
-<meta name="keywords" content="paper,perception,BEV">
+<meta name="keywords" content="perception,BEV,paper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
 <meta property="og:url" content="http://yoursite.com/2025/08/02/paper-bevdet/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T08:05:48.492Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNGQeI.png">
+<meta property="og:updated_time" content="2026-06-26T14:33:43.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] BEVDet: High-Performance Multi-Camera3D Object Detection in Bird-Eye-View">
 <meta name="twitter:description" content="Abstract: This blog offers an overview of the 2021 paper “BEVDet” , introducing a modular paradigm for unified 3D object detection in bird’s-eye-view (BEV) space from multi-camera inputs in autonomou">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmNGQeI.png">
 
 
 
@@ -373,6 +375,7 @@
 <li><strong>任务特定头</strong>：针对3D物体检测预测目标值，包括类别、位置、尺寸、方向和速度。论文用CenterPoint的head，它基于中心点预测，适合BEV的栅格表示。为什么CenterPoint？因为它在LiDAR-based检测上证明有效，能直接在BEV上操作。</li>
 </ol>
 <p>整个框架如下图所示，从图像空间到BEV空间的转换很顺畅。论文没发明新模块，全是复用现有技术。</p>
+<p><a href="https://imgchr.com/i/pmNGQeI" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNGQeI.png" alt="pmNGQeI.png"></a></p>
 <h2 id="方法和实现的关键点：数据增强与过拟合处理"><a href="#方法和实现的关键点：数据增强与过拟合处理" class="headerlink" title="方法和实现的关键点：数据增强与过拟合处理"></a>方法和实现的关键点：数据增强与过拟合处理</h2><p>论文还讨论了实现中的挑战，特别是过拟合。起初，论文用类似FCOS3D的参数设置训练，结果模型在BEV空间过拟合严重。图像视图数据是N倍的（每个场景多相机），但BEV部分数据少，容量又强。</p>
 <p>原因如下：</p>
 <p>在训练batch（一批数据）里，图像视图编码器（image-view encoder）每次要处理N张图像的特征提取。所以，对于一个场景（scene），它“看到”的数据是N倍的——相当于每个场景贡献了6份图像数据，让这个模块学得特别丰富。简单说：图像端数据多，训练机会足，模型不容易饿肚子。</p>
@@ -406,11 +409,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/paper/" rel="tag">#paper</a>
-          
             <a href="/tags/perception/" rel="tag">#perception</a>
           
             <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
           
         </div>
       

@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="paper,perception,BEV," />
+  <meta name="keywords" content="perception,BEV,paper," />
 
 
 
@@ -105,17 +105,19 @@
 
 
 <meta name="description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
-<meta name="keywords" content="paper,perception,BEV">
+<meta name="keywords" content="perception,BEV,paper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
 <meta property="og:url" content="http://yoursite.com/2025/08/03/paper-bevformer/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T08:01:51.386Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNnblt.png">
+<meta property="og:updated_time" content="2026-06-26T14:32:58.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers">
 <meta name="twitter:description" content="Abstract:  This blog post offers an overview of the 2022 paper “BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers” by Zhiqi Li and colleagues">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmNnblt.png">
 
 
 
@@ -367,6 +369,7 @@
 <h2 id="背景和动机"><a href="#背景和动机" class="headerlink" title="背景和动机"></a>背景和动机</h2><p>自动驾驶感知离不开3D理解，比如检测物体或分割地图。相机便宜，长距识别强，却难从2D转3D。传统单目方法独立处理每视图，融合差；BEV方法流行，但多靠深度估计（如LSS），易出错，影响检测准度。论文认为Transformer的注意力能动态聚合特征，不用硬深度先验，就能学BEV。</p>
 <p>另一个点是时序：人类开车靠视频推测速度和遮挡，但多相机检测少用时间信息。简单栈帧费算力，还干扰。作者想用BEV桥接时空，像RNN隐状态，递归传历史信息。动机：设计不靠深度的BEV生成器，支持多任务，高效用时空数据，提升低可见度下的召回和速度估计。</p>
 <h2 id="核心原理：网格查询-时空注意力"><a href="#核心原理：网格查询-时空注意力" class="headerlink" title="核心原理：网格查询 + 时空注意力"></a>核心原理：网格查询 + 时空注意力</h2><p>BEVFormer的核心是时空Transformer，用网格BEV查询（queries）动态查空间/时间，聚合特征。见下图。</p>
+<p><a href="https://imgchr.com/i/pmNnblt" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNnblt.png" alt="pmNnblt.png"></a></p>
 <ul>
 <li><strong>网格BEV查询</strong>：预定义网格状查询（像DETR的对象查询），每个代表BEV一格。查询不靠深度，靠注意力灵活学表示。</li>
 <li><strong>空间交叉注意力</strong>：每个查询从感兴趣区域（ROI）提取多相机特征。ROI用相机内外参投影3D点到2D视图，采样特征点。变形注意力（Deformable Attention）高效，只采样关键点，避免全局算。</li>
@@ -412,11 +415,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/paper/" rel="tag">#paper</a>
-          
             <a href="/tags/perception/" rel="tag">#perception</a>
           
             <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
           
         </div>
       

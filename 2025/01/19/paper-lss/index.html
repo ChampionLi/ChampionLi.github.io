@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="paper,perception,BEV," />
+  <meta name="keywords" content="perception,BEV,paper," />
 
 
 
@@ -105,17 +105,19 @@
 
 
 <meta name="description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
-<meta name="keywords" content="paper,perception,BEV">
+<meta name="keywords" content="perception,BEV,paper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
 <meta property="og:url" content="http://yoursite.com/2025/01/19/paper-lss/index.html">
 <meta property="og:site_name" content="CVision">
 <meta property="og:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2026-06-25T08:07:42.872Z">
+<meta property="og:image" content="https://s41.ax1x.com/2026/06/26/pmNUYse.png">
+<meta property="og:updated_time" content="2026-06-26T14:35:16.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Paper] LSS: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D">
 <meta name="twitter:description" content="Abstract: This blog provides an accessible explanation of the 2020 paper “Lift, Splat, Shoot” , focusing on an end-to-end architecture for generating bird’s-eye-view (BEV) representations from multi-">
+<meta name="twitter:image" content="https://s41.ax1x.com/2026/06/26/pmNUYse.png">
 
 
 
@@ -374,6 +376,7 @@
 </ol>
 <p>本论文的方法，既保持这些对称性，又端到端可微分。核心思路：不直接预测深度，而是隐式地“抬升”图像到3D，再“溅射”到BEV平面。</p>
 <h2 id="核心框架：Lift-Splat-Shoot-的三部曲"><a href="#核心框架：Lift-Splat-Shoot-的三部曲" class="headerlink" title="核心框架：Lift-Splat-Shoot 的三部曲"></a>核心框架：Lift-Splat-Shoot 的三部曲</h2><p>论文的方法部分是重头戏，分成三个步骤：Lift（抬升）、Splat（溅射）和Shoot（射击）。</p>
+<p><a href="https://imgchr.com/i/pmNUYse" target="_blank" rel="noopener"><img src="https://s41.ax1x.com/2026/06/26/pmNUYse.png" alt="pmNUYse.png"></a></p>
 <h3 id="1-Lift：从2D图像抬升到3D-frustum（视锥体）"><a href="#1-Lift：从2D图像抬升到3D-frustum（视锥体）" class="headerlink" title="1. Lift：从2D图像抬升到3D frustum（视锥体）"></a>1. Lift：从2D图像抬升到3D frustum（视锥体）</h3><p>第一步是处理每张图像独立，把它从平面“抬升”到3D空间。为什么独立？因为这样保持了排列不变性，不依赖相机顺序。</p>
 <p>关键挑战：单目图像深度是模糊的（一个像素可能对应远处或近处的物体）。论文不直接回归深度，而是为每个像素预测一个<strong>深度分布</strong>（categorical distribution）。具体来说：</p>
 <ul>
@@ -440,11 +443,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/paper/" rel="tag">#paper</a>
-          
             <a href="/tags/perception/" rel="tag">#perception</a>
           
             <a href="/tags/BEV/" rel="tag">#BEV</a>
+          
+            <a href="/tags/paper/" rel="tag">#paper</a>
           
         </div>
       
